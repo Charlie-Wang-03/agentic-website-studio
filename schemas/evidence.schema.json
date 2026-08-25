@@ -1,29 +1,30 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://agentic-website-studio.local/schemas/evidence.schema.json",
-  "title": "Evidence record",
+  "title": "M2 raw observed evidence record",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "runId", "sourceReference", "capturedAt", "kind", "epistemicType", "claim", "provenance", "rightsStatus"],
+  "required": ["id", "runId", "referenceId", "sourceReference", "capturedAt", "kind", "epistemicType", "claim", "provenance", "rightsStatus"],
   "properties": {
     "id": { "type": "string", "pattern": "^ev_[a-z0-9_-]+$" },
     "runId": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
-    "sourceReference": { "type": "string", "minLength": 1, "maxLength": 2048 },
+    "referenceId": { "type": "string", "pattern": "^ref_[a-f0-9]{20}$" },
+    "sourceReference": { "type": "string", "format": "uri", "maxLength": 2048 },
     "capturedAt": { "type": "string", "format": "date-time" },
-    "kind": { "enum": ["navigation", "page_metadata", "structure", "visual", "console", "network"] },
-    "epistemicType": { "enum": ["observed_fact", "inference", "evaluation", "transferable_principle"] },
-    "claim": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "viewport": { "enum": ["desktop", "mobile", "cross_viewport"] },
+    "kind": { "enum": ["navigation", "page_metadata", "structure", "visual_system", "motion_interaction", "technical_signal", "responsive", "screenshot", "console", "network"] },
+    "epistemicType": { "const": "observed_fact" },
+    "claim": { "type": "string", "minLength": 1, "maxLength": 1000 },
     "value": {},
-    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
     "provenance": {
       "type": "object", "additionalProperties": false, "required": ["method"],
-      "properties": { "method": { "type": "string", "minLength": 1 }, "locator": { "type": "string", "maxLength": 1000 } }
+      "properties": { "method": { "type": "string", "minLength": 1, "maxLength": 500 }, "locator": { "type": "string", "maxLength": 1000 } }
     },
-    "artifact": {
-      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
-      "properties": { "path": { "type": "string", "pattern": "^(?![A-Za-z]:|/)(?!.*(?:^|/)\\.\\.?(?:/|$))[^\\\\]+$" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } }
-    },
+    "artifact": { "$ref": "#/definitions/artifact" },
     "rightsStatus": { "enum": ["inspect_only", "reuse_allowed", "attribution_required", "licensed", "permission_required", "unknown", "blocked"] },
     "notes": { "type": "string", "maxLength": 1000 }
+  },
+  "definitions": {
+    "artifact": { "type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": { "path": { "type": "string", "pattern": "^(?![A-Za-z]:|/)(?!.*(?:^|/)\\.\\.?(?:/|$))[^\\\\]+$" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } }
   }
 }

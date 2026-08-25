@@ -4,9 +4,11 @@
   "title": "Rights assessment",
   "type": "object",
   "additionalProperties": false,
-  "required": ["sourceReference", "status", "basis", "isLegalOpinion"],
+  "required": ["referenceId", "runId", "sourceReference", "status", "basis", "isLegalOpinion"],
   "properties": {
-    "sourceReference": { "type": "string", "minLength": 1, "maxLength": 2048 },
+    "referenceId": { "type": "string", "pattern": "^ref_[a-f0-9]{20}$" },
+    "runId": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+    "sourceReference": { "type": "string", "format": "uri", "maxLength": 2048 },
     "status": { "enum": ["inspect_only", "reuse_allowed", "attribution_required", "licensed", "permission_required", "unknown", "blocked"] },
     "basis": { "type": "string", "minLength": 1, "maxLength": 1000 },
     "license": { "type": "string", "maxLength": 200 },

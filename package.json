@@ -8,10 +8,15 @@
     "node": ">=24"
   },
   "scripts": {
-    "studio": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 tsx src/cli.ts",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "test": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 vitest run",
+    "ensure-local-dirs": "node -e \"const fs=require('node:fs'); for (const dir of ['.tmp','.npm-cache']) fs.mkdirSync(dir,{recursive:true})\"",
+    "prestudio": "npm run ensure-local-dirs",
+    "prelint": "npm run ensure-local-dirs",
+    "pretypecheck": "npm run ensure-local-dirs",
+    "pretest": "npm run ensure-local-dirs",
+    "studio": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 TEMP=.tmp TMP=.tmp TMPDIR=.tmp npm_config_cache=.npm-cache tsx src/cli.ts",
+    "lint": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp eslint .",
+    "typecheck": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp tsc --noEmit",
+    "test": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 TEMP=.tmp TMP=.tmp TMPDIR=.tmp npm_config_cache=.npm-cache vitest run --maxWorkers=1",
     "check": "npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {

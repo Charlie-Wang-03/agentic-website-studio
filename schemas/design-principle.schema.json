@@ -1,19 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://agentic-website-studio.local/schemas/design-principle.schema.json",
-  "title": "Transferable design principle (future stage)",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["id", "principle", "mechanism", "problemAddressed", "transferability", "constraints", "antiCopyNotes", "supportingEvidenceIds", "confidence"],
+  "title": "M2 design principles document",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "referenceId", "runId", "principles"],
   "properties": {
-    "id": { "type": "string", "pattern": "^dp_[a-z0-9_-]+$" },
-    "principle": { "type": "string", "minLength": 1 },
-    "mechanism": { "type": "string", "minLength": 1 },
-    "problemAddressed": { "type": "string", "minLength": 1 },
-    "transferability": { "enum": ["low", "medium", "high"] },
-    "constraints": { "type": "array", "items": { "type": "string" } },
-    "antiCopyNotes": { "type": "string", "minLength": 1 },
-    "supportingEvidenceIds": { "type": "array", "items": { "type": "string", "pattern": "^ev_" }, "minItems": 1, "uniqueItems": true },
-    "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+    "schemaVersion": { "const": "1.0.0" }, "referenceId": { "type": "string", "pattern": "^ref_[a-f0-9]{20}$" }, "runId": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/principle" } }
+  },
+  "definitions": {
+    "rightsStatus": { "enum": ["inspect_only", "reuse_allowed", "attribution_required", "licensed", "permission_required", "unknown", "blocked"] },
+    "evidenceRef": { "type": "object", "additionalProperties": false, "required": ["runId", "evidenceId"], "properties": { "runId": { "type": "string", "pattern": "^[a-z0-9_-]+$" }, "evidenceId": { "type": "string", "pattern": "^ev_[a-z0-9_-]+$" } } },
+    "confidence": { "type": "object", "additionalProperties": false, "required": ["level", "rationale"], "properties": { "level": { "enum": ["low", "medium", "high"] }, "rationale": { "type": "string", "minLength": 1, "maxLength": 1000 } } },
+    "antiCopy": { "type": "object", "additionalProperties": false, "required": ["abstractionOnly", "independentVisualExpressionRequired", "noSourceAssetReuse", "noSourceProseReuse", "noExactLayoutReplication", "noExactMotionSequenceReplication", "noSourceCodeReconstruction", "referenceOnlyElements"], "properties": {
+      "abstractionOnly": { "const": true }, "independentVisualExpressionRequired": { "const": true }, "noSourceAssetReuse": { "const": true }, "noSourceProseReuse": { "const": true }, "noExactLayoutReplication": { "const": true }, "noExactMotionSequenceReplication": { "const": true }, "noSourceCodeReconstruction": { "const": true },
+      "referenceOnlyElements": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 500 } }
+    } },
+    "principle": { "type": "object", "additionalProperties": false, "required": ["id", "principle", "problemAddressed", "mechanism", "expectedExperientialEffect", "applicableContexts", "transferability", "constraints", "supportingProfileClaimIds", "supportingEvidence", "contradictoryEvidence", "confidence", "antiCopy", "rights", "sourceReferenceIds"], "properties": {
+      "id": { "type": "string", "pattern": "^dp_[a-z0-9_-]+$" }, "principle": { "type": "string", "minLength": 1, "maxLength": 2000 }, "problemAddressed": { "type": "string", "minLength": 1, "maxLength": 1000 }, "mechanism": { "type": "string", "minLength": 1, "maxLength": 2000 }, "expectedExperientialEffect": { "type": "string", "minLength": 1, "maxLength": 1000 },
+      "applicableContexts": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 500 } }, "transferability": { "enum": ["low", "medium", "high"] }, "constraints": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 1000 } },
+      "supportingProfileClaimIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^rpc_[a-z0-9_-]+$" } },
+      "supportingEvidence": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/definitions/evidenceRef" } }, "contradictoryEvidence": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/definitions/evidenceRef" } }, "confidence": { "$ref": "#/definitions/confidence" }, "antiCopy": { "$ref": "#/definitions/antiCopy" },
+      "rights": { "type": "object", "additionalProperties": false, "required": ["sourceStatus", "sourceBasis", "sourceNotes", "caveats", "isLegalOpinion"], "properties": { "sourceStatus": { "$ref": "#/definitions/rightsStatus" }, "sourceBasis": { "type": "string", "minLength": 1, "maxLength": 1000 }, "sourceNotes": { "type": "array", "maxItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 1000 } }, "caveats": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 1000 } }, "isLegalOpinion": { "const": false } } },
+      "sourceReferenceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^ref_[a-f0-9]{20}$" } }
+    } }
   }
 }

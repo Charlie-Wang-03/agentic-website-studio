@@ -1,24 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://agentic-website-studio.local/schemas/reference-run.schema.json",
-  "title": "Reference research run",
+  "title": "M2 reference intelligence run",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "runId", "project", "requestedUrl", "finalUrl", "capturedAt", "viewport", "tools", "artifacts", "evidenceIds", "warnings", "errors", "policyDecisions"],
+  "required": ["schemaVersion", "referenceId", "runId", "project", "requestedUrl", "finalUrl", "capturedAt", "viewports", "tools", "artifacts", "evidenceIds", "warnings", "errors", "policyDecisions"],
   "properties": {
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": { "const": "2.0.0" },
+    "referenceId": { "type": "string", "pattern": "^ref_[a-f0-9]{20}$" },
     "runId": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
     "project": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$" },
     "requestedUrl": { "type": "string", "format": "uri" },
     "finalUrl": { "type": "string", "format": "uri" },
     "capturedAt": { "type": "string", "format": "date-time" },
-    "viewport": { "type": "object", "additionalProperties": false, "required": ["width", "height"], "properties": { "width": { "type": "integer", "minimum": 320 }, "height": { "type": "integer", "minimum": 240 } } },
+    "viewports": { "type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": { "$ref": "#/definitions/viewport" }, "allOf": [{ "contains": { "type": "object", "properties": { "name": { "const": "desktop" } }, "required": ["name"] } }, { "contains": { "type": "object", "properties": { "name": { "const": "mobile" } }, "required": ["name"] } }] },
     "tools": { "type": "object", "additionalProperties": { "type": "string" } },
-    "artifacts": { "type": "array", "items": { "$ref": "#/definitions/artifact" }, "minItems": 4 },
-    "evidenceIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-    "warnings": { "type": "array", "items": { "type": "string" } },
+    "artifacts": { "type": "array", "items": { "$ref": "#/definitions/artifact" }, "minItems": 6, "uniqueItems": true },
+    "evidenceIds": { "type": "array", "items": { "type": "string", "pattern": "^ev_" }, "minItems": 1, "uniqueItems": true },
+    "warnings": { "type": "array", "maxItems": 500, "items": { "type": "string", "maxLength": 2500 } },
     "errors": { "type": "array", "items": { "type": "string" } },
     "policyDecisions": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
   },
-  "definitions": { "artifact": { "type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": { "path": { "type": "string", "pattern": "^(?![A-Za-z]:|/)(?!.*(?:^|/)\\.\\.?(?:/|$))[^\\\\]+$" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } } }
+  "definitions": {
+    "viewport": { "type": "object", "additionalProperties": false, "required": ["name", "width", "height"], "properties": { "name": { "enum": ["desktop", "mobile"] }, "width": { "type": "integer", "minimum": 320, "maximum": 4000 }, "height": { "type": "integer", "minimum": 240, "maximum": 4000 } } },
+    "artifact": { "type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": { "path": { "type": "string", "pattern": "^(?![A-Za-z]:|/)(?!.*(?:^|/)\\.\\.?(?:/|$))[^\\\\]+$" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } }
+  }
 }
