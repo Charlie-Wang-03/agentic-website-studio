@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { hashFile } from './artifacts.js';
@@ -6,7 +7,14 @@ import { createReferenceId } from './reference.js';
 import { createValidator } from './schema.js';
 import type { EvidenceRecord, ReferenceRunManifest } from './types.js';
 
-export const REPOSITORY_ROOT = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
+function findRepositoryRoot(start: string): string {
+  let current = path.resolve(start);
+  while (true) {
+    if (existsSync(path.join(current, 'package.json')) && existsSync(path.join(current, 'schemas'))) return current;
+    const parent = path.dirname(current); if (parent === current) throw new Error('Could not locate repository root'); current = parent;
+  }
+}
+export const REPOSITORY_ROOT = findRepositoryRoot(path.dirname(fileURLToPath(import.meta.url)));
 export interface RightsRecord { referenceId: string; runId: string; sourceReference: string; status: string; basis: string; isLegalOpinion: false; notes?: string }
 export interface ValidatedRun { runDir: string; manifest: ReferenceRunManifest; evidence: EvidenceRecord[]; rights: RightsRecord[] }
 
@@ -136,6 +144,7 @@ export async function validateRunDirectory(rawRunDir: string): Promise<Validated
     if (item.runId !== manifest.runId) throw new Error(`Evidence ${item.id} belongs to a different run`);
     if (item.referenceId !== manifest.referenceId) throw new Error(`Evidence ${item.id} belongs to a different reference`);
     if (item.epistemicType !== 'observed_fact') throw new Error(`Raw evidence ${item.id} is not an observed fact`);
+    if (item.rightsStatus !== rights[0]!.status) throw new Error(`Evidence ${item.id} escalates or changes source rights`);
     for (const [label, text] of [[`Evidence ${item.id}.claim`, item.claim], [`Evidence ${item.id}.sourceReference`, item.sourceReference], [`Evidence ${item.id}.provenance.method`, item.provenance.method], [`Evidence ${item.id}.provenance.locator`, item.provenance.locator], [`Evidence ${item.id}.notes`, item.notes]] as const) if (text !== undefined) validatePersistedEvidenceText(text, label);
     if (item.value !== undefined) {
       if (!['navigation', 'page_metadata', 'structure', 'visual_system', 'motion_interaction', 'technical_signal', 'responsive'].includes(item.kind) || item.value === null || Array.isArray(item.value) || typeof item.value !== 'object') throw new Error(`Evidence ${item.id} has a non-object or disallowed root value`);

@@ -18,6 +18,16 @@ Screenshots and observed third-party content are research evidence, not reusable
 
 The abstraction agent receives the Analysis Packet, approved screenshot evidence, schemas, and [Reference Intelligence protocol](REFERENCE_INTELLIGENCE_PROTOCOL.md). It must not browse the original URL, search for cloned implementations, inspect excluded source, or translate source pixels/text/assets into implementation instructions. Current enforcement is procedural and contract-based, not a claim of network isolation.
 
+## M3 firewalls and creative rights
+
+The Reference Evidence Firewall gives synthesis only validated M2 abstractions and opaque reference identities. Source metadata may remain in an internal provenance section for deterministic validation, but it is excluded from the agent-facing projection. The synthesis protocol prohibits feature concatenation and requires problem → experience → mechanism → tradeoff → original-expression reasoning.
+
+The Originality Firewall gives creative work the Project Brief and source-neutral Synthesis Units. It excludes URLs, source names, screenshots, raw evidence, M2 claim/principle IDs, source prose/assets/code, layout measurements, and exact motion sequences. Influence is an auditable ledger, not a fabricated originality percentage.
+
+`original`, `permissioned_or_licensed`, and `third_party_adaptation_requires_human_review` are workflow modes, not legal conclusions. In `original` mode, identifiable protected expression is prohibited. No stage escalates reference rights, declares fair use, or supplies legal clearance.
+
+Automated M3 output cannot approve a concept. Only explicit future human provenance may change the gate from `pending_human_selection` to an approval, revision request, or rejection.
+
 ## Artifact lifecycle
 
 Runs stay under ignored repository-local `runs/`; test artifacts and process-controlled temporary files stay under ignored `.tmp/`. Manifests and packets use portable repository-relative paths and SHA-256 hashes. Third-party runs, screenshots, browser binaries, caches, and reports are not committed. Only project-owned fixtures belong in source control. There is no GitHub Actions workflow; `npm run check` is the canonical local gate.

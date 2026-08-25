@@ -57,3 +57,46 @@ export interface DesignPrinciple {
 export interface DesignPrinciplesDocument {
   schemaVersion: '1.0.0'; referenceId: string; runId: string; principles: DesignPrinciple[];
 }
+
+export type CreativeRightsMode = 'original' | 'permissioned_or_licensed' | 'third_party_adaptation_requires_human_review';
+export interface ProjectBrief {
+  schemaVersion: '1.0.0'; projectId: string; workingTitle: string; purpose: string; targetAudience: string[];
+  desiredExperience: string[]; expectedSessionLength: string; narrativeGoal: string; interactionGoal: string;
+  visualAspirations: string[]; platformConstraints: string[]; accessibilityExpectations: string[]; mobileExpectations: string[];
+  engineeringConstraints: string[]; creativeRightsMode: CreativeRightsMode; prohibitedExpressions: string[];
+  mustHaveQualities: string[]; unwantedQualities: string[]; openQuestions: string[];
+}
+export interface AnalysisTupleDescriptor { runDir: string; analysisPacketPath: string; profilePath: string; principlesPath: string }
+export interface ReferenceSetEntry {
+  referenceId: string; runId: string; analysisTuple: AnalysisTupleDescriptor & { analysisPacketSha256: string; profileSha256: string; principlesSha256: string }; validation: 'pass'; rightsStatus: RightsStatus;
+  rightsBasis: string; rightsNotes: string[]; materialWarnings: string[]; limitations: string[];
+}
+export interface ReferenceSet { schemaVersion: '1.0.0'; projectId: string; minimumReferenceCount: 3; references: ReferenceSetEntry[] }
+export interface SynthesisPacket {
+  schemaVersion: '1.0.0'; packetId: string; projectId: string; referenceSet: ReferenceSet;
+  agentFacing: { projectBriefSummary: Omit<ProjectBrief, 'schemaVersion'>; references: Array<{ opaqueReferenceId: string; claims: ReferenceProfileClaim[]; principles: DesignPrinciple[]; confidenceLimitations: string[]; rights: { status: RightsStatus; basis: string; notes: string[] }; contributionBoundary: string; antiCopyConstraints: AntiCopyConstraints[] }>; policy: { referenceEvidenceFirewall: true; sourceNeutralReasoning: true; antiFrankenstein: true; rightsAreNotReusePermission: true; enforcement: 'protocol' } };
+}
+export type SynthesisUnitType = 'convergent_pattern' | 'complementary_pattern' | 'tension_tradeoff' | 'unique_candidate';
+export interface SynthesisContribution { referenceId: string; principleIds: string[]; profileClaimIds: string[] }
+export interface SynthesisUnit {
+  id: string; type: SynthesisUnitType; title: string; problemAddressed: string; abstractMechanism: string; projectValue: string;
+  avoidWhen: string[]; tensionsCreated: string[]; sourceSpecificExpressionExcluded: string[]; contributions: SynthesisContribution[];
+  contradictoryPrincipleIds: string[]; contradictoryProfileClaimIds: string[]; confidence: Confidence; limitations: string[];
+  rightsCaveats: string[]; inheritedAntiCopyConstraints: string[]; consensusClaimed: boolean;
+}
+export interface SynthesisMap { schemaVersion: '1.0.0'; synthesisId: string; projectId: string; sourcePacketId: string; units: SynthesisUnit[] }
+export interface CreativePacket {
+  schemaVersion: '1.0.0'; creativePacketId: string; projectBrief: ProjectBrief; synthesisId: string; synthesisUnits: Array<Omit<SynthesisUnit, 'contributions' | 'contradictoryPrincipleIds' | 'contradictoryProfileClaimIds'> & { opaqueReferenceIds: string[] }>;
+  rightsMode: CreativeRightsMode; protectedExpressionProhibitions: string[]; antiCopyRequirements: string[];
+  designTensions: string[]; technicalConstraints: string[]; influenceLedger: Array<{ synthesisUnitId: string; opaqueReferenceIds: string[] }>;
+  policy: { originalityFirewall: true; sourceNamesExcluded: true; sourceUrlsExcluded: true; screenshotsExcluded: true; rawEvidenceExcluded: true; sourceProseExcluded: true; exactSourceMotionExcluded: true; enforcement: 'protocol' };
+}
+export interface CreativeConcept {
+  id: string; name: string; thesis: string; experiencePromise: string; targetEmotionalArc: string[]; narrativeModel: string;
+  interactionModel: string; spatialProgressionModel: string; visualLanguageDirection: string; audioMotionRole: string; expectedSessionFlow: string[];
+  selectedSynthesisUnitIds: string[]; rejectedSynthesisUnitIds: string[]; resolvedTensions: string[]; unresolvedTensions: string[];
+  originalityRationale: string; sourceInfluenceSummary: Array<{ synthesisUnitId: string }>;
+  protectedExpressionProhibitions: string[]; implementationPosture: string; mobilePosture: string; accessibilityConsiderations: string[];
+  complexityRisk: string[]; smallestConvincingPlayableSlice: string; majorUnknowns: string[];
+}
+export interface CreativeConceptsDocument { schemaVersion: '1.0.0'; projectId: string; synthesisId: string; rightsMode: CreativeRightsMode; concepts: CreativeConcept[] }

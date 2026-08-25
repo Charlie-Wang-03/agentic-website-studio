@@ -1,6 +1,6 @@
 # Architecture
 
-## M2 epistemic layers
+## Evidence-to-decision layers
 
 ```text
 Public Website
@@ -11,6 +11,14 @@ Public Website
   → Reference Profile
   → Design Principles
   → schema + semantic validation
+  ─────── Reference Evidence Firewall ───────
+  → source-neutral Synthesis Packet
+  → classified Synthesis Map
+  ─────────── Originality Firewall ──────────
+  → Creative Packet + authoritative Project Brief
+  → exactly 3 Creative Concepts
+  → independent reviews
+  → Human Creative Gate: pending_human_selection
 ```
 
 Raw Evidence is browser/deterministic inspection output and its schema fixes `epistemicType` to `observed_fact`. It may report measured geometry or computed-style frequencies; it may not call those observations effective, beautiful, transferable, or reusable.
@@ -18,6 +26,18 @@ Raw Evidence is browser/deterministic inspection output and its schema fixes `ep
 A Reference Profile is derived single-reference interpretation. Every claim is an `inference` or, when genuinely subjective, an `evaluation`; every claim cites supporting composite evidence references, records counter-evidence when present, explains confidence, and states limitations.
 
 A Design Principle is an abstract mechanism that can inform a wholly different original work. It cites profile claims and raw evidence, preserves source rights, and requires machine-readable anti-copy constraints. It cannot carry a reusable source artifact, source code, exact layout, or exact motion sequence.
+
+A Synthesis Map is not another Reference Profile. It classifies cross-reference reasoning as convergence, complementary alternatives, unresolved tension, or a single-reference unique candidate. Deterministic validation resolves every contribution and prevents repeated evidence from masquerading as consensus; semantic similarity remains an independent-review question.
+
+A Creative Concept is not a Synthesis Map. It answers the Project Brief using selected abstract units, explains its original expression, and records tradeoffs and influence. Concepts cannot bypass the Synthesis Map to cite raw evidence, profile claims, or principles.
+
+Independent diversity/grounding and originality reviews are versioned artifacts bound to the exact concepts-file SHA-256. A failed review blocks gate construction; warnings flow into the Human Creative Gate. This prevents a passing review from being replayed after concepts change.
+
+```text
+References inform mechanisms.
+Project Brief determines purpose.
+Human decides creative direction.
+```
 
 ## Identity and provenance
 
@@ -39,8 +59,8 @@ Navigation uses `domcontentloaded`, a bounded settle, passive inspection, and a 
 
 Schemas and generated artifacts—not conversation—are the source of truth. M1 runs are ephemeral; the M2 schema correction deliberately requires stale captures to be recreated rather than migrated.
 
-## Evidence Firewall enforcement
+## Firewall enforcement
 
-The current firewall is an artifact contract and procedural execution protocol. The analysis packet can be handed to an agent without source access, but this repository does not cryptographically or technically remove tools from an arbitrary external model runtime. Future adapters may enforce runtime tool permissions; M2 reports the present enforcement honestly as `protocol`.
+The M2 Evidence Firewall, M3 Reference Evidence Firewall, and M3 Originality Firewall are artifact contracts plus procedural execution protocols. The Synthesis Packet exposes only validated abstractions through an agent-facing projection. The Creative Packet removes URLs, names, screenshots, raw evidence, profile/principle IDs, source prose/assets/code, geometry, and exact motion. This repository does not cryptographically remove tools from an arbitrary model runtime, so each packet reports enforcement honestly as `protocol`.
 
-Longer-term stages remain Multi-reference Synthesis → Original Creative Concepts → Human Creative Gate → Implementation → QA → Human Review → Release. M2 stops before those stages.
+M3 ends at a first-class Human Creative Gate whose automation schema can emit only `pending_human_selection`. Implementation, QA, release, and learning remain later stages.

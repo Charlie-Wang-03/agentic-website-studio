@@ -1,6 +1,5 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { chromium, type BrowserContext, type Page } from 'playwright';
 import { hashFile, hashText, writeJson } from './artifacts.js';
@@ -8,10 +7,10 @@ import { collectViewportIntelligence, VIEWPORTS } from './intelligence.js';
 import { assertProjectSlug, containedPath, portable } from './paths.js';
 import { sanitizeUrl, validateUrl } from './policy.js';
 import { createReferenceId } from './reference.js';
+import { REPOSITORY_ROOT } from './run-validation.js';
 import type { ArtifactRef, ConsoleRecord, EvidenceRecord, NetworkRecord, ReferenceRunManifest, ViewportName, ViewportProfile } from './types.js';
 
-export interface CaptureOptions { url: string; project: string; allowLocalFixture?: boolean; outputRoot?: string; settleMs?: number }
-const REPOSITORY_ROOT = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
+export interface CaptureOptions { url: string; project: string; allowLocalFixture?: boolean; outputRoot?: string; settleMs?: number; disableJavaScript?: boolean }
 const MAX_RESPONSES = 500;
 const MAX_WARNINGS = 500;
 const MAX_REQUESTS_PER_VIEWPORT = 750;
@@ -87,6 +86,17 @@ function fact(base: Omit<EvidenceRecord, 'id' | 'kind' | 'claim' | 'provenance'>
   return { ...base, id, kind, claim, value, provenance: { method } };
 }
 
+async function collectAfterBoundedNavigation(page: Page, viewport: ViewportName): Promise<Awaited<ReturnType<typeof collectViewportIntelligence>>> {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try { return await collectViewportIntelligence(page, viewport); }
+    catch (error) {
+      if (!(error instanceof Error) || !/Execution context was destroyed|navigation/i.test(error.message) || attempt === 2) throw error;
+      await page.waitForLoadState('domcontentloaded', { timeout: 10_000 }); await page.waitForTimeout(500);
+    }
+  }
+  throw new Error('Viewport intelligence collection exhausted its bounded navigation retries');
+}
+
 export async function captureReference(options: CaptureOptions): Promise<{ runDir: string; manifest: ReferenceRunManifest }> {
   assertProjectSlug(options.project);
   const allowLocalFixture = options.allowLocalFixture === true;
@@ -117,7 +127,7 @@ export async function captureReference(options: CaptureOptions): Promise<{ runDi
   const summaries: Array<{ viewport: ViewportName; scrollHeight: number; horizontalOverflow: boolean; sectionCount: number; headingCount: number; fixedOrStickyCount: number }> = [];
   try {
     for (const viewport of VIEWPORTS) {
-      const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, serviceWorkers: 'block', reducedMotion: 'no-preference' });
+      const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, serviceWorkers: 'block', reducedMotion: 'no-preference', javaScriptEnabled: options.disableJavaScript !== true });
       try {
         // tsx preserves nested function names with this helper; define the inert helper in the page realm so CLI and Vitest execute the same collector.
         await context.addInitScript({ content: 'globalThis.__name ??= (target) => target; Object.defineProperty(globalThis, "open", { value: () => null, writable: false, configurable: false });' });
@@ -133,6 +143,7 @@ export async function captureReference(options: CaptureOptions): Promise<{ runDi
         const pendingResponses: Array<Promise<void>> = [];
         observePage(page, viewport.name, network, consoleRecords, pendingResponses);
         const response = await page.goto(requested.toString(), { waitUntil: 'domcontentloaded', timeout: 30_000 });
+        if (options.disableJavaScript === true) addWarning(`${viewport.name} capture used JavaScript-disabled fallback after the normal passive collector could not obtain a stable execution context`);
         if (options.settleMs !== 0) await page.waitForTimeout(Math.min(Math.max(options.settleMs ?? 500, 0), 5_000));
         const final = await validateUrl(page.url(), { allowLocalFixture, resolveDns: true });
         finalUrl = sanitizeUrl(final.toString()); referenceId = createReferenceId(finalUrl);
@@ -140,7 +151,7 @@ export async function captureReference(options: CaptureOptions): Promise<{ runDi
         establishedFinalUrl = finalUrl;
         const baseFact = { runId, referenceId, sourceReference: finalUrl, capturedAt, viewport: viewport.name, epistemicType: 'observed_fact' as const, rightsStatus: 'inspect_only' as const };
         evidence.push(fact(baseFact, `ev_navigation_${viewport.name}`, 'navigation', `Navigation observed for ${viewport.name} viewport`, { requestedUrl: sanitizeUrl(requested.toString()), finalUrl, status: response?.status() }, 'Playwright DOMContentLoaded navigation plus bounded settle'));
-        const intelligence = await collectViewportIntelligence(page, viewport.name);
+        const intelligence = await collectAfterBoundedNavigation(page, viewport.name);
         summaries.push({ viewport: viewport.name, ...intelligence.summary });
         evidence.push(fact(baseFact, `ev_structure_${viewport.name}`, 'structure', `Bounded structural observations at ${viewport.name} viewport`, intelligence.structure, 'Bounded DOM geometry and semantic inspection'));
         evidence.push(fact(baseFact, `ev_visual_system_${viewport.name}`, 'visual_system', `Bounded computed-style distributions at ${viewport.name} viewport`, intelligence.visualSystem, 'Bounded computed-style sampling; no stylesheets copied'));

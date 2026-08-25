@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectId": "project_wayfinder",
+  "workingTitle": "Wayfinder",
+  "purpose": "Create a five-to-eight-minute original interactive browser experience in an independently created desert world where observation and a few meaningful choices alter route, atmosphere, and the final vignette.",
+  "targetAudience": ["Curious desktop and mobile visitors who enjoy concise contemplative interactive stories"],
+  "desiredExperience": ["curiosity", "contemplation", "exploration", "consequence without heavy gamification", "emotional rather than score-driven progression"],
+  "expectedSessionLength": "5–8 minutes",
+  "narrativeGoal": "Let ambiguous environmental signs and accumulated choices create a personal emotional interpretation without recognizable borrowed plot beats.",
+  "interactionGoal": "Support a small number of legible, meaningful choices that alter route, atmosphere, and the ending without scores or grind.",
+  "visualAspirations": ["An independently designed desert world", "Atmospheric change that communicates consequence", "Clear silhouettes and readable interaction states"],
+  "platformConstraints": ["Modern public browser", "No installation", "Keyboard, pointer, touch, and reduced-motion paths"],
+  "accessibilityExpectations": ["Keyboard-operable choices", "Visible focus", "Sufficient contrast", "Reduced-motion alternative", "Non-audio access to meaning"],
+  "mobileExpectations": ["Complete experience on a narrow viewport", "Touch targets remain usable", "No essential hover-only interaction", "Performance-conscious presentation"],
+  "engineeringConstraints": ["Technology follows the chosen concept", "Avoid mandatory heavyweight 3D", "Keep a smallest playable slice feasible", "No production implementation in M3"],
+  "creativeRightsMode": "original",
+  "prohibitedExpressions": ["Characters from any supplied reference work", "Quotes from any supplied reference work", "Recognizable plot beats from any supplied reference work", "Named fictional locations from any supplied reference work", "Recognizable illustrations", "Reference logos", "Source-specific symbols", "Source prose", "Copied visual compositions", "Copied motion sequences"],
+  "mustHaveQualities": ["original world and expression", "meaningful consequence", "exploratory agency", "contemplative pacing", "accessible mobile-aware interaction"],
+  "unwantedQualities": ["normal marketing-site framing", "score-driven progression", "feature collage", "automatic commitment to WebGL", "disguised reference cloning"],
+  "openQuestions": ["How explicit should the consequences become before ambiguity is lost?", "Which presentation technology best serves the selected concept?", "What audio role remains optional and accessible?"]
+}
