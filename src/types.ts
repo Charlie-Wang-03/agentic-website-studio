@@ -11,4 +11,3 @@ export interface EvidenceRecord {
   provenance: { method: string; locator?: string }; artifact?: ArtifactRef;
   rightsStatus: RightsStatus; notes?: string;
 }
-

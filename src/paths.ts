@@ -18,4 +18,3 @@ export function containedPath(root: string, ...parts: string[]): string {
 }
 
 export function portable(relativePath: string): string { return relativePath.split(path.sep).join('/'); }
-

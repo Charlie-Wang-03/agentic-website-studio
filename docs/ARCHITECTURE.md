@@ -15,4 +15,3 @@ Evidence uses explicit epistemic types: `observed_fact`, `inference`, `evaluatio
 Public-reference research accepts public HTTP(S) only. Local generated-site QA is a separate zone with an explicit loopback-only fixture override. Authenticated sessions and private networks are outside M1. Each run has portable repository-relative paths and SHA-256 artifact hashes. Conversation is not a source of truth.
 
 Future design work should transform evidence into abstract mechanisms, then synthesize original directions behind an originality firewall and human creative gate. It must not transform pixels directly into a clone. Deterministic validators and an independent reviewer precede release; one project lesson cannot automatically rewrite global rules.
-

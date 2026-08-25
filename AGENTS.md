@@ -8,4 +8,3 @@
 - Work only inside this repository. Use project-local dependencies; no global installs, Docker, GitHub Actions, or Computer Use.
 - Browser automation is allowed, but authenticated/private-source scraping is not.
 - Run `npm run check` locally. Generated evidence, browser binaries, caches, and `node_modules` stay uncommitted.
-
