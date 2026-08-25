@@ -1,0 +1,9 @@
+node_modules/
+.npm-cache/
+runs/
+test-results/
+playwright-report/
+coverage/
+*.tsbuildinfo
+.DS_Store
+

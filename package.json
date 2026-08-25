@@ -1,0 +1,35 @@
+{
+  "name": "agentic-website-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Evidence-first foundation for rights-aware website reference research.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "studio": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 tsx src/cli.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 vitest run",
+    "check": "npm run lint && npm run typecheck && npm run test"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "playwright": "^1.62.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.2.0",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.9.0",
+    "tsx": "^4.23.12",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0",
+    "vitest": "^4.1.11"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

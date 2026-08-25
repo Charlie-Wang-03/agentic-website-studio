@@ -1,0 +1,14 @@
+import Ajv from 'ajv/dist/ajv.js';
+import addFormats from 'ajv-formats/dist/index.js';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+export async function createValidator(root = process.cwd()): Promise<InstanceType<typeof Ajv.default>> {
+  const ajv = new Ajv.default({ allErrors: true, strict: true });
+  addFormats.default(ajv);
+  for (const name of ['rights', 'evidence', 'reference-run', 'design-principle']) {
+    const schema = JSON.parse(await fs.readFile(path.join(root, 'schemas', `${name}.schema.json`), 'utf8')) as object;
+    ajv.addSchema(schema);
+  }
+  return ajv;
+}

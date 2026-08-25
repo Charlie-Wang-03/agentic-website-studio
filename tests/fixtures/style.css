@@ -1,0 +1,4 @@
+:root { font-family: system-ui, sans-serif; color: #18202a; background: #f4f7fb; }
+body { max-width: 56rem; margin: auto; padding: 2rem; }
+header, main, nav, footer { margin-block: 1rem; }
+@media (max-width: 600px) { body { padding: 1rem; } }
