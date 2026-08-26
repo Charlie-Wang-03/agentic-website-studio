@@ -25,6 +25,10 @@ Public Website
   → deterministic project-native implementation
   → Source Manifest + Automated QA + independent implementation audit
   → Human Playtest Gate: pending_human_playtest
+  → Human Feedback: request_revision
+  → M4.2R Revision Contract + continuous-world revision
+  → revised Source Manifest + QA + independent revision audit
+  → Human Re-Playtest Gate: pending_human_replaytest
 ```
 
 Raw Evidence is browser/deterministic inspection output and its schema fixes `epistemicType` to `observed_fact`. It may report measured geometry or computed-style frequencies; it may not call those observations effective, beautiful, transferable, or reusable.
@@ -48,6 +52,10 @@ For Three Bearings, the bounded slice is intentionally smaller than the complete
 M4.2 keeps the Wayfinder dogfood isolated under `pilots/wayfinder/`. Its browser UI dispatches events to one pure transition layer; contract-conformance tests compare that layer with the M4.1 JSON state machine. Vite is build/preview infrastructure only. Playwright operates on the local production build and checks the branch matrix, keyboard, emulated touch, reduced motion, representative axe states, network isolation, runtime errors, and deterministic replay.
 
 The deterministic Source Manifest binds the Human Decision and Implementation Contract to sorted source-file, creative-asset, dependency, and build-output hashes. The QA Report binds that manifest and the independent implementation audit. The Human Playtest Gate binds both artifacts and can be emitted only as `pending_human_playtest`.
+
+The first human playtest rejected the automatically validated implementation on decision motivation, consequence perceptibility, felt agency, pacing, and visual-medium coherence. M4.2R records those statements as human observations and separately labels implementation diagnoses as inference. It leaves the historical gate, source manifest, QA report, and commit unchanged; a revision amendment binds them to the explicit `request_revision` action.
+
+The revised runtime keeps one stable SVG world shell. Arrival and approach lead to an active survey; ridge, marker, and gap controls expose reversible offer/cost previews; a separate commit moves into a materially transformed world; and one enacted branch beat precedes reflection. State attributes transform persistent landmarks rather than replacing the root scene. The M4.2R manifest binds the original decision/contract, failed implementation manifest, human feedback, amendment, exact revised source, and build artifacts.
 
 ```text
 machine validation ≠ human experience judgment
@@ -86,6 +94,6 @@ Schemas and generated artifacts—not conversation—are the source of truth. M1
 
 The M2 Evidence Firewall, M3 Reference Evidence Firewall, and M3 Originality Firewall are artifact contracts plus procedural execution protocols. The Synthesis Packet exposes only validated abstractions through an agent-facing projection. The Creative Packet removes URLs, names, screenshots, raw evidence, profile/principle IDs, source prose/assets/code, geometry, and exact motion. This repository does not cryptographically remove tools from an arbitrary model runtime, so each packet reports enforcement honestly as `protocol`.
 
-M3 ends at a first-class Human Creative Gate whose automation schema can emit only `pending_human_selection`. M4.1 records the separate human decision and defines the approved playable slice. M4.2 implements and audits only that slice, then stops at a Human Playtest Gate whose automation schema can emit only `pending_human_playtest`. Expansion, release, and learning remain later stages.
+M3 ends at a first-class Human Creative Gate whose automation schema can emit only `pending_human_selection`. M4.1 records the human decision and approved slice. M4.2 stops at `pending_human_playtest`; a human may reject it despite green machine QA. M4.2R accepts only a bound `request_revision`, preserves the failed experiment, and stops at `pending_human_replaytest`. Expansion, release, and learning remain later stages.
 
 The system does not clone websites. It converts observed design mechanisms into independently authored experiences. Reference evidence remains evidence; public access is never treated as permission to reuse names, characters, narrative, visual composition, assets, motion, or source-specific identifiers.

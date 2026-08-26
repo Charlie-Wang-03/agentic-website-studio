@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentic-website-studio.local/schemas/m42r-qa-report.schema.json",
+  "title": "M4.2R QA Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reportId", "projectId", "selectedConceptId", "feedbackId", "revisionContractId", "sourceManifestSha256", "independentAuditSha256", "overallResult", "categories", "warnings", "humanOnlyLimitations"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" }, "reportId": { "const": "qa_wayfinder_m42r_slice_02" }, "projectId": { "const": "project_wayfinder" }, "selectedConceptId": { "const": "concept_three_bearings" },
+    "feedbackId": { "const": "feedback_wayfinder_m42_playtest_01" }, "revisionContractId": { "const": "revision_contract_wayfinder_m42r_slice_02" },
+    "sourceManifestSha256": { "$ref": "#/definitions/sha" }, "independentAuditSha256": { "$ref": "#/definitions/sha" }, "overallResult": { "$ref": "#/definitions/result" },
+    "categories": {
+      "type": "object", "additionalProperties": false,
+      "required": ["feedbackValidation", "revisionContract", "build", "stateMachine", "preChoiceObservation", "deliberationPreview", "explicitCommit", "immediateWorldResponse", "continuousScene", "branchContinuation", "desktopE2E", "mobileE2E", "keyboard", "touch", "reducedMotion", "accessibilityAutomatedScan", "externalNetwork", "consoleRuntime", "deterministicReplay", "assetProvenance", "independentRevisionAudit"],
+      "properties": {
+        "feedbackValidation": { "$ref": "#/definitions/category" }, "revisionContract": { "$ref": "#/definitions/category" }, "build": { "$ref": "#/definitions/category" }, "stateMachine": { "$ref": "#/definitions/category" },
+        "preChoiceObservation": { "$ref": "#/definitions/category" }, "deliberationPreview": { "$ref": "#/definitions/category" }, "explicitCommit": { "$ref": "#/definitions/category" }, "immediateWorldResponse": { "$ref": "#/definitions/category" },
+        "continuousScene": { "$ref": "#/definitions/category" }, "branchContinuation": { "$ref": "#/definitions/category" }, "desktopE2E": { "$ref": "#/definitions/category" }, "mobileE2E": { "$ref": "#/definitions/category" },
+        "keyboard": { "$ref": "#/definitions/category" }, "touch": { "$ref": "#/definitions/category" }, "reducedMotion": { "$ref": "#/definitions/category" }, "accessibilityAutomatedScan": { "$ref": "#/definitions/category" },
+        "externalNetwork": { "$ref": "#/definitions/category" }, "consoleRuntime": { "$ref": "#/definitions/category" }, "deterministicReplay": { "$ref": "#/definitions/category" }, "assetProvenance": { "$ref": "#/definitions/category" }, "independentRevisionAudit": { "$ref": "#/definitions/category" }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }, "humanOnlyLimitations": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+  },
+  "definitions": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "result": { "enum": ["pass", "pass_with_warnings", "fail"] },
+    "category": { "type": "object", "additionalProperties": false, "required": ["result", "evidence"], "properties": { "result": { "$ref": "#/definitions/result" }, "evidence": { "type": "string", "minLength": 1 } } }
+  }
+}

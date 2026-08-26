@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "replaytest_gate_wayfinder_m42r_slice_02",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "status": "pending_human_replaytest",
+  "bindings": {
+    "humanFeedbackSha256": "e79e9f052285aa58506679741a155fa1d0297f43a93d0ea40388d867ee193182",
+    "revisionContractSha256": "75bf56b44ec7f217bd0c4c3724a2ee1b3d93da19f8463ff291b8922e2d81de7d",
+    "sourceManifestSha256": "a9558f3375c742d6edace462e06cc2fb45100cf0f54510e4e41fdd14b1505a0d",
+    "qaReportSha256": "b89a79121784166ec7e3facad728202b3c8ccaadc65d60422e0e6f12a1fb23de",
+    "independentAuditSha256": "a34c0a3d1303b73f58583dd17f6f82a2a453ecfc2704b70592d662bb225692cd",
+    "buildArtifacts": [
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-Ct78K0Jy.js",
+        "sha256": "182a9fad752546d49129b1b45170452c3a8625abee54ec0e7bf784c1af087acd"
+      },
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-Cu0d5KUl.css",
+        "sha256": "e4fb7ce2605d1c9b9e0cc7c33e78c534567a56b61fa596f98bf6bde028cf4566"
+      },
+      {
+        "path": ".tmp/wayfinder-dist/index.html",
+        "sha256": "2db724657fdb5fe4f610b0f736d7e05f7376a395561631ff66be9dca66936c81"
+      }
+    ]
+  },
+  "preview": {
+    "command": "npm run wayfinder:preview",
+    "address": "http://127.0.0.1:4173",
+    "termination": "Press Ctrl+C in the preview terminal."
+  },
+  "revisionSummary": "The same bounded crossing now establishes situation through active observation, supports reversible tradeoff previews and explicit commitment, transforms one persistent world immediately, and requires a lived branch beat before reflection.",
+  "automatedQaEstablished": [
+    "Human feedback and amendment provenance are valid.",
+    "All revised deterministic and browser paths work across desktop, mobile emulation, keyboard, touch emulation, and reduced motion.",
+    "Continuous scene identity and multiple pre-reflection branch world changes are structurally present.",
+    "Representative axe, local-network, runtime-error, replay, and project-native provenance checks passed."
+  ],
+  "knownWarnings": [
+    "The large dark contextual story scrim remains visually dominant in several screenshots and may still be perceived as polished Web-demo framing.",
+    "The revised flow does not require inspecting all three bearings or enforce dwell time; human replay must judge whether voluntary observation creates enough situation and deliberation.",
+    "Physical-device accessibility, complete WCAG conformance, and all five failed human experience dimensions remain unverified until human replay.",
+    "Touch evidence is emulated rather than physical-device observation.",
+    "Automated accessibility scanning does not establish WCAG conformance."
+  ],
+  "humanEvaluation": [
+    {
+      "dimension": "decision_motivation",
+      "previousResult": "fail",
+      "question": "Before committing, did you now have a real preference or hesitation between bearings?"
+    },
+    {
+      "dimension": "situation_immersion",
+      "previousResult": "fail_too_fast",
+      "question": "Did you feel you had entered a place and situation before being asked to decide?"
+    },
+    {
+      "dimension": "immediate_consequence",
+      "previousResult": "fail",
+      "question": "Before the final reflection, did you clearly feel the world respond to your bearing?"
+    },
+    {
+      "dimension": "agency",
+      "previousResult": "fail",
+      "question": "Did this feel more like “I changed the journey” than “I selected a page”?"
+    },
+    {
+      "dimension": "medium_visual_coherence",
+      "previousResult": "fail",
+      "question": "Does it now feel like a small interactive work rather than a styled Web demo?"
+    },
+    {
+      "dimension": "pacing",
+      "previousResult": "fail_too_fast",
+      "question": "Does observation → deliberation → choice happen at an appropriate pace?"
+    },
+    {
+      "dimension": "narrative_tone",
+      "previousResult": "not_evaluated",
+      "question": "Does the concise environmental prose feel concrete, restrained, and coherent?"
+    },
+    {
+      "dimension": "narrow_screen_usability",
+      "previousResult": "not_evaluated",
+      "question": "On a physical mobile device or narrow browser, is the complete revised experience clear and usable?"
+    },
+    {
+      "dimension": "overall_direction",
+      "previousResult": "request_revision",
+      "question": "Should this direction be approved for expansion, revised again, or rejected?"
+    }
+  ],
+  "availableHumanActions": [
+    "approve_for_expansion",
+    "request_revision",
+    "reject_implementation_direction"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "1.0.0",
+  "reportId": "qa_wayfinder_m42r_slice_02",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "feedbackId": "feedback_wayfinder_m42_playtest_01",
+  "revisionContractId": "revision_contract_wayfinder_m42r_slice_02",
+  "sourceManifestSha256": "a9558f3375c742d6edace462e06cc2fb45100cf0f54510e4e41fdd14b1505a0d",
+  "independentAuditSha256": "a34c0a3d1303b73f58583dd17f6f82a2a453ecfc2704b70592d662bb225692cd",
+  "overallResult": "pass_with_warnings",
+  "categories": {
+    "feedbackValidation": {
+      "result": "pass",
+      "evidence": "Schema and semantic validation preserve the original gate, manifest, QA, selected concept, request_revision action, five evaluated failures, and two not_evaluated dimensions."
+    },
+    "revisionContract": {
+      "result": "pass",
+      "evidence": "The amendment binds the failed implementation and feedback; all O1–O5 objectives, 15 states, and 23 deterministic transitions validate."
+    },
+    "build": {
+      "result": "pass",
+      "evidence": "Vite production build completed and emitted SHA-256-bound local artifacts."
+    },
+    "stateMachine": {
+      "result": "pass",
+      "evidence": "20 focused tests cover provenance, amended conformance, observation, preview, commit, response, continuation, invalid events, reachability, restart, and replay."
+    },
+    "preChoiceObservation": {
+      "result": "pass",
+      "evidence": "Arrival and enacted approach lead to a survey with three inspectable environmental cues before commit is legal."
+    },
+    "deliberationPreview": {
+      "result": "pass",
+      "evidence": "All three reversible previews expose distinct offers and costs without committing or revealing response/ending copy."
+    },
+    "explicitCommit": {
+      "result": "pass",
+      "evidence": "Preview state keeps bearing absent; only a bearing-matched commit enters world response."
+    },
+    "immediateWorldResponse": {
+      "result": "pass",
+      "evidence": "Each commit changes branch-specific geometry, route, marker relationship, environment, and visible SVG transforms before reflection."
+    },
+    "continuousScene": {
+      "result": "pass",
+      "evidence": "The same data-world-id shell and landmark nodes persist from survey through response and continuation."
+    },
+    "branchContinuation": {
+      "result": "pass",
+      "evidence": "A branch-specific enacted action leads to continuation before reflection becomes available."
+    },
+    "desktopE2E": {
+      "result": "pass",
+      "evidence": "All revised phases and all three branch responses passed at 1440×900."
+    },
+    "mobileE2E": {
+      "result": "pass",
+      "evidence": "All revised branches completed at 390×844 with overflow and visible target-size checks."
+    },
+    "keyboard": {
+      "result": "pass",
+      "evidence": "Keyboard-only play compared multiple previews, committed, continued, reflected, and restarted."
+    },
+    "touch": {
+      "result": "pass_with_warnings",
+      "evidence": "All branches passed Playwright touch emulation; physical-device judgment remains human-only."
+    },
+    "reducedMotion": {
+      "result": "pass",
+      "evidence": "All previews, responses, continuations, and endings remained available with immediate state changes."
+    },
+    "accessibilityAutomatedScan": {
+      "result": "pass_with_warnings",
+      "evidence": "Representative desktop/mobile revised states had no serious or critical axe violations; automation is partial evidence."
+    },
+    "externalNetwork": {
+      "result": "pass",
+      "evidence": "Production play emitted no request outside 127.0.0.1."
+    },
+    "consoleRuntime": {
+      "result": "pass",
+      "evidence": "No console errors or unhandled page errors were observed."
+    },
+    "deterministicReplay": {
+      "result": "pass",
+      "evidence": "Fresh identical revised gap runs produced identical semantic and world-state output."
+    },
+    "assetProvenance": {
+      "result": "pass",
+      "evidence": "All creative assets are project-native and hashed; dependencies remain separate dev-only records."
+    },
+    "independentRevisionAudit": {
+      "result": "pass_with_warnings",
+      "evidence": "Independent revision audit verdict: pass_with_warnings; readyForHumanReplaytest: true."
+    }
+  },
+  "warnings": [
+    "The large dark contextual story scrim remains visually dominant in several screenshots and may still be perceived as polished Web-demo framing.",
+    "The revised flow does not require inspecting all three bearings or enforce dwell time; human replay must judge whether voluntary observation creates enough situation and deliberation.",
+    "Physical-device accessibility, complete WCAG conformance, and all five failed human experience dimensions remain unverified until human replay.",
+    "Touch evidence is emulated rather than physical-device observation.",
+    "Automated accessibility scanning does not establish WCAG conformance."
+  ],
+  "humanOnlyLimitations": [
+    "Automation and independent implementation review cannot determine whether decision motivation, immersion, perceptible consequence, felt agency, pacing, narrative tone, mobile usability, or medium quality now succeed for a human."
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "1.0.0",
+  "revisionContractId": "revision_contract_wayfinder_m42r_slice_02",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "revisionOf": {
+    "id": "contract_wayfinder_three_bearings_slice_01",
+    "path": "docs/wayfinder.m4-implementation-contract.json",
+    "sha256": "d469994283a18adc064f3bcf1314204350a6fcae975a945c62d32b306251ea33"
+  },
+  "humanFeedback": {
+    "id": "feedback_wayfinder_m42_playtest_01",
+    "path": "docs/wayfinder.m42-human-playtest-feedback.json",
+    "sha256": "e79e9f052285aa58506679741a155fa1d0297f43a93d0ea40388d867ee193182"
+  },
+  "previousImplementation": {
+    "commit": "f24463762500eb8031718ae8b378d44ecefe59b6",
+    "sourceManifest": {
+      "id": "manifest_wayfinder_m42_slice_01",
+      "path": "docs/wayfinder.m4-source-manifest.json",
+      "sha256": "8e55cdee8665d53e9e0991671ca87611d0b008f2224859792593d30499f26952"
+    }
+  },
+  "objectives": [
+    { "id": "O1", "name": "Establish situation before choice", "acceptance": "Arrival and approach lead into active inspection of a persistent world before any bearing can be committed." },
+    { "id": "O2", "name": "Create actual deliberation", "acceptance": "Every bearing exposes a distinct ungraded tradeoff preview, and the visitor may compare previews before an explicit commit." },
+    { "id": "O3", "name": "World reacts before prose explains", "acceptance": "Commit enters a branch-specific world-response state with multiple spatial changes before continuation or reflection." },
+    { "id": "O4", "name": "Preserve one continuous world", "acceptance": "Stable world-shell landmarks persist while state attributes transform geometry, route, light, marker, and viewpoint." },
+    { "id": "O5", "name": "Reduce styled Web-demo framing", "acceptance": "A full-viewport landscape is the primary interface; contextual text and semantic controls remain lightweight overlays rather than a dominant card." }
+  ],
+  "interactionModel": [
+    "Arrive at the edge of one continuous crossing.",
+    "Approach the marker through an enacted world action.",
+    "Inspect ridge, marker, and gap cues using semantic in-world controls.",
+    "Compare concise tradeoff previews without revealing consequences or endings.",
+    "Explicitly commit the currently previewed bearing.",
+    "Perceive an immediate branch-specific transformation of the persistent world.",
+    "Enact one branch-specific continuation beat.",
+    "Read the reflection and optionally restart."
+  ],
+  "deterministicStateMachine": {
+    "initialState": "arrival",
+    "states": [
+      "arrival", "approach", "survey",
+      "deliberation_edge", "deliberation_wait", "deliberation_gap",
+      "response_edge", "response_wait", "response_gap",
+      "continuation_edge", "continuation_wait", "continuation_gap",
+      "ending_edge", "ending_wait", "ending_gap"
+    ],
+    "transitions": [
+      { "from": "arrival", "event": "start", "to": "approach" },
+      { "from": "approach", "event": "enter_marker", "to": "survey" },
+      { "from": "survey", "event": "inspect_edge", "to": "deliberation_edge" },
+      { "from": "survey", "event": "inspect_wait", "to": "deliberation_wait" },
+      { "from": "survey", "event": "inspect_gap", "to": "deliberation_gap" },
+      { "from": "deliberation_edge", "event": "inspect_edge", "to": "deliberation_edge" },
+      { "from": "deliberation_edge", "event": "inspect_wait", "to": "deliberation_wait" },
+      { "from": "deliberation_edge", "event": "inspect_gap", "to": "deliberation_gap" },
+      { "from": "deliberation_wait", "event": "inspect_edge", "to": "deliberation_edge" },
+      { "from": "deliberation_wait", "event": "inspect_wait", "to": "deliberation_wait" },
+      { "from": "deliberation_wait", "event": "inspect_gap", "to": "deliberation_gap" },
+      { "from": "deliberation_gap", "event": "inspect_edge", "to": "deliberation_edge" },
+      { "from": "deliberation_gap", "event": "inspect_wait", "to": "deliberation_wait" },
+      { "from": "deliberation_gap", "event": "inspect_gap", "to": "deliberation_gap" },
+      { "from": "deliberation_edge", "event": "commit_edge", "to": "response_edge" },
+      { "from": "deliberation_wait", "event": "commit_wait", "to": "response_wait" },
+      { "from": "deliberation_gap", "event": "commit_gap", "to": "response_gap" },
+      { "from": "response_edge", "event": "enact", "to": "continuation_edge" },
+      { "from": "response_wait", "event": "enact", "to": "continuation_wait" },
+      { "from": "response_gap", "event": "enact", "to": "continuation_gap" },
+      { "from": "continuation_edge", "event": "reflect", "to": "ending_edge" },
+      { "from": "continuation_wait", "event": "reflect", "to": "ending_wait" },
+      { "from": "continuation_gap", "event": "reflect", "to": "ending_gap" }
+    ],
+    "terminalStates": ["ending_edge", "ending_wait", "ending_gap"]
+  },
+  "branchWorldResponses": {
+    "edge": {
+      "tradeoffPreview": "Wind cover and a readable bend are exchanged for a shortened view beyond the ridge.",
+      "geometryState": "The near ridge grows dominant and compresses the visible sky aperture.",
+      "routeRelationship": "The route bends laterally along the boundary.",
+      "markerRelationship": "The marker remains large and spatially near behind the bend.",
+      "environmentalState": "Wind falls and the field becomes close, sheltered, and partially occluded.",
+      "continuationAction": "Follow the sheltered bend."
+    },
+    "wait": {
+      "tradeoffPreview": "Remaining still costs distance while changing light may reveal information at the marker.",
+      "geometryState": "The viewpoint remains fixed while light, shadow, and a previously occluded cross-route change around it.",
+      "routeRelationship": "A transverse route becomes legible instead of forward travel.",
+      "markerRelationship": "The marker and traveler remain fixed as the marker shadow rotates.",
+      "environmentalState": "Light lowers; the world moves while the visitor remains still and watchful.",
+      "continuationAction": "Stay through the changing light."
+    },
+    "gap": {
+      "tradeoffPreview": "A direct open line offers visibility and speed without wind cover or a close boundary.",
+      "geometryState": "Horizon banks separate, the sky aperture widens, and protective forms recede.",
+      "routeRelationship": "The route extends deep and directly through exposed ground.",
+      "markerRelationship": "The marker visibly shrinks and recedes behind the traveler.",
+      "environmentalState": "Wind lines cross a wide, exposed field with a distant destination held in view.",
+      "continuationAction": "Cross the open ground."
+    }
+  },
+  "continuityRequirements": [
+    "The world shell and key SVG landmark elements persist from survey through deliberation, response, and continuation.",
+    "State changes are represented through attributes and authored transforms rather than root-scene replacement.",
+    "Reduced motion exposes the same before and after geometry immediately without hiding semantic state."
+  ],
+  "nonGoals": ["M4.3 expansion", "additional strategic choices", "full game", "backend", "persistence", "audio", "WebGL", "new frontend framework", "deployment"],
+  "qaRequirements": {
+    "feedbackValidation": true,
+    "contractConformance": true,
+    "preChoiceObservation": true,
+    "deliberationPreview": true,
+    "explicitCommit": true,
+    "immediateWorldResponse": true,
+    "branchContinuation": true,
+    "continuousScene": true,
+    "desktop": true,
+    "mobile": true,
+    "keyboard": true,
+    "touch": true,
+    "reducedMotion": true,
+    "accessibility": true,
+    "networkIsolation": true,
+    "runtimeErrors": true,
+    "deterministicReplay": true,
+    "sourceProvenance": true
+  }
+}

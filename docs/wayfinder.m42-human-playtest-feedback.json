@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "feedbackId": "feedback_wayfinder_m42_playtest_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "action": "request_revision",
+  "recordedAt": "2026-08-26T10:24:45.9645264+08:00",
+  "timestampBasis": "recorded_at_human_attestation",
+  "previousBindings": {
+    "implementationCommit": "f24463762500eb8031718ae8b378d44ecefe59b6",
+    "humanPlaytestGate": {
+      "id": "playtest_gate_wayfinder_m42_slice_01",
+      "path": "docs/wayfinder.m4-human-playtest-gate.json",
+      "sha256": "a52e349d4bf445297ee90aea176c614bc66f969f6d78bf4731a35bbf50ed0215"
+    },
+    "sourceManifest": {
+      "id": "manifest_wayfinder_m42_slice_01",
+      "path": "docs/wayfinder.m4-source-manifest.json",
+      "sha256": "8e55cdee8665d53e9e0991671ca87611d0b008f2224859792593d30499f26952"
+    },
+    "qaReport": {
+      "id": "qa_wayfinder_m42_slice_01",
+      "path": "docs/wayfinder.m4-qa-report.json",
+      "sha256": "c8e57938d20c29c7a50f409b6f73e966dab4cb9c4203902819aceedda1bf9f9f"
+    }
+  },
+  "dimensions": {
+    "choiceClarity": {
+      "epistemicType": "human_observation",
+      "result": "fail",
+      "humanStatement": "没有产生“我要选哪个”的真实决策感。",
+      "normalizedMeaning": "The controls were operable, but the experience did not create a genuine desire or reason to choose one bearing over another."
+    },
+    "consequencePerceptibility": {
+      "epistemicType": "human_observation",
+      "result": "fail",
+      "humanStatement": "在看到最终 ending 之前，没有明显感觉“世界已经因为我的选择发生了不同变化”。",
+      "normalizedMeaning": "Before the ending, the human did not perceive a sufficiently strong change in the world caused by the selected bearing."
+    },
+    "feltAgency": {
+      "epistemicType": "human_observation",
+      "result": "fail",
+      "humanStatement": "B. 我只是点了三个不同按钮，看了三个不同页面。",
+      "normalizedMeaning": "The interaction felt like selecting among three pages rather than changing a continuous world."
+    },
+    "pacing": {
+      "epistemicType": "human_observation",
+      "result": "fail_too_fast",
+      "humanStatement": "我还没有进入情境，已经要选择了。",
+      "normalizedMeaning": "The central choice arrived before enough situation, attention, or emotional context had formed."
+    },
+    "visualCoherence": {
+      "epistemicType": "human_observation",
+      "result": "fail",
+      "humanStatement": "一个经过精心 CSS 美化的 Web demo。",
+      "normalizedMeaning": "The work read as a polished web demonstration rather than a convincing interactive work or small game-like experience."
+    },
+    "narrativeTone": {
+      "epistemicType": "human_observation",
+      "result": "not_evaluated"
+    },
+    "narrowScreenMobileUsability": {
+      "epistemicType": "human_observation",
+      "result": "not_evaluated"
+    }
+  },
+  "derivedRevisionHypotheses": [
+    {
+      "id": "H1",
+      "epistemicType": "inference",
+      "statement": "Bearing labels and hints expose insufficient tradeoff information to motivate deliberation before selection.",
+      "derivedFromDimensions": ["choiceClarity", "pacing"]
+    },
+    {
+      "id": "H2",
+      "epistemicType": "inference",
+      "statement": "Replacing the root scene and dominant content card on every event makes the choice feel like page selection despite structural SVG differences.",
+      "derivedFromDimensions": ["consequencePerceptibility", "feltAgency"]
+    },
+    {
+      "id": "H3",
+      "epistemicType": "inference",
+      "statement": "Arrival and orientation require too little active observation to establish place, uncertainty, or a reason to care before choosing.",
+      "derivedFromDimensions": ["pacing", "choiceClarity"]
+    },
+    {
+      "id": "H4",
+      "epistemicType": "inference",
+      "statement": "The desktop split between an artwork panel and a bordered story card frames the experience as an interface around artwork rather than a world serving as the interface.",
+      "derivedFromDimensions": ["visualCoherence", "feltAgency"]
+    }
+  ],
+  "automationDidNotApprove": true,
+  "provenanceStatement": "Human requested revision. Automation did not approve or reject the implementation."
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentic-website-studio.local/schemas/m42r-source-manifest.schema.json",
+  "title": "M4.2R Source Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "manifestId", "projectId", "selectedConceptId", "previousImplementation", "humanDecision", "originalImplementationContract", "humanFeedback", "revisionContract", "sourceFiles", "creativeAssets", "dependencies", "buildArtifacts"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" }, "manifestId": { "const": "manifest_wayfinder_m42r_slice_02" }, "projectId": { "const": "project_wayfinder" }, "selectedConceptId": { "const": "concept_three_bearings" },
+    "previousImplementation": { "type": "object", "additionalProperties": false, "required": ["commit", "sourceManifest"], "properties": { "commit": { "const": "f24463762500eb8031718ae8b378d44ecefe59b6" }, "sourceManifest": { "$ref": "#/definitions/binding" } } },
+    "humanDecision": { "$ref": "#/definitions/binding" }, "originalImplementationContract": { "$ref": "#/definitions/binding" }, "humanFeedback": { "$ref": "#/definitions/binding" }, "revisionContract": { "$ref": "#/definitions/binding" },
+    "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/file" } },
+    "creativeAssets": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/creativeFile" } },
+    "dependencies": { "type": "array", "items": { "$ref": "#/definitions/dependency" } },
+    "buildArtifacts": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/file" } }
+  },
+  "definitions": {
+    "binding": { "type": "object", "additionalProperties": false, "required": ["id", "path", "sha256"], "properties": { "id": { "type": "string" }, "path": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } },
+    "file": { "type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": { "path": { "type": "string", "pattern": "^[^\\\\]+$" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } },
+    "creativeFile": { "type": "object", "additionalProperties": false, "required": ["path", "sha256", "provenanceClass", "rightsStatus"], "properties": { "path": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "provenanceClass": { "const": "project_native" }, "rightsStatus": { "const": "project_owned_original" } } },
+    "dependency": { "type": "object", "additionalProperties": false, "required": ["name", "version", "license", "role"], "properties": { "name": { "type": "string" }, "version": { "type": "string" }, "license": { "type": "string" }, "role": { "enum": ["build_dev_only", "test_dev_only"] } } }
+  }
+}

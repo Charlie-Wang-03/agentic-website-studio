@@ -1,63 +1,86 @@
 import './styles.css';
-import { bearings, bearingForState, stateLabels } from './content.js';
-import { reducePlayState, type GameEvent, type PlayState } from './state-machine.js';
+import { bearings, commonCopy, stageLabels } from './content.js';
+import { bearingForState, phaseForState, reducePlayState, type Bearing, type GameEvent, type PlayState } from './state-machine.js';
 
-const rootElement = document.querySelector<HTMLElement>('#experience');
-const liveElement = document.querySelector<HTMLElement>('#route-announcement');
-if (!rootElement || !liveElement) throw new Error('Wayfinder document shell is incomplete.');
-const root = rootElement;
-const live = liveElement;
-
-let play: PlayState = { state: 'arrival', bearing: null };
-
-function scene(bearing: PlayState['bearing']): string {
-  const route = bearing ? `Route line: ${bearings[bearing].route}` : 'Route line: not yet chosen';
-  return `<figure class="landscape" aria-labelledby="landscape-caption">
-    <svg viewBox="0 0 900 420" role="img" aria-labelledby="scene-title scene-desc">
-      <title id="scene-title">Abstract crossing and horizon</title>
-      <desc id="scene-desc">${route}. A marker and layered horizon change position and shape with the selected bearing.</desc>
-      <path class="sun-wash" d="M0 0h900v420H0z" />
-      <path class="horizon horizon-far" d="M0 220 L145 172 L280 210 L430 148 L590 202 L742 158 L900 214 L900 420 L0 420 Z" />
-      <path class="horizon horizon-near" d="M0 282 L165 232 L340 270 L520 218 L700 268 L900 238 L900 420 L0 420 Z" />
-      <path class="route route-edge" d="M450 390 C350 350 270 310 170 258" />
-      <path class="route route-wait" d="M450 390 C452 350 450 316 450 278" />
-      <path class="route route-gap" d="M450 390 C560 338 646 294 746 245" />
-      <g class="marker" aria-hidden="true"><path d="M438 280 L450 224 L462 280 Z"/><circle cx="450" cy="290" r="18"/></g>
-    </svg>
-    <figcaption id="landscape-caption">${route}</figcaption>
-  </figure>`;
+function required<T extends Element>(selector: string): T {
+  const element = document.querySelector<T>(selector);
+  if (!element) throw new Error(`Wayfinder shell is missing ${selector}.`);
+  return element;
 }
 
-function controls(): string {
-  const state = play.state;
-  if (state === 'arrival') return '<button class="primary" data-event="start">Start crossing</button>';
-  if (state === 'orientation') return '<button class="primary" data-event="ready">I am ready</button>';
-  if (state === 'choice_prompt') return `<fieldset class="bearings"><legend>Choose one bearing</legend>${(Object.keys(bearings) as Array<keyof typeof bearings>).map((id) => `<button data-event="choose_${id}" aria-describedby="hint-${id}"><span>${bearings[id].label}</span><small id="hint-${id}">${bearings[id].hint}</small></button>`).join('')}</fieldset>`;
-  if (state.startsWith('consequence_')) return '<button class="primary" data-event="continue">Continue to reflection</button>';
-  return '<button class="primary" data-event="restart">Restart the crossing</button>';
-}
+const root = required<HTMLElement>('#experience');
+const title = required<HTMLElement>('#story-title');
+const kicker = required<HTMLElement>('#story-kicker');
+const body = required<HTMLElement>('#story-body');
+const stageLabel = required<HTMLElement>('#stage-label');
+const environmentLabel = required<HTMLElement>('#environment-label');
+const sceneDescription = required<SVGDescElement>('#scene-description');
+const live = required<HTMLElement>('#route-announcement');
+const worldControls = required<HTMLFieldSetElement>('#world-controls');
+const tradeoff = required<HTMLElement>('#tradeoff');
+const tradeoffOffer = required<HTMLElement>('#tradeoff-offer');
+const tradeoffCost = required<HTMLElement>('#tradeoff-cost');
+const actionButtons = {
+  start: required<HTMLButtonElement>('#start-action'), approach: required<HTMLButtonElement>('#approach-action'),
+  commit: required<HTMLButtonElement>('#commit-action'), enact: required<HTMLButtonElement>('#enact-action'),
+  reflect: required<HTMLButtonElement>('#reflect-action'), restart: required<HTMLButtonElement>('#restart-action'),
+};
+const hotspotButtons = [...document.querySelectorAll<HTMLButtonElement>('.hotspot')];
+let play: PlayState = { state: 'arrival', preview: null, bearing: null };
 
-function copy(): string {
-  const state = play.state;
-  if (state === 'arrival') return '<p class="eyebrow">A short crossing</p><h1 tabindex="-1">Three Bearings</h1><p>You reach a marker where the ground offers three ways of paying attention.</p>';
-  if (state === 'orientation') return '<p class="eyebrow">Before choosing</p><h1 tabindex="-1">Read the ground</h1><p>The marker stands near. A ridge holds one edge of the horizon; an opening breaks the other. Choose by keyboard or touch: follow, wait, or cross.</p>';
-  if (state === 'choice_prompt') return '<p class="eyebrow">One choice, no score</p><h1 tabindex="-1">Choose a bearing</h1><p>Each route changes what remains near, what opens ahead, and what the crossing asks you to notice.</p>';
-  const bearing = bearingForState(state);
-  if (!bearing) return '';
-  const data = bearings[bearing];
-  if (state.startsWith('consequence_')) return `<p class="eyebrow">Consequence</p><h1 tabindex="-1">${data.route}</h1><dl class="route-facts"><div><dt>Route</dt><dd data-testid="route">${data.route}</dd></div><div><dt>Atmosphere</dt><dd data-testid="atmosphere">${data.atmosphere}</dd></div></dl><p data-testid="consequence">${data.consequence}</p>`;
-  return `<p class="eyebrow">Reflection</p><h1 tabindex="-1">${data.label}</h1><p data-testid="ending">${data.ending}</p><p class="route-recap">Route completed: ${data.route}. Atmosphere: ${data.atmosphere}.</p>`;
-}
+function setVisible(button: HTMLButtonElement, visible: boolean): void { button.hidden = !visible; }
 
-function render(announce = false): void {
-  const bearing = bearingForState(play.state);
+function render(announce = false, preserveFocus = false): void {
+  const phase = phaseForState(play.state);
+  const stateBearing = bearingForState(play.state);
+  const worldBearing = play.bearing ?? (phase === 'deliberation' ? play.preview : null);
   root.dataset.state = play.state;
-  root.dataset.bearing = bearing ?? 'none';
-  root.innerHTML = `<section class="scene-panel">${scene(bearing)}</section><section class="story-panel" aria-labelledby="state-heading"><span class="state-label" id="state-heading">${stateLabels[play.state]}</span>${copy()}${controls()}</section>`;
-  root.querySelectorAll<HTMLButtonElement>('button[data-event]').forEach((button) => button.addEventListener('click', () => dispatch(button.dataset.event as GameEvent)));
+  root.dataset.phase = phase;
+  root.dataset.preview = play.preview ?? 'none';
+  root.dataset.bearing = play.bearing ?? 'none';
+  root.dataset.geometry = play.bearing ? bearings[play.bearing].geometryState : 'common_crossing';
+  root.dataset.markerRelationship = play.bearing ? bearings[play.bearing].markerRelationship : 'marker_ahead';
+  stageLabel.textContent = stageLabels[play.state];
+
+  worldControls.hidden = !['survey', 'deliberation'].includes(phase);
+  hotspotButtons.forEach((button) => {
+    const bearing = button.dataset.event?.slice('inspect_'.length) as Bearing;
+    button.setAttribute('aria-pressed', String(play.preview === bearing));
+  });
+  tradeoff.hidden = phase !== 'deliberation';
+  for (const button of Object.values(actionButtons)) button.hidden = true;
+
+  if (play.state === 'arrival' || play.state === 'approach' || play.state === 'survey') {
+    const copy = commonCopy[play.state];
+    kicker.textContent = copy.kicker; title.textContent = copy.title; body.textContent = copy.body; environmentLabel.textContent = copy.environment;
+    sceneDescription.textContent = `${copy.environment}. A ridge, stone marker, opening, traveler, and moving light share one persistent crossing.`;
+    setVisible(play.state === 'arrival' ? actionButtons.start : actionButtons.approach, play.state !== 'survey');
+  } else if (phase === 'deliberation' && worldBearing) {
+    const content = bearings[worldBearing];
+    kicker.textContent = 'Bearing preview · not committed'; title.textContent = content.label; body.textContent = content.observation;
+    tradeoffOffer.textContent = content.offer; tradeoffCost.textContent = content.cost; environmentLabel.textContent = `Inspecting ${content.label.toLowerCase()}`;
+    sceneDescription.textContent = `Previewing ${content.label}. ${content.observation} No bearing has been committed.`;
+    actionButtons.commit.dataset.event = `commit_${worldBearing}`; actionButtons.commit.textContent = `Commit to ${content.label.toLowerCase()}`; setVisible(actionButtons.commit, true);
+  } else if (stateBearing) {
+    const content = bearings[stateBearing];
+    environmentLabel.textContent = content.environment;
+    sceneDescription.textContent = `${content.route}. ${content.environment}. ${content.markerRelationship.replaceAll('_', ' ')}.`;
+    if (phase === 'response') {
+      kicker.textContent = 'The bearing is committed'; title.textContent = content.responseTitle; body.textContent = content.response;
+      actionButtons.enact.textContent = content.enactLabel; setVisible(actionButtons.enact, true);
+    } else if (phase === 'continuation') {
+      kicker.textContent = 'Living the bearing'; title.textContent = content.continuationTitle; body.textContent = content.continuation; setVisible(actionButtons.reflect, true);
+    } else {
+      kicker.textContent = 'Reflection'; title.textContent = content.label; body.textContent = content.ending; setVisible(actionButtons.restart, true);
+    }
+  }
+
   if (announce) {
-    live.textContent = bearing ? `${stateLabels[play.state]}. Route: ${bearings[bearing].route}. Atmosphere: ${bearings[bearing].atmosphere}.` : stateLabels[play.state];
-    root.querySelector<HTMLElement>('h1')?.focus();
+    const announcement = phase === 'deliberation' && worldBearing
+      ? `Previewing ${bearings[worldBearing].label}. Offers ${bearings[worldBearing].offer}. Costs ${bearings[worldBearing].cost}. Not committed.`
+      : `${stageLabels[play.state]}. ${environmentLabel.textContent ?? ''}`;
+    live.textContent = announcement;
+    if (!preserveFocus) title.focus();
   }
 }
 
@@ -65,7 +88,9 @@ function dispatch(event: GameEvent): void {
   const next = reducePlayState(play, event);
   if (next === play) return;
   play = next;
-  render(true);
+  render(true, event.startsWith('inspect_'));
+  if (event === 'enter_marker') hotspotButtons[0]?.focus();
 }
 
+document.querySelectorAll<HTMLButtonElement>('button[data-event]').forEach((button) => button.addEventListener('click', () => dispatch(button.dataset.event as GameEvent)));
 render();
