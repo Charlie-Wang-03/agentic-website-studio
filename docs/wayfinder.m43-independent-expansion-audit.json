@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "1.0.0",
+  "auditId": "audit_wayfinder_m43_expansion_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "auditedAt": "2026-08-26",
+  "auditScope": {
+    "kind": "fresh_bounded_independent_expansion_audit",
+    "referenceWebsitesRevisited": false,
+    "sourceResearchRevisited": false,
+    "thirdPartyCreativeAssetsInspected": false,
+    "releaseAuthorizationEvaluated": false
+  },
+  "followUpVerification": {
+    "verifiedAt": "2026-08-26",
+    "scope": "history-conditioned bilingual situation context, focused divergence test, refreshed local build/test evidence, and added Chinese intermediate/ending screenshots",
+    "referenceWebsitesRevisited": false,
+    "sourceResearchRevisited": false,
+    "thirdPartyCreativeAssetsInspected": false
+  },
+  "verdict": "pass_with_warnings",
+  "readyForHumanExpansionPlaytest": true,
+  "reviewedInputs": [
+    "docs/wayfinder.m42r-human-replaytest-decision.json",
+    "docs/wayfinder.m43-human-expansion-approval.json",
+    "docs/wayfinder.m43-expansion-contract.json",
+    "docs/wayfinder.m43-source-manifest.json",
+    "pilots/wayfinder/index.html",
+    "pilots/wayfinder/src/vite-env.d.ts",
+    "pilots/wayfinder/src/styles.css",
+    "pilots/wayfinder/src/state-machine.ts",
+    "pilots/wayfinder/src/main.ts",
+    "pilots/wayfinder/src/content.ts",
+    "tests/wayfinder-state.test.ts",
+    "tests/wayfinder-contract.test.ts",
+    "tests/wayfinder-e2e/wayfinder.spec.ts",
+    ".tmp/wayfinder-dist/index.html",
+    ".tmp/wayfinder-dist/assets/index-Df1MivaS.css",
+    ".tmp/wayfinder-dist/assets/index-xq_JYvCM.js",
+    ".tmp/wayfinder-test-results/.last-run.json",
+    ".tmp/wayfinder-evidence-m43/compact-ending.png",
+    ".tmp/wayfinder-evidence-m43/standard-ending.png",
+    ".tmp/wayfinder-evidence-m43/wide-ending.png",
+    ".tmp/wayfinder-evidence-m43/zh-act-2.png",
+    ".tmp/wayfinder-evidence-m43/zh-act-3.png",
+    ".tmp/wayfinder-evidence-m43/zh-ending.png"
+  ],
+  "localEvidence": {
+    "buildObserved": true,
+    "buildObservedAt": "2026-08-26T16:03:10+08:00",
+    "buildFiles": 3,
+    "buildBytes": 36981,
+    "testResultObserved": "passed",
+    "failedTests": [],
+    "focusedTestsPassed": 26,
+    "e2eTestsPassed": 11,
+    "testResultObservedAt": "2026-08-26T16:03:24+08:00",
+    "note": "Refreshed existing local production output and passing test evidence were inspected; this audit did not regenerate them. The 11 E2E cases include the three parameterized desktop viewport cases."
+  },
+  "manifestVerification": {
+    "manifestId": "manifest_wayfinder_m43_full_01",
+    "path": "docs/wayfinder.m43-source-manifest.json",
+    "sha256": "f3760177f2341bd8794b651757965807cd64d7418df78d84a70c12191b356d35",
+    "valid": true,
+    "verifiedAgainstCurrentFiles": true,
+    "hashChecks": {
+      "sourceFilesMatched": 30,
+      "creativeAssetEntriesMatched": 4,
+      "buildArtifactsMatched": 3,
+      "boundDocumentsMatched": 5,
+      "failures": 0
+    },
+    "buildVerification": {
+      "artifactCount": 3,
+      "totalAuthoredBuildBytes": 36981,
+      "hashesAndByteCountsMatch": true
+    },
+    "bindingChain": {
+      "humanReplayDecision": "decision_wayfinder_m42r_replay_01",
+      "humanExpansionApproval": "approval_wayfinder_m43_expansion_01",
+      "expansionContract": "expansion_contract_wayfinder_m43_three_bearings_01",
+      "m42rSourceManifest": "manifest_wayfinder_m42r_slice_02",
+      "m42rReplaytestGate": "replaytest_gate_wayfinder_m42r_slice_02",
+      "implementationBaseline": "139d3aa335080a856cc9977bb0017913b3fa6375",
+      "idsHashesAndCrossBindingsMatch": true
+    },
+    "conclusion": "The generated M4.3 manifest exactly describes the current hashed source and production build and preserves the human approval, expansion contract, M4.2R manifest, replaytest gate, and approved implementation baseline chain."
+  },
+  "categories": {
+    "expansionFidelity": {
+      "judgment": "pass",
+      "evidence": [
+        "The implementation contains three role-distinct acts: orientation at the ridge, consequence at the watercourse, and commitment on the final rise.",
+        "Each act follows inspection, explicit commit, environmental response, and lived travel phases rather than repeating the original slice as disconnected copies.",
+        "The ending recaps the ordered three-bearing route and reflects on the accumulated journey."
+      ]
+    },
+    "choiceHistoryMateriality": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "The deterministic state records all three ordered commits, accumulates five qualitative memory dimensions, and produces 27 distinct route signatures.",
+        "Committed choices persist as act-specific route marks; the first bearing also changes ridge geometry, the second can reveal a second marker, and the third can reveal a signal.",
+        "Act II adds situation context selected from Bearing I, and Act III composes context from Bearings I and II; the English and Chinese context mappings describe the specific earlier route effects rather than generic score labels.",
+        "Tests cover all 27 terminating histories, distinguish earlier histories before the ending, prove divergent earlier routes yield different later context in both locales, exercise divergent representative paths, and verify deterministic replay.",
+        "The ending uses ordered route recap plus a bounded reflection family derived from history and accumulated memory."
+      ],
+      "warning": "History is now carried through later situation prose as well as visual and computational state. A human playtest must still confirm that these restrained consequences are noticed and felt strongly enough during the complete journey."
+    },
+    "decisionMotivation": {
+      "judgment": "pass",
+      "evidence": [
+        "Every act offers three differentiated, reversible inspections before commit.",
+        "Each preview states a concrete possibility and a concrete uncertainty, directly addressing the prior human finding that route recognition was clearer than tradeoff motivation.",
+        "Commit controls name the selected route and committed choices cannot be reversed until the completed journey is restarted."
+      ]
+    },
+    "worldContinuity": {
+      "judgment": "pass",
+      "evidence": [
+        "One persistent SVG world shell, traveler, dusk progression, watercourse, markers, and route layers carry the player through all acts.",
+        "Act and history data attributes update the same landscape rather than replacing it with separate screens.",
+        "The representative English ending screenshots show all three route traces together in one landscape at each supported desktop width.",
+        "Added Chinese screenshots show the same landscape and retained route state at Act II, Act III, and the ending, directly evidencing intermediate continuity rather than only the terminal composition."
+      ]
+    },
+    "visualMedium": {
+      "judgment": "pass",
+      "evidence": [
+        "The experience remains an interactive illustrated landscape, with spatial hotspots, evolving terrain, route traces, markers, light, and traveler position carrying narrative meaning.",
+        "The UI does not collapse into a text-only questionnaire or a sequence of generic cards.",
+        "The six representative screenshots show legible hierarchy, clear contrast, substantial world presence, and no evident clipping or critical overlap across English desktop endings and Chinese intermediate/ending states."
+      ]
+    },
+    "bilingualNaturalnessAndSemanticParity": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "English and Simplified Chinese provide complete project-native copy for arrival, approach, all nine choices, responses, travel passages, ending families, controls, and accessibility text.",
+        "Manual comparison found the Chinese copy natural and the tradeoff meanings, route actions, and narrative outcomes semantically aligned with English.",
+        "The new history-context sentences are concise and semantically paired: route boundary, learned shadow-line, or long sightline from Bearing I and traces, cairn, or displaced landmarks from Bearing II.",
+        "Tests verify parallel choice structures, non-placeholder content, divergent history context in both locales, language-state preservation, localized live announcements, and updated document language.",
+        "Chinese Act II, Act III, and ending screenshots show the localized situation context, choice labels, recap, and controls fitting the supported desktop composition without evident clipping."
+      ],
+      "warning": "Automated parity checks prove structural completeness, not literary equivalence; final tonal and idiomatic parity remains subject to bilingual human judgment."
+    },
+    "supportedDesktopLayoutsOnly": {
+      "judgment": "pass",
+      "evidence": [
+        "The contract and approval consistently scope support to 1024x768, 1440x900, and 1920x1080 desktop layouts while deferring mobile.",
+        "E2E coverage completes a full mixed journey at all three supported desktop viewports and checks horizontal overflow.",
+        "The compact, standard, and wide ending screenshots show the journey recap and restart control fully visible without evident overlap."
+      ]
+    },
+    "noReleaseCreep": {
+      "judgment": "pass",
+      "evidence": [
+        "The human approval authorizes expansion but explicitly marks release as not authorized.",
+        "The expansion contract retains a pending human expansion playtest gate and states that automation may not approve release.",
+        "Reviewed runtime sources contain no publishing, deployment, telemetry, remote runtime, or release action; contract tests also reject remote references and external creative asset tags."
+      ]
+    }
+  },
+  "warnings": [
+    {
+      "id": "warning_history_felt_materiality",
+      "severity": "human_gate_focus",
+      "category": "choiceHistoryMateriality",
+      "description": "Prior choices now persist through history-conditioned bilingual situation prose, visible route traces, environmental transformations, deterministic state, and ending reflection. The human expansion playtest should verify that these restrained signals are noticed and create sufficiently felt consequence."
+    },
+    {
+      "id": "warning_bilingual_literary_judgment",
+      "severity": "human_gate_focus",
+      "category": "bilingualNaturalnessAndSemanticParity",
+      "description": "Source review supports semantic parity and natural wording, but literary tone and emotional equivalence require bilingual human playtest judgment."
+    }
+  ],
+  "humanOnlyLimitations": [
+    "Whether the combined history-conditioned prose, retained route marks, environmental changes, and ending reflection make prior choices feel consequential enough during play.",
+    "Whether the three-act pacing produces genuine hesitation, preference, and tradeoff reasoning for players.",
+    "Whether the continuous illustrated landscape sustains immersion through live transitions; the expanded screenshots establish representative intermediate states but cannot reproduce felt motion and pacing.",
+    "Whether English and Simplified Chinese have equivalent poetic tone, clarity, and emotional force for fluent readers.",
+    "Whether the complete journey is satisfying and appropriately scoped for a human-approved expansion; automation cannot approve release."
+  ],
+  "gateConclusion": "No blocking defect was found within the bounded evidence. The added bilingual history-conditioned prose and Chinese intermediate-state evidence resolve the earlier factual coverage concerns. The build is ready for the required human expansion playtest, with remaining attention to felt history materiality and bilingual literary tone. This verdict does not authorize release."
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "decisionId": "decision_wayfinder_m42r_replay_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "recordedAt": "2026-08-26",
+  "recordingNote": "recordedAt identifies artifact creation, not an inferred time for the human statements",
+  "replaytestGate": { "id": "replaytest_gate_wayfinder_m42r_slice_02", "path": "docs/wayfinder.m42r-human-replaytest-gate.json", "sha256": "6808d55f1d68a33eba8913c92ef4b405d6fd9b8074067855f3948c97d6cba3ae" },
+  "evaluations": {
+    "decisionMotivation": { "result": "partially_supported", "humanStatement": "哦，这三个按钮代表三种路线。", "interpretation": "Route recognition is clear; meaningful hesitation, preference, or tradeoff reasoning was not explicitly reported." },
+    "situationImmersion": { "result": "pass", "humanStatement": "已经觉得自己‘在这个地方里面’。" },
+    "immediateConsequence": { "result": "pass", "humanStatement": "明显响应我的决定。" },
+    "feltAgency": { "result": "pass", "humanStatement": "A. 我改变了同一个世界中的旅程。" },
+    "mediumVisualCoherence": { "result": "pass", "humanStatement": "它现在像一个‘小型互动作品’。" },
+    "pacing": { "result": "pass", "humanStatement": "合适：信息和情境刚够形成选择。" },
+    "narrativeTone": { "result": "not_evaluated", "interpretation": "No quality verdict was provided." }
+  },
+  "productRequirements": { "supportedLocales": ["zh-CN", "en"], "desktopSupport": "in_scope", "mobileSupport": "deferred" },
+  "overallAction": "approve_for_expansion",
+  "humanStatement": "这个核心交互方向已经值得继续投入，把它从 Slice 扩展成完整 Three Bearings 体验。",
+  "automationApprovedExpansion": false
+}

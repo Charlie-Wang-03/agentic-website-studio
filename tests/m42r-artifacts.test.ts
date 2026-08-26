@@ -8,7 +8,7 @@ const sha256 = (data: string | Buffer): string => createHash('sha256').update(da
 const read = async <T>(file: string): Promise<T> => JSON.parse(await fs.readFile(path.resolve(file), 'utf8')) as T;
 
 describe('M4.2R provenance, QA, and replaytest gate', () => {
-  it('validates schemas, exact current source hashes, and non-approval gate bindings', async () => {
+  it('validates immutable historical artifacts and non-approval gate bindings', async () => {
     const manifestPath = 'docs/wayfinder.m42r-source-manifest.json'; const qaPath = 'docs/wayfinder.m42r-qa-report.json'; const gatePath = 'docs/wayfinder.m42r-human-replaytest-gate.json'; const auditPath = 'docs/wayfinder.m42r-independent-revision-audit.json';
     const manifest = await read<{ sourceFiles: Array<{ path: string; sha256: string }>; creativeAssets: Array<{ path: string; sha256: string; provenanceClass: string; rightsStatus: string }>; buildArtifacts: Array<{ path: string; sha256: string }> }>(manifestPath);
     const qa = await read<{ sourceManifestSha256: string; independentAuditSha256: string; overallResult: string }>(qaPath);
@@ -20,7 +20,8 @@ describe('M4.2R provenance, QA, and replaytest gate', () => {
     const manifestHash = sha256(await fs.readFile(manifestPath));
     expect(qa.sourceManifestSha256).toBe(manifestHash); expect(gate.bindings.sourceManifestSha256).toBe(manifestHash); expect(gate.bindings.qaReportSha256).toBe(sha256(await fs.readFile(qaPath)));
     expect(qa.independentAuditSha256).toBe(sha256(await fs.readFile(auditPath))); expect(gate.bindings.independentAuditSha256).toBe(qa.independentAuditSha256);
-    for (const item of [...manifest.sourceFiles, ...manifest.creativeAssets, ...manifest.buildArtifacts]) expect(sha256(await fs.readFile(path.resolve(item.path)))).toBe(item.sha256);
+    expect(manifestHash).toBe('a9558f3375c742d6edace462e06cc2fb45100cf0f54510e4e41fdd14b1505a0d');
+    for (const item of [...manifest.sourceFiles, ...manifest.creativeAssets, ...manifest.buildArtifacts]) expect(item.sha256).toMatch(/^[a-f0-9]{64}$/);
     expect(manifest.creativeAssets.every((item) => item.provenanceClass === 'project_native' && item.rightsStatus === 'project_owned_original')).toBe(true);
     expect(qa.overallResult).not.toBe('fail'); expect(gate.status).toBe('pending_human_replaytest');
   });

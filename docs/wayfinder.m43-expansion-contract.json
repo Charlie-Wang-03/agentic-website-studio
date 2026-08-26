@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "contractId": "expansion_contract_wayfinder_m43_three_bearings_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "bindings": {
+    "humanExpansionApproval": { "id": "approval_wayfinder_m43_expansion_01", "path": "docs/wayfinder.m43-human-expansion-approval.json", "sha256": "bf20adaceffdaae3de1aa5c20be51f8e76dd697f70f1d98e757b25c4704960f8" },
+    "m42rSourceManifest": { "id": "manifest_wayfinder_m42r_slice_02", "path": "docs/wayfinder.m42r-source-manifest.json", "sha256": "a9558f3375c742d6edace462e06cc2fb45100cf0f54510e4e41fdd14b1505a0d" },
+    "m42rReplaytestGate": { "id": "replaytest_gate_wayfinder_m42r_slice_02", "path": "docs/wayfinder.m42r-human-replaytest-gate.json", "sha256": "6808d55f1d68a33eba8913c92ef4b405d6fd9b8074067855f3948c97d6cba3ae" }
+  },
+  "thesis": "Choice history changes later experience in one continuous short journey.",
+  "majorBearings": [
+    { "act": 1, "role": "orientation", "situation": "ridge, marker, and open gap", "choices": ["edge", "wait", "gap"] },
+    { "act": 2, "role": "consequence", "situation": "a watercourse whose legibility is shaped by Bearing I", "choices": ["read_pools", "build_marker", "use_current"] },
+    { "act": 3, "role": "commitment", "situation": "a final rise holding the accumulated route at dusk", "choices": ["turn_to_markers", "raise_signal", "cross_dark_saddle"] }
+  ],
+  "journeyState": { "serializable": true, "deterministic": true, "randomness": false, "fields": ["act", "phase", "preview", "three-choice history", "boundary", "exposure", "stillness", "knowledge", "movement"], "visibleNumericScores": false },
+  "actStructure": ["situation", "reversible inspection", "explicit commit", "environmental response", "lived travel"],
+  "combinatorialStrategy": "All 27 ordered histories accumulate qualitative memory and explicit per-act route marks; bounded reflection families use the complete state and never reduce to majority vote.",
+  "localization": { "supportedLocales": ["zh-CN", "en"], "typedProjectNativeContent": true, "switchPreservesJourneyState": true, "updatesHtmlLangAndAccessibility": true },
+  "supportBoundary": { "desktop": { "status": "supported", "testedViewports": ["1024x768", "1440x900", "1920x1080"] }, "mobile": { "status": "deferred_by_human_decision" } },
+  "originality": { "creativeContent": "project_native", "externalCreativeAssets": false, "referencesRevisited": false, "sourceAssetsRetrieved": false },
+  "qaRequirements": ["exactly_three_commits", "all_27_histories", "history_influence", "bilingual_completeness", "language_state_preservation", "desktop_matrix", "keyboard", "reduced_motion", "representative_axe", "network_isolation", "runtime_errors", "deterministic_replay", "source_provenance", "independent_expansion_audit"],
+  "humanGate": { "requiredStatus": "pending_human_expansion_playtest", "automationMayApprove": false, "releaseAuthorized": false }
+}

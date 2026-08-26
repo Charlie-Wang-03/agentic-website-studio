@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "reportId": "qa_wayfinder_m43_full_01",
+  "projectId": "project_wayfinder",
+  "sourceManifestSha256": "f3760177f2341bd8794b651757965807cd64d7418df78d84a70c12191b356d35",
+  "independentAuditSha256": "680b71bbf2c3c6725b684fcbca37e2d2580519d9ddb2171dc5fd377631c43c2b",
+  "overallResult": "pass_with_warnings",
+  "testCounts": {
+    "focusedModelAndContent": 26,
+    "productionBrowser": 11,
+    "allDecisionHistories": 27,
+    "desktopViewports": 3
+  },
+  "categories": {
+    "expansionContract": {
+      "result": "pass",
+      "evidence": "Human authorization, three acts, state model, locales, desktop boundary, originality, QA, and human gate validate."
+    },
+    "stateMachine": {
+      "result": "pass",
+      "evidence": "Exactly three commits; reversible preview; irreversible commit; safe invalid events; canonical restart."
+    },
+    "all27Histories": {
+      "result": "pass",
+      "evidence": "All 27 ordered histories are valid, terminate, and produce deterministic complete signatures."
+    },
+    "historyInfluence": {
+      "result": "pass",
+      "evidence": "Earlier choices alter later memory, explicit route marks, and bilingual situation context; full representation encodes all three positions."
+    },
+    "bilingualCompleteness": {
+      "result": "pass",
+      "evidence": "Typed zh-CN/en content has complete keys, no placeholders, and nine differentiated labels per locale."
+    },
+    "languagePreservation": {
+      "result": "pass",
+      "evidence": "Mid-preview and post-Bearing-II switching preserves act, preview/history/signature and updates html lang, accessible names, and live language."
+    },
+    "desktopMatrix": {
+      "result": "pass",
+      "evidence": "Complete production journeys pass at 1024x768, 1440x900, and 1920x1080 without critical overlap or horizontal overflow."
+    },
+    "keyboard": {
+      "result": "pass",
+      "evidence": "Keyboard-only journey covers observation, preview, commit, continuation, locale switch, ending, and restart."
+    },
+    "reducedMotion": {
+      "result": "pass",
+      "evidence": "All three route memories and state transitions remain legible without transition dependence."
+    },
+    "accessibilityAutomatedScan": {
+      "result": "pass_with_warnings",
+      "evidence": "Representative English and Chinese states have no serious or critical axe violations."
+    },
+    "runtimeNetworkIsolation": {
+      "result": "pass",
+      "evidence": "No runtime request leaves 127.0.0.1."
+    },
+    "consolePageErrors": {
+      "result": "pass",
+      "evidence": "No console errors or unhandled page errors."
+    },
+    "deterministicReplay": {
+      "result": "pass",
+      "evidence": "Identical production-browser histories emit identical signature, ending, and recap."
+    },
+    "sourceProvenance": {
+      "result": "pass",
+      "evidence": "All creative source is project-native; build and sources are SHA-256 bound."
+    },
+    "independentAudit": {
+      "result": "pass_with_warnings",
+      "evidence": "Independent audit verdict pass_with_warnings; readyForHumanExpansionPlaytest true."
+    }
+  },
+  "warnings": [
+    {
+      "id": "warning_history_felt_materiality",
+      "severity": "human_gate_focus",
+      "category": "choiceHistoryMateriality",
+      "description": "Prior choices now persist through history-conditioned bilingual situation prose, visible route traces, environmental transformations, deterministic state, and ending reflection. The human expansion playtest should verify that these restrained signals are noticed and create sufficiently felt consequence."
+    },
+    {
+      "id": "warning_bilingual_literary_judgment",
+      "severity": "human_gate_focus",
+      "category": "bilingualNaturalnessAndSemanticParity",
+      "description": "Source review supports semantic parity and natural wording, but literary tone and emotional equivalence require bilingual human playtest judgment."
+    },
+    "Automated accessibility scanning is representative and does not establish complete WCAG conformance.",
+    "The 5–8 minute pacing target and genuine decision motivation remain human-only judgments."
+  ],
+  "humanOnlyLimitations": [
+    "Automation cannot establish felt deliberation, overall journey coherence, naturalness for every bilingual reader, aesthetic quality, or release readiness. Mobile optimization is intentionally deferred."
+  ]
+}

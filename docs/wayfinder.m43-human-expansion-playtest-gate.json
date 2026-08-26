@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "expansion_playtest_gate_wayfinder_m43_full_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "status": "pending_human_expansion_playtest",
+  "bindings": {
+    "humanExpansionApprovalSha256": "bf20adaceffdaae3de1aa5c20be51f8e76dd697f70f1d98e757b25c4704960f8",
+    "expansionContractSha256": "7740326702a579d9d6c1119da0ebcb6d2fb52898bff05600722c6a35417d4d2e",
+    "sourceManifestSha256": "f3760177f2341bd8794b651757965807cd64d7418df78d84a70c12191b356d35",
+    "qaReportSha256": "247680b62bcf11b4bd7f01d877cb42f351130a8e4805d1f14bcb6b1ce8c45ce1",
+    "independentAuditSha256": "680b71bbf2c3c6725b684fcbca37e2d2580519d9ddb2171dc5fd377631c43c2b",
+    "buildArtifacts": [
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-Df1MivaS.css",
+        "sha256": "b71b44dd23bc9aa278286f012755b7ab12ebd14a4255d041a44cc46f6eb62a71",
+        "bytes": 6949
+      },
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-xq_JYvCM.js",
+        "sha256": "5cf62e9b76139d0983ad0dfa7d2b9a986fb9f4ae8a724c4507a0c1782f01af73",
+        "bytes": 24177
+      },
+      {
+        "path": ".tmp/wayfinder-dist/index.html",
+        "sha256": "9cdc29dda154ef4608aa5233fe00d6bed63a2a7effc8599a3c3a46df05e38db5",
+        "bytes": 5855
+      }
+    ]
+  },
+  "preview": {
+    "command": "npm run wayfinder:preview",
+    "address": "http://127.0.0.1:4173",
+    "termination": "Press Ctrl+C in the preview terminal."
+  },
+  "supportBoundary": {
+    "desktop": "supported",
+    "desktopViewports": [
+      "1024x768",
+      "1440x900",
+      "1920x1080"
+    ],
+    "mobileOptimization": "deferred_by_human_decision"
+  },
+  "automatedQaEstablished": [
+    "All 27 deterministic histories terminate and retain complete choice memory.",
+    "Both locales and state-preserving switching pass focused and browser tests.",
+    "Supported desktop, keyboard, reduced motion, representative axe, local network, runtime errors, replay, provenance, and independent audit pass without a blocking verdict."
+  ],
+  "knownWarnings": [
+    {
+      "id": "warning_history_felt_materiality",
+      "severity": "human_gate_focus",
+      "category": "choiceHistoryMateriality",
+      "description": "Prior choices now persist through history-conditioned bilingual situation prose, visible route traces, environmental transformations, deterministic state, and ending reflection. The human expansion playtest should verify that these restrained signals are noticed and create sufficiently felt consequence."
+    },
+    {
+      "id": "warning_bilingual_literary_judgment",
+      "severity": "human_gate_focus",
+      "category": "bilingualNaturalnessAndSemanticParity",
+      "description": "Source review supports semantic parity and natural wording, but literary tone and emotional equivalence require bilingual human playtest judgment."
+    },
+    "Automated accessibility scanning is representative and does not establish complete WCAG conformance.",
+    "The 5–8 minute pacing target and genuine decision motivation remain human-only judgments."
+  ],
+  "humanEvaluation": [
+    {
+      "dimension": "overall_journey",
+      "question": "Did the experience now feel like one complete short journey?"
+    },
+    {
+      "dimension": "three_bearing_differentiation",
+      "question": "Did Bearing I, II and III feel like genuinely different decision moments rather than repeated mechanics?"
+    },
+    {
+      "dimension": "decision_motivation",
+      "question": "Did at least some choices cause real hesitation or preference?"
+    },
+    {
+      "dimension": "choice_memory",
+      "question": "Could you feel previous choices changing later situations?"
+    },
+    {
+      "dimension": "agency",
+      "question": "Did the final experience feel shaped by your journey rather than by a predetermined sequence?"
+    },
+    {
+      "dimension": "world_continuity",
+      "question": "Did it remain one evolving world?"
+    },
+    {
+      "dimension": "pacing",
+      "question": "Did the complete experience feel too short, appropriate, or too long?"
+    },
+    {
+      "dimension": "visual_coherence",
+      "question": "Does the expanded version still feel like an intentional interactive work?"
+    },
+    {
+      "dimension": "chinese_quality",
+      "question": "Does zh-CN feel natural and authored rather than translated?"
+    },
+    {
+      "dimension": "english_quality",
+      "question": "Does English remain natural and coherent?"
+    },
+    {
+      "dimension": "language_switching",
+      "question": "Does switching language preserve immersion and state?"
+    },
+    {
+      "dimension": "desktop_experience",
+      "question": "Does it work well at normal laptop and desktop widths? No phone evaluation is required."
+    },
+    {
+      "dimension": "ending",
+      "question": "Did the final reflection feel connected to the whole journey without over-explaining it?"
+    },
+    {
+      "dimension": "overall_action",
+      "question": "Approve for release readiness, request revision, or reject the expansion direction?"
+    }
+  ],
+  "availableHumanActions": [
+    "approve_for_release_readiness",
+    "request_revision",
+    "reject_expansion_direction"
+  ]
+}

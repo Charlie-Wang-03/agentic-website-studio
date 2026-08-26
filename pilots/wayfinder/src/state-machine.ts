@@ -1,61 +1,68 @@
-export const states = [
-  'arrival', 'approach', 'survey',
-  'deliberation_edge', 'deliberation_wait', 'deliberation_gap',
-  'response_edge', 'response_wait', 'response_gap',
-  'continuation_edge', 'continuation_wait', 'continuation_gap',
-  'ending_edge', 'ending_wait', 'ending_gap',
-] as const;
+export const bearings = ['edge', 'wait', 'gap'] as const;
+export type Bearing = (typeof bearings)[number];
+export type Act = 1 | 2 | 3;
+export type Phase = 'arrival' | 'approach' | 'deliberation' | 'response' | 'travel' | 'ending';
+export type JourneyEvent = 'start' | 'reach_crossing' | `inspect_${Bearing}` | `commit_${Bearing}` | 'enact' | 'arrive' | 'reflect' | 'restart';
 
-export type GameState = (typeof states)[number];
-export type Bearing = 'edge' | 'wait' | 'gap';
-export type GameEvent = 'start' | 'enter_marker' | 'inspect_edge' | 'inspect_wait' | 'inspect_gap' | 'commit_edge' | 'commit_wait' | 'commit_gap' | 'enact' | 'reflect' | 'restart';
-export type GamePhase = 'arrival' | 'approach' | 'survey' | 'deliberation' | 'response' | 'continuation' | 'ending';
+export interface WorldMemory { boundary: number; exposure: number; stillness: number; knowledge: number; movement: number }
+export interface JourneyState { phase: Phase; act: Act; preview: Bearing | null; history: readonly Bearing[]; memory: WorldMemory }
 
-export interface PlayState { state: GameState; preview: Bearing | null; bearing: Bearing | null }
-export interface Transition { from: GameState; event: Exclude<GameEvent, 'restart'>; to: GameState }
+export const initialMemory: WorldMemory = { boundary: 0, exposure: 0, stillness: 0, knowledge: 0, movement: 0 };
+export const initialJourneyState: JourneyState = { phase: 'arrival', act: 1, preview: null, history: [], memory: initialMemory };
 
-const inspections = (from: GameState): Transition[] => (['edge', 'wait', 'gap'] as const).map((bearing) => ({ from, event: `inspect_${bearing}`, to: `deliberation_${bearing}` }));
+const effects: Record<Act, Record<Bearing, WorldMemory>> = {
+  1: {
+    edge: { boundary: 2, exposure: -1, stillness: 0, knowledge: 1, movement: 1 },
+    wait: { boundary: 0, exposure: 0, stillness: 2, knowledge: 2, movement: -1 },
+    gap: { boundary: -1, exposure: 2, stillness: -1, knowledge: 0, movement: 2 },
+  },
+  2: {
+    edge: { boundary: 1, exposure: -1, stillness: 1, knowledge: 2, movement: 0 },
+    wait: { boundary: 2, exposure: 0, stillness: 0, knowledge: 1, movement: 1 },
+    gap: { boundary: -1, exposure: 2, stillness: -1, knowledge: 1, movement: 2 },
+  },
+  3: {
+    edge: { boundary: 2, exposure: -1, stillness: 1, knowledge: 1, movement: -1 },
+    wait: { boundary: 0, exposure: 1, stillness: 2, knowledge: 2, movement: 0 },
+    gap: { boundary: -2, exposure: 2, stillness: -1, knowledge: 0, movement: 2 },
+  },
+};
 
-export const contractedTransitions: readonly Transition[] = [
-  { from: 'arrival', event: 'start', to: 'approach' },
-  { from: 'approach', event: 'enter_marker', to: 'survey' },
-  ...inspections('survey'), ...inspections('deliberation_edge'), ...inspections('deliberation_wait'), ...inspections('deliberation_gap'),
-  { from: 'deliberation_edge', event: 'commit_edge', to: 'response_edge' },
-  { from: 'deliberation_wait', event: 'commit_wait', to: 'response_wait' },
-  { from: 'deliberation_gap', event: 'commit_gap', to: 'response_gap' },
-  { from: 'response_edge', event: 'enact', to: 'continuation_edge' },
-  { from: 'response_wait', event: 'enact', to: 'continuation_wait' },
-  { from: 'response_gap', event: 'enact', to: 'continuation_gap' },
-  { from: 'continuation_edge', event: 'reflect', to: 'ending_edge' },
-  { from: 'continuation_wait', event: 'reflect', to: 'ending_wait' },
-  { from: 'continuation_gap', event: 'reflect', to: 'ending_gap' },
-];
-
-export const terminalStates: readonly GameState[] = ['ending_edge', 'ending_wait', 'ending_gap'];
-
-export function bearingForState(state: GameState): Bearing | null {
-  for (const bearing of ['edge', 'wait', 'gap'] as const) if (state.endsWith(`_${bearing}`)) return bearing;
-  return null;
+function addMemory(left: WorldMemory, right: WorldMemory): WorldMemory {
+  return { boundary: left.boundary + right.boundary, exposure: left.exposure + right.exposure, stillness: left.stillness + right.stillness, knowledge: left.knowledge + right.knowledge, movement: left.movement + right.movement };
 }
 
-export function phaseForState(state: GameState): GamePhase {
-  if (state.startsWith('deliberation_')) return 'deliberation';
-  if (state.startsWith('response_')) return 'response';
-  if (state.startsWith('continuation_')) return 'continuation';
-  if (state.startsWith('ending_')) return 'ending';
-  return state as GamePhase;
+export function isTerminal(state: JourneyState): boolean { return state.phase === 'ending'; }
+export function isComplete(state: JourneyState): boolean { return state.history.length === 3 && state.phase === 'ending'; }
+export function historyKey(state: JourneyState): string { return state.history.join('-') || 'none'; }
+export function worldSignature(state: JourneyState): string {
+  const route = state.history.map((bearing, index) => `${index + 1}${bearing[0]}`).join('.');
+  return `${route || 'unmade'}|b${state.memory.boundary}|x${state.memory.exposure}|s${state.memory.stillness}|k${state.memory.knowledge}|m${state.memory.movement}`;
+}
+export function reflectionFamily(state: JourneyState): 'held-line' | 'read-light' | 'open-distance' | 'woven-course' {
+  if (state.history.length !== 3) return 'woven-course';
+  const [first, , last] = state.history;
+  if (first === last && first === 'edge') return 'held-line';
+  if (state.memory.knowledge >= 5 && state.memory.stillness >= 2) return 'read-light';
+  if (state.memory.exposure >= 4 && state.memory.movement >= 4) return 'open-distance';
+  return 'woven-course';
 }
 
-export function transition(current: GameState, event: GameEvent): GameState {
-  if (event === 'restart') return terminalStates.includes(current) ? 'arrival' : current;
-  return contractedTransitions.find((item) => item.from === current && item.event === event)?.to ?? current;
-}
-
-export function reducePlayState(current: PlayState, event: GameEvent): PlayState {
-  const next = transition(current.state, event);
-  if (event === 'restart' && next === 'arrival') return { state: 'arrival', preview: null, bearing: null };
-  if (next === current.state) return current;
-  const nextPreview = next.startsWith('deliberation_') ? bearingForState(next) : current.preview;
-  const committed = event.startsWith('commit_') ? event.slice('commit_'.length) as Bearing : current.bearing;
-  return { state: next, preview: nextPreview, bearing: committed };
+export function transition(current: JourneyState, event: JourneyEvent): JourneyState {
+  if (event === 'restart') return current.phase === 'ending' ? initialJourneyState : current;
+  if (current.phase === 'arrival' && event === 'start') return { ...current, phase: 'approach' };
+  if (current.phase === 'approach' && event === 'reach_crossing') return { ...current, phase: 'deliberation' };
+  if (event.startsWith('inspect_') && current.phase === 'deliberation') {
+    const preview = event.slice('inspect_'.length) as Bearing;
+    return bearings.includes(preview) ? { ...current, preview } : current;
+  }
+  if (event.startsWith('commit_') && current.phase === 'deliberation') {
+    const bearing = event.slice('commit_'.length) as Bearing;
+    if (!bearings.includes(bearing) || current.preview !== bearing || current.history.length !== current.act - 1) return current;
+    return { ...current, phase: 'response', preview: null, history: [...current.history, bearing], memory: addMemory(current.memory, effects[current.act][bearing]) };
+  }
+  if (current.phase === 'response' && event === 'enact') return { ...current, phase: 'travel' };
+  if (current.phase === 'travel' && current.act < 3 && event === 'arrive') return { ...current, act: (current.act + 1) as Act, phase: 'deliberation', preview: null };
+  if (current.phase === 'travel' && current.act === 3 && event === 'reflect') return { ...current, phase: 'ending' };
+  return current;
 }

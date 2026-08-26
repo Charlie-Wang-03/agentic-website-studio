@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0.0",
+  "approvalId": "approval_wayfinder_m43_expansion_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "action": "approve_for_expansion",
+  "humanDecision": { "id": "decision_wayfinder_m42r_replay_01", "path": "docs/wayfinder.m42r-human-replaytest-decision.json", "sha256": "ca1f6f01d0f6e26c9032d2756511f14f4ed7b44827502e132c5f5489bad3b8bf" },
+  "approvedImplementation": { "commit": "139d3aa335080a856cc9977bb0017913b3fa6375", "replaytestGate": { "id": "replaytest_gate_wayfinder_m42r_slice_02", "path": "docs/wayfinder.m42r-human-replaytest-gate.json", "sha256": "6808d55f1d68a33eba8913c92ef4b405d6fd9b8074067855f3948c97d6cba3ae" }, "sourceManifest": { "id": "manifest_wayfinder_m42r_slice_02", "path": "docs/wayfinder.m42r-source-manifest.json", "sha256": "a9558f3375c742d6edace462e06cc2fb45100cf0f54510e4e41fdd14b1505a0d" } },
+  "scope": { "experience": "full_three_bearings_v1", "supportedLocales": ["zh-CN", "en"], "desktopSupport": "in_scope", "mobileSupport": "deferred", "release": "not_authorized" },
+  "provenance": { "humanAuthorized": true, "automationAuthorized": false }
+}

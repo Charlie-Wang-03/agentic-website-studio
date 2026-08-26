@@ -8,61 +8,47 @@
     <script type="module" src="/src/main.ts"></script>
   </head>
   <body>
-    <a class="skip-link" href="#story-title">Skip to the crossing</a>
-    <main id="experience" class="experience" data-state="arrival" data-phase="arrival" data-preview="none" data-bearing="none">
-      <figure id="world-shell" class="world" data-testid="world-shell" data-world-id="wayfinder-crossing" aria-labelledby="scene-caption">
-        <svg class="landscape" viewBox="0 0 1200 720" role="img" aria-labelledby="scene-title scene-description" preserveAspectRatio="xMidYMid slice">
-          <title id="scene-title">A marker between a ridge and an open gap</title>
-          <desc id="scene-description">A persistent abstract crossing. The ridge, marker, light, route, and opening change in response to observation and bearing.</desc>
-          <rect class="sky" width="1200" height="720" />
-          <circle class="sun" cx="720" cy="155" r="70" />
-          <path class="haze" d="M0 310 C250 270 380 330 600 286 C820 245 995 305 1200 260 L1200 520 L0 520 Z" />
-          <path class="far-line" d="M0 390 L155 330 L310 372 L465 305 L610 378 L760 315 L925 370 L1065 306 L1200 365 L1200 720 L0 720 Z" />
-          <path class="ridge ridge-left" data-testid="ridge-left" d="M0 458 L105 405 L224 274 L322 348 L468 462 L0 662 Z" />
-          <path class="ridge ridge-right" data-testid="ridge-right" d="M1200 452 L1080 398 L983 298 L885 350 L744 462 L1200 662 Z" />
-          <path class="ground" d="M0 478 C250 438 410 486 602 454 C790 424 988 470 1200 438 L1200 720 L0 720 Z" />
-          <path class="revealed-cross-route" data-testid="revealed-route" d="M300 565 C480 520 700 522 900 548" />
-          <path class="route route-edge" data-testid="route-edge" d="M602 650 C515 600 430 546 314 478 C245 438 214 395 206 342" />
-          <path class="route route-wait" data-testid="route-wait" d="M602 650 C604 598 603 548 600 490" />
-          <path class="route route-gap" data-testid="route-gap" d="M602 650 C625 560 640 470 655 345 C660 300 666 254 680 218" />
-          <g class="wind" aria-hidden="true">
-            <path d="M104 230 C245 200 325 226 430 203" /><path d="M760 252 C912 218 1012 248 1125 210" /><path d="M705 390 C822 360 947 385 1075 345" />
+    <a id="skip-link" class="skip-link" href="#story-title">Skip to the journey</a>
+    <main id="experience" class="experience" data-phase="arrival" data-act="1" data-history="none" data-preview="none">
+      <figure id="world-shell" class="world" data-testid="world-shell" data-world-id="wayfinder-continuous-journey" aria-labelledby="scene-caption">
+        <svg class="landscape" viewBox="0 0 1440 900" role="img" aria-labelledby="scene-title scene-description" preserveAspectRatio="xMidYMid slice">
+          <title id="scene-title">Three Bearings landscape</title>
+          <desc id="scene-description">A continuous dusk landscape whose route and landmarks remember three bearings.</desc>
+          <rect class="sky" width="1440" height="900" />
+          <circle class="sun" cx="900" cy="170" r="78" />
+          <path class="haze" d="M0 330 C280 270 460 345 720 290 C980 240 1200 320 1440 265 L1440 550 L0 550 Z" />
+          <path class="far-line" d="M0 470 L190 370 L370 430 L555 325 L740 430 L930 335 L1120 425 L1290 330 L1440 410 L1440 900 L0 900 Z" />
+          <path class="ridge ridge-left" d="M0 580 L145 480 L285 305 L405 405 L560 585 L0 780 Z" />
+          <path class="ridge ridge-right" d="M1440 570 L1300 470 L1180 330 L1065 410 L885 585 L1440 785 Z" />
+          <path class="ground" d="M0 585 C280 520 520 600 740 555 C990 505 1220 575 1440 520 L1440 900 L0 900 Z" />
+          <path class="water" d="M-40 710 C310 650 540 760 770 690 C1020 615 1190 710 1480 630" />
+          <g class="memory-routes" aria-hidden="true">
+            <path class="route route-1 edge" d="M710 835 C580 760 455 660 300 490" /><path class="route route-1 wait" d="M710 835 C700 730 705 645 710 550" /><path class="route route-1 gap" d="M710 835 C760 710 800 570 835 355" />
+            <path class="route route-2 edge" d="M705 700 C560 675 500 625 425 595" /><path class="route route-2 wait" d="M705 700 C780 650 855 635 930 610" /><path class="route route-2 gap" d="M705 700 C880 725 1040 670 1170 590" />
+            <path class="route route-3 edge" d="M720 560 C610 500 500 455 390 420" /><path class="route route-3 wait" d="M720 560 C720 455 725 370 730 290" /><path class="route route-3 gap" d="M720 560 C850 470 980 390 1125 320" />
           </g>
-          <g class="marker" data-testid="marker" aria-hidden="true">
-            <path class="marker-shadow" data-testid="marker-shadow" d="M600 517 L730 552 L606 535 Z" />
-            <path class="marker-stone" d="M578 500 L600 398 L622 500 Z" />
-            <ellipse cx="600" cy="510" rx="33" ry="18" />
-          </g>
-          <g class="traveler" data-testid="traveler" aria-hidden="true"><circle cx="600" cy="626" r="10" /><path d="M600 637 L600 666 M600 646 L582 660 M600 646 L617 660" /></g>
+          <g class="first-marker" aria-hidden="true"><path class="marker-shadow" d="M700 620 L830 655 L706 638 Z"/><path d="M680 610 L705 495 L730 610 Z"/><ellipse cx="705" cy="620" rx="38" ry="19"/></g>
+          <g class="second-marker" aria-hidden="true"><path d="M925 620 l24 -55 l23 55 z"/><path d="M930 575 l18 -42 l18 42 z"/></g>
+          <g class="signal" aria-hidden="true"><path d="M720 390 C675 335 720 305 710 255 C770 310 748 355 720 390Z"/></g>
+          <g class="traveler" aria-hidden="true"><circle cx="710" cy="815" r="11"/><path d="M710 828 L710 862 M710 840 L688 855 M710 840 L732 855"/></g>
+          <g class="wind" aria-hidden="true"><path d="M110 250 C260 220 360 255 480 220"/><path d="M900 270 C1060 225 1200 275 1340 225"/></g>
         </svg>
-        <figcaption id="scene-caption" class="world-status">
-          <span id="stage-label">Arrival</span>
-          <span aria-hidden="true">·</span>
-          <span id="environment-label">Wind across unmarked ground</span>
-        </figcaption>
-
+        <figcaption id="scene-caption" class="world-status"><span id="stage-label">Arrival</span><span aria-hidden="true">·</span><span id="environment-label">Wind across unmarked ground</span></figcaption>
+        <div id="language-switch" class="language-switch" role="group" aria-label="Language"><button type="button" data-locale="zh-CN">中文</button><span aria-hidden="true">|</span><button type="button" data-locale="en">EN</button></div>
         <fieldset id="world-controls" class="world-controls" hidden>
-          <legend class="visually-hidden">Inspect the three bearings</legend>
-          <button class="hotspot hotspot-edge" type="button" data-event="inspect_edge" aria-pressed="false" aria-describedby="cue-edge"><span>Ridge edge</span><small id="cue-edge">Shelter with a shortened view</small></button>
-          <button class="hotspot hotspot-wait" type="button" data-event="inspect_wait" aria-pressed="false" aria-describedby="cue-wait"><span>Stone marker</span><small id="cue-wait">Stillness with uncertain information</small></button>
-          <button class="hotspot hotspot-gap" type="button" data-event="inspect_gap" aria-pressed="false" aria-describedby="cue-gap"><span>Open gap</span><small id="cue-gap">Direct ground without cover</small></button>
+          <legend id="world-legend" class="visually-hidden">Inspect the three bearings</legend>
+          <button class="hotspot hotspot-edge" type="button" data-event="inspect_edge" aria-pressed="false"><span></span><small></small></button>
+          <button class="hotspot hotspot-wait" type="button" data-event="inspect_wait" aria-pressed="false"><span></span><small></small></button>
+          <button class="hotspot hotspot-gap" type="button" data-event="inspect_gap" aria-pressed="false"><span></span><small></small></button>
         </fieldset>
-
         <section class="story" aria-labelledby="story-title">
-          <p id="story-kicker" class="kicker">A short crossing</p>
-          <h1 id="story-title" tabindex="-1">Three Bearings</h1>
-          <p id="story-body">At dusk, wind has erased the track behind you. One marker remains where the ground divides.</p>
-          <div id="tradeoff" class="tradeoff" hidden>
-            <p><span>Offers</span> <strong id="tradeoff-offer"></strong></p>
-            <p><span>Costs</span> <strong id="tradeoff-cost"></strong></p>
-          </div>
+          <p id="story-kicker" class="kicker"></p><h1 id="story-title" tabindex="-1"></h1><p id="story-body"></p>
+          <div id="tradeoff" class="tradeoff" hidden><p><span id="offer-label"></span><strong id="tradeoff-offer"></strong></p><p><span id="cost-label"></span><strong id="tradeoff-cost"></strong></p></div>
+          <ol id="journey-recap" class="journey-recap" hidden></ol>
           <div class="actions">
-            <button id="start-action" class="action" type="button" data-event="start">Enter the crossing</button>
-            <button id="approach-action" class="action" type="button" data-event="enter_marker" hidden>Walk into the marker’s shade</button>
-            <button id="commit-action" class="action commit" type="button" data-event="commit_edge" hidden>Commit to this bearing</button>
-            <button id="enact-action" class="action" type="button" data-event="enact" hidden>Live this bearing</button>
-            <button id="reflect-action" class="action" type="button" data-event="reflect" hidden>Look back from here</button>
-            <button id="restart-action" class="action" type="button" data-event="restart" hidden>Return to the crossing</button>
+            <button id="start-action" class="action" type="button" data-event="start"></button><button id="approach-action" class="action" type="button" data-event="reach_crossing" hidden></button>
+            <button id="commit-action" class="action" type="button" data-event="commit_edge" hidden></button><button id="enact-action" class="action" type="button" data-event="enact" hidden></button>
+            <button id="arrive-action" class="action" type="button" data-event="arrive" hidden></button><button id="reflect-action" class="action" type="button" data-event="reflect" hidden></button><button id="restart-action" class="action" type="button" data-event="restart" hidden></button>
           </div>
         </section>
       </figure>

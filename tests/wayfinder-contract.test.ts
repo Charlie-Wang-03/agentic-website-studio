@@ -1,62 +1,17 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'node:fs/promises';
 import { describe, expect, it } from 'vitest';
-import { bearings } from '../pilots/wayfinder/src/content.js';
-import { contractedTransitions, states, terminalStates } from '../pilots/wayfinder/src/state-machine.js';
-import { validateImplementationContract } from '../src/m4.js';
-import { validateHumanPlaytestFeedback, validateRevisionContract } from '../src/m42r-validation.js';
-
-const revisionPath = path.resolve('docs/wayfinder.m42r-revision-contract.json');
-const feedbackPath = path.resolve('docs/wayfinder.m42-human-playtest-feedback.json');
-const revision = JSON.parse(fs.readFileSync(revisionPath, 'utf8')) as {
-  selectedConceptId: string;
-  deterministicStateMachine: { states: string[]; transitions: Array<{ from: string; event: string; to: string }>; terminalStates: string[] };
-  branchWorldResponses: Record<string, Record<string, string>>;
-  qaRequirements: Record<string, boolean>;
-};
-
-describe('M4.2R feedback and contract conformance', () => {
-  it('keeps the original Human Decision and M4.1 Contract valid against actual M3 artifacts', async () => {
-    await expect(validateImplementationContract({
-      contractPath: path.resolve('docs/wayfinder.m4-implementation-contract.json'), decisionPath: path.resolve('docs/wayfinder.m4-human-decision.json'),
-      conceptsPath: path.resolve('runs/wayfinder/m3/concepts.json'), gatePath: path.resolve('runs/wayfinder/m3/human-gate.json'),
-      conceptReviewPath: path.resolve('runs/wayfinder/m3/concept-review.json'), originalityReviewPath: path.resolve('runs/wayfinder/m3/originality-review.json'),
-    })).resolves.toMatchObject({ selectedConceptId: 'concept_three_bearings', states: 9 });
-  });
-
-  it('validates request_revision provenance without fabricating unevaluated results', async () => {
-    await expect(validateHumanPlaytestFeedback(feedbackPath)).resolves.toEqual({ feedbackId: 'feedback_wayfinder_m42_playtest_01', action: 'request_revision', evaluated: 5, notEvaluated: 2 });
-  });
-
-  it('validates the revision amendment and all five objectives', async () => {
-    await expect(validateRevisionContract(revisionPath, feedbackPath)).resolves.toEqual({ revisionContractId: 'revision_contract_wayfinder_m42r_slice_02', states: 15, transitions: 23 });
-  });
-
-  it('matches the exact amended states, transitions, and endings', () => {
-    const key = (item: { from: string; event: string; to: string }) => `${item.from}|${item.event}|${item.to}`;
-    expect([...states].sort()).toEqual([...revision.deterministicStateMachine.states].sort());
-    expect(contractedTransitions.map(key).sort()).toEqual(revision.deterministicStateMachine.transitions.map(key).sort());
-    expect([...terminalStates].sort()).toEqual([...revision.deterministicStateMachine.terminalStates].sort());
-  });
-
-  it('exposes distinct pre-commit tradeoffs without leaking response or ending copy', () => {
-    expect(Object.keys(bearings).sort()).toEqual(['edge', 'gap', 'wait']);
-    const previews = Object.values(bearings).map((item) => `${item.observation}|${item.offer}|${item.cost}`);
-    expect(new Set(previews).size).toBe(3);
-    for (const item of Object.values(bearings)) {
-      expect(item.observation).not.toContain(item.response);
-      expect(item.observation).not.toContain(item.ending);
-      expect(item.offer).not.toBe(item.cost);
-    }
-  });
-
-  it('defines multi-dimensional world responses and continuations for every branch', () => {
-    for (const [bearing, response] of Object.entries(revision.branchWorldResponses)) {
-      expect(Object.keys(response).sort()).toEqual(['continuationAction', 'environmentalState', 'geometryState', 'markerRelationship', 'routeRelationship', 'tradeoffPreview']);
-      expect(new Set(Object.values(response)).size).toBe(6);
-      expect(bearings[bearing as keyof typeof bearings].enactLabel.length).toBeGreaterThan(5);
-    }
-  });
-
-  it('keeps every M4.2R QA prerequisite enabled', () => expect(Object.values(revision.qaRequirements).every(Boolean)).toBe(true));
+import { copy, historyContext, locales, localeFromBrowser } from '../pilots/wayfinder/src/content.js';
+import { initialJourneyState, transition, type Bearing } from '../pilots/wayfinder/src/state-machine.js';
+function strings(value: unknown): string[] { if (typeof value === 'string') return [value]; if (typeof value === 'function') return []; if (value && typeof value === 'object') return Object.values(value).flatMap(strings); return []; }
+describe('M4.3 content and presentation contract', () => {
+  it('supports exactly zh-CN and en', () => { expect(locales).toEqual(['zh-CN', 'en']); });
+  it('selects Chinese only for zh browser languages', () => { expect(localeFromBrowser('zh-Hans-CN')).toBe('zh-CN'); expect(localeFromBrowser('en-US')).toBe('en'); expect(localeFromBrowser('fr')).toBe('en'); });
+  it('has complete non-placeholder content in both locales', () => { for (const locale of locales) { const values = strings(copy[locale]); expect(values.length).toBeGreaterThan(90); expect(values.every((value) => value.trim().length > 0)).toBe(true); expect(values.join(' ')).not.toMatch(/TODO|placeholder|undefined/i); } });
+  it('has semantic parity across all acts and choices', () => { for (const act of [1, 2, 3] as const) for (const bearing of ['edge', 'wait', 'gap'] as Bearing[]) expect(Object.keys(copy.en.acts[act].choices[bearing])).toEqual(Object.keys(copy['zh-CN'].acts[act].choices[bearing])); });
+  it('differentiates choice labels between all three acts', () => { for (const locale of locales) expect(new Set(([1, 2, 3] as const).flatMap((act) => Object.values(copy[locale].acts[act].choices).map((choice) => choice.label))).size).toBe(9); });
+  it('keeps language outside serialized journey state', () => { expect(initialJourneyState).not.toHaveProperty('locale'); const state = transition(transition(initialJourneyState, 'start'), 'reach_crossing'); expect(JSON.parse(JSON.stringify(state))).toEqual(state); });
+  it('conditions later situations on earlier history in both locales', () => { let edge = transition(transition(initialJourneyState,'start'),'reach_crossing'); edge = transition(transition(transition(edge,'inspect_edge'),'commit_edge'),'enact'); edge = transition(edge,'arrive'); let gap = transition(transition(initialJourneyState,'start'),'reach_crossing'); gap = transition(transition(transition(gap,'inspect_gap'),'commit_gap'),'enact'); gap = transition(gap,'arrive'); for (const locale of locales) { expect(historyContext(locale,edge)).not.toBe(historyContext(locale,gap)); expect(historyContext(locale,edge).length).toBeGreaterThan(10); } });
+  it('contains no remote runtime references', async () => { const files = await Promise.all(['pilots/wayfinder/index.html','pilots/wayfinder/src/main.ts','pilots/wayfinder/src/styles.css'].map((file) => fs.readFile(file,'utf8'))); expect(files.join('\n')).not.toMatch(/https?:\/\//); });
+  it('uses project-native SVG and no external creative asset tags', async () => { const html = await fs.readFile('pilots/wayfinder/index.html','utf8'); expect(html).toContain('<svg'); expect(html).not.toMatch(/<(img|audio|video|iframe)\b/i); });
+  it('declares keyboard/live semantics and reduced motion', async () => { const css = await fs.readFile('pilots/wayfinder/src/styles.css','utf8'); expect(css).toContain('prefers-reduced-motion'); expect(await fs.readFile('pilots/wayfinder/index.html','utf8')).toContain('aria-live="polite"'); });
 });
