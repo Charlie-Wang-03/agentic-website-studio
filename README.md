@@ -1,6 +1,6 @@
 # Agentic Website Studio
 
-Agentic Website Studio is a private R&D foundation for evidence-first, rights-aware research into public website references. It is not a website generator, crawler, cloning tool, or legal decision system.
+Agentic Website Studio is a private R&D foundation for evidence-first, rights-aware research and implementation from source-neutral creative contracts. It is not a website cloning tool, crawler, or legal decision system.
 
 M4.1 preserves the M2/M3 flow and adds an auditable bridge from a human creative decision to a bounded implementation contract:
 
@@ -70,6 +70,22 @@ The checked-in [human decision](docs/wayfinder.m4-human-decision.json) records t
 
 The checked-in [implementation contract](docs/wayfinder.m4-implementation-contract.json) turns that selected concept into a source-neutral, machine-readable experience definition and a smallest playable slice: arrival, orientation, one bearing choice, a deterministic state change, a perceptible consequence, and a short ending. It specifies only future implementation work; no production frontend is included in M4.1.
 
+M4.2 implements that bounded contract under `pilots/wayfinder/` using semantic HTML, vanilla TypeScript, authored CSS, and inline project-native SVG. It adds deterministic transition/conformance tests, production-build Playwright QA, source/build provenance, an independent implementation audit, and a first-class Human Playtest Gate. Machine validation establishes structure and technical behavior; it does not decide whether the experience is creatively successful.
+
+Run the complete M4.2 local gate:
+
+```powershell
+npm run wayfinder:qa
+```
+
+After a successful build, manually play the exact audited slice at `http://127.0.0.1:4173`:
+
+```powershell
+npm run wayfinder:preview
+```
+
+Press `Ctrl+C` to stop the preview. The checked-in playtest status is `pending_human_playtest`; automation cannot change it to approval.
+
 Runs live below `runs/<project>/<run-id>/` and are ignored by Git. `--local-fixture` exists only for the project-owned loopback fixture; it does not authorize LAN/private targets. The early M2 contract correction is intentionally breaking: stale M1 runs may need recapture.
 
 ## Boundaries
@@ -78,6 +94,6 @@ Capture records bounded semantic geometry, computed-style distributions, short h
 
 Public accessibility permits inspection, not reuse. Screenshots and observed third-party media remain `inspect_only` unless independent rights evidence establishes otherwise. Design abstractions do not change that status and are not legal certification. See [architecture](docs/ARCHITECTURE.md) and [policies](docs/POLICIES.md).
 
-M3 automation stops at `pending_human_selection`. M4.1 accepts only an explicit human provenance event, binds it to the reviewed concept package, and plans the smallest playable slice. Production frontend implementation, complete-game scope, model APIs, Figma, deployment, backend services, accounts, analytics, and CI remain deferred.
+M3 automation stops at `pending_human_selection`. M4.1 accepts only an explicit human provenance event and binds the selected concept to the smallest playable slice. M4.2 implements only that slice and stops at `pending_human_playtest`. Complete-game scope, creative approval, model APIs, Figma, deployment, backend services, accounts, analytics, and CI remain deferred.
 
 The system does not clone websites. It converts observed design mechanisms into independently authored experiences while preserving rights metadata, provenance, originality constraints, independent audit, and later human release review.

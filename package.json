@@ -17,7 +17,14 @@
     "lint": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp eslint .",
     "typecheck": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp tsc --noEmit",
     "test": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 TEMP=.tmp TMP=.tmp TMPDIR=.tmp npm_config_cache=.npm-cache vitest run --maxWorkers=1",
-    "check": "npm run lint && npm run typecheck && npm run test"
+    "wayfinder:build": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp vite build --config vite.wayfinder.config.ts",
+    "wayfinder:preview": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp vite preview --config vite.wayfinder.config.ts",
+    "wayfinder:test": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp vitest run tests/wayfinder-state.test.ts tests/wayfinder-contract.test.ts --maxWorkers=1",
+    "wayfinder:e2e": "cross-env PLAYWRIGHT_BROWSERS_PATH=0 TEMP=.tmp TMP=.tmp TMPDIR=.tmp playwright test --config playwright.wayfinder.config.ts",
+    "wayfinder:artifacts": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp node --experimental-strip-types src/m42-artifacts.ts",
+    "wayfinder:artifact-test": "cross-env TEMP=.tmp TMP=.tmp TMPDIR=.tmp vitest run tests/m42-artifacts.test.ts --maxWorkers=1",
+    "wayfinder:qa": "npm run wayfinder:build && npm run wayfinder:test && npm run wayfinder:e2e && npm run wayfinder:artifacts && npm run wayfinder:artifact-test",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run wayfinder:build"
   },
   "dependencies": {
     "ajv": "^8.20.0",
@@ -25,6 +32,7 @@
     "playwright": "^1.62.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.2.0",
     "cross-env": "^10.1.0",
@@ -32,6 +40,7 @@
     "tsx": "^4.23.12",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.67.0",
+    "vite": "^8.2.2",
     "vitest": "^4.1.11"
   },
   "allowScripts": {

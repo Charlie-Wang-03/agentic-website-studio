@@ -31,3 +31,9 @@ Automated M3 output cannot approve a concept. Only explicit future human provena
 ## Artifact lifecycle
 
 Runs stay under ignored repository-local `runs/`; test artifacts and process-controlled temporary files stay under ignored `.tmp/`. Manifests and packets use portable repository-relative paths and SHA-256 hashes. Third-party runs, screenshots, browser binaries, caches, and reports are not committed. Only project-owned fixtures belong in source control. There is no GitHub Actions workflow; `npm run check` is the canonical local gate.
+
+## M4.2 implementation and playtest boundary
+
+An approved source-neutral Implementation Contract may produce independently authored code, prose, CSS, and inline vector forms under an isolated pilot directory. Creative assets must be classified separately from build/test dependencies, hashed in the Source Manifest, and remain project-native unless an explicit license record says otherwise. Runtime content may not contact references, CDNs, analytics, external fonts, media, or APIs.
+
+Automated QA may establish deterministic and browser-observable properties but may not claim aesthetic success, meaningful pacing, perceptual sufficiency, WCAG conformance, physical-device behavior, or human approval. The M4.2 gate status is fixed to `pending_human_playtest`; only a later explicit human action may approve expansion, request revision, or reject the direction.

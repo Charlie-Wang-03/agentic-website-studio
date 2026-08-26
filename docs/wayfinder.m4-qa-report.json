@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "reportId": "qa_wayfinder_m42_slice_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "humanDecisionId": "decision_wayfinder_three_bearings_01",
+  "implementationContractId": "contract_wayfinder_three_bearings_slice_01",
+  "sourceManifestSha256": "8e55cdee8665d53e9e0991671ca87611d0b008f2224859792593d30499f26952",
+  "overallResult": "pass_with_warnings",
+  "categories": {
+    "build": {
+      "result": "pass",
+      "evidence": "Vite production build completed and build artifacts are SHA-256 bound."
+    },
+    "stateMachineUnitTests": {
+      "result": "pass",
+      "evidence": "19 focused tests cover authoritative-input validation, legal and invalid transitions, restart, reachability, contract drift, and replay."
+    },
+    "contractConformance": {
+      "result": "pass",
+      "evidence": "Runtime states, contracted transitions, terminal states, bearing IDs, and QA flags match the M4 contract."
+    },
+    "desktopE2E": {
+      "result": "pass",
+      "evidence": "All edge, wait, and gap paths completed at 1440x900 with restart."
+    },
+    "mobileE2E": {
+      "result": "pass",
+      "evidence": "All three paths completed at 390x844 with overflow and target-size checks."
+    },
+    "keyboard": {
+      "result": "pass",
+      "evidence": "One branch completed keyboard-only; all bearing controls received logical focus."
+    },
+    "touch": {
+      "result": "pass_with_warnings",
+      "evidence": "All branches completed with Playwright touch emulation; physical-device testing remains human/manual evidence."
+    },
+    "reducedMotion": {
+      "result": "pass",
+      "evidence": "All branches completed under prefers-reduced-motion: reduce with semantic outcomes intact."
+    },
+    "accessibilityAutomatedScan": {
+      "result": "pass_with_warnings",
+      "evidence": "Axe found no serious or critical violations in representative desktop/mobile states; automation is partial evidence only."
+    },
+    "externalNetworkTest": {
+      "result": "pass",
+      "evidence": "Production path emitted no request outside 127.0.0.1."
+    },
+    "consoleRuntimeErrors": {
+      "result": "pass",
+      "evidence": "No console errors or unhandled page errors were observed."
+    },
+    "deterministicReplay": {
+      "result": "pass",
+      "evidence": "Fresh identical gap sequences produced identical state and semantic output."
+    },
+    "assetProvenance": {
+      "result": "pass",
+      "evidence": "All creative assets are project-native and hashed; dependencies are separately classified."
+    },
+    "independentImplementationAudit": {
+      "result": "pass",
+      "evidence": "Independent audit verdict: pass."
+    }
+  },
+  "warnings": [
+    "Independent authorship and licensing cannot be proven solely by source inspection; the project-native provenance manifest is the auditable implementation attestation.",
+    "Human creative-success and full manual accessibility review remain outstanding by design.",
+    "Touch evidence is emulated rather than a physical-device observation.",
+    "Automated accessibility checks do not establish WCAG conformance."
+  ],
+  "limitations": [
+    "Automation cannot establish aesthetic quality, emotional pacing, prose quality, perceived agency, or perceptual sufficiency; these remain human-playtest questions."
+  ]
+}

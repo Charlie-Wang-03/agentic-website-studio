@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "playtest_gate_wayfinder_m42_slice_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "status": "pending_human_playtest",
+  "bindings": {
+    "humanDecisionId": "decision_wayfinder_three_bearings_01",
+    "implementationContractId": "contract_wayfinder_three_bearings_slice_01",
+    "sourceManifestSha256": "8e55cdee8665d53e9e0991671ca87611d0b008f2224859792593d30499f26952",
+    "qaReportSha256": "c8e57938d20c29c7a50f409b6f73e966dab4cb9c4203902819aceedda1bf9f9f",
+    "buildArtifacts": [
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-BKi7-eRl.css",
+        "sha256": "6974ae1e57c0511d2a2841520432c0a07700a167090f32c820d91125c7ba1a2f"
+      },
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-C80JPPH9.js",
+        "sha256": "71aab5567234746f11fc4b23b284a5d7ba0618b80e718c2e1facfb1a73c3bd84"
+      },
+      {
+        "path": ".tmp/wayfinder-dist/index.html",
+        "sha256": "5a8a2a0cc2a74727efb97457d2a6d34173a72ae9dceb428d0b345a34e3ee94ee"
+      }
+    ]
+  },
+  "preview": {
+    "command": "npm run wayfinder:preview",
+    "address": "http://127.0.0.1:4173",
+    "termination": "Press Ctrl+C in the preview terminal."
+  },
+  "sliceDescription": "Arrival and orientation lead to one of three bearings, each with a distinct route/atmosphere consequence and paired unscored reflection, followed by deterministic restart.",
+  "automatedQaEstablished": [
+    "Exact state-machine structure and replay determinism.",
+    "All paths complete on contracted desktop and emulated mobile viewports.",
+    "Keyboard, touch emulation, reduced motion, serious/critical axe scan, local-only networking, and runtime error checks passed.",
+    "Creative assets are project-native and source/build files are SHA-256 bound."
+  ],
+  "knownWarnings": [
+    "Independent authorship and licensing cannot be proven solely by source inspection; the project-native provenance manifest is the auditable implementation attestation.",
+    "Human creative-success and full manual accessibility review remain outstanding by design.",
+    "Touch evidence is emulated rather than a physical-device observation.",
+    "Automated accessibility checks do not establish WCAG conformance."
+  ],
+  "humanOnlyQuestions": [
+    {
+      "dimension": "choice_clarity",
+      "question": "Did you understand the three bearings before choosing?"
+    },
+    {
+      "dimension": "consequence_perceptibility",
+      "question": "Did each path feel observably different before the ending?"
+    },
+    {
+      "dimension": "agency",
+      "question": "Did the choice feel consequential rather than cosmetic?"
+    },
+    {
+      "dimension": "pacing",
+      "question": "Was arrival through ending appropriately paced?"
+    },
+    {
+      "dimension": "visual_coherence",
+      "question": "Did the original visual language feel intentional?"
+    },
+    {
+      "dimension": "narrative_tone",
+      "question": "Did the short prose feel restrained and coherent?"
+    },
+    {
+      "dimension": "mobile_usability",
+      "question": "On a physical mobile device or narrow browser, did the complete experience remain usable?"
+    },
+    {
+      "dimension": "overall_direction",
+      "question": "Should this direction be approved for expansion, revised, or rejected?"
+    }
+  ],
+  "availableHumanActions": [
+    "approve_for_expansion",
+    "request_revision",
+    "reject_implementation_direction"
+  ]
+}

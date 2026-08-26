@@ -22,6 +22,9 @@ Public Website
   → explicit Human Concept Decision
   → source-neutral Implementation Contract
   → Smallest Playable Slice definition
+  → deterministic project-native implementation
+  → Source Manifest + Automated QA + independent implementation audit
+  → Human Playtest Gate: pending_human_playtest
 ```
 
 Raw Evidence is browser/deterministic inspection output and its schema fixes `epistemicType` to `observed_fact`. It may report measured geometry or computed-style frequencies; it may not call those observations effective, beautiful, transferable, or reusable.
@@ -41,6 +44,16 @@ M4.1 begins only after an explicit human decision. The Human Concept Decision is
 The Implementation Contract binds the exact Human Concept Decision by SHA-256 and converts only the selected concept into engineering scope. It carries the selected concept's protected-expression prohibitions without weakening or substitution, states the experience and consequence models, defines explicit non-goals and future QA requirements, and describes a deterministic state machine for the smallest playable slice. Validation rejects stale M3 hashes, nonexistent selected concepts, substituted originality constraints, forbidden source material, unknown states, unreachable states, and duplicate `(state, event)` transitions.
 
 For Three Bearings, the bounded slice is intentionally smaller than the complete concept: arrival and orientation lead to one choice among three bearings; the confirmed bearing selects one route/atmosphere consequence and one short reflective ending. The three branch outcomes do not rejoin inside this slice, which makes perceptible difference testable without creating a combinatorial content tree. A semantic document is the complete baseline; project-native styling and optional bounded motion may enhance it later.
+
+M4.2 keeps the Wayfinder dogfood isolated under `pilots/wayfinder/`. Its browser UI dispatches events to one pure transition layer; contract-conformance tests compare that layer with the M4.1 JSON state machine. Vite is build/preview infrastructure only. Playwright operates on the local production build and checks the branch matrix, keyboard, emulated touch, reduced motion, representative axe states, network isolation, runtime errors, and deterministic replay.
+
+The deterministic Source Manifest binds the Human Decision and Implementation Contract to sorted source-file, creative-asset, dependency, and build-output hashes. The QA Report binds that manifest and the independent implementation audit. The Human Playtest Gate binds both artifacts and can be emitted only as `pending_human_playtest`.
+
+```text
+machine validation ≠ human experience judgment
+```
+
+Automation can establish reachability, deterministic behavior, structural branch differences, and baseline technical accessibility. Choice clarity, felt agency, consequence perceptibility, pacing, visual coherence, and narrative tone remain human-only evaluations.
 
 ```text
 References inform mechanisms.
@@ -73,6 +86,6 @@ Schemas and generated artifacts—not conversation—are the source of truth. M1
 
 The M2 Evidence Firewall, M3 Reference Evidence Firewall, and M3 Originality Firewall are artifact contracts plus procedural execution protocols. The Synthesis Packet exposes only validated abstractions through an agent-facing projection. The Creative Packet removes URLs, names, screenshots, raw evidence, profile/principle IDs, source prose/assets/code, geometry, and exact motion. This repository does not cryptographically remove tools from an arbitrary model runtime, so each packet reports enforcement honestly as `protocol`.
 
-M3 ends at a first-class Human Creative Gate whose automation schema can emit only `pending_human_selection`. M4.1 records the separate human decision and defines—not implements—the approved playable slice. Frontend implementation, QA execution, release, and learning remain later stages.
+M3 ends at a first-class Human Creative Gate whose automation schema can emit only `pending_human_selection`. M4.1 records the separate human decision and defines the approved playable slice. M4.2 implements and audits only that slice, then stops at a Human Playtest Gate whose automation schema can emit only `pending_human_playtest`. Expansion, release, and learning remain later stages.
 
 The system does not clone websites. It converts observed design mechanisms into independently authored experiences. Reference evidence remains evidence; public access is never treated as permission to reuse names, characters, narrative, visual composition, assets, motion, or source-specific identifiers.
