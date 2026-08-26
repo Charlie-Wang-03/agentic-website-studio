@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentic-website-studio.local/schemas/implementation-contract.schema.json",
+  "title": "M4 Implementation Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "projectId", "selectedConceptId", "sourceSynthesis", "humanDecision", "experienceDefinition", "originalityConstraints", "engineeringScope", "threeBearingsSpecification", "nonGoals", "qaRequirements", "inheritedReviewerWarnings", "inheritedUnresolvedQuestions", "remainingLimitations"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "contractId": { "type": "string", "pattern": "^contract_[a-z0-9_-]+$" },
+    "projectId": { "type": "string", "pattern": "^project_[a-z0-9_-]+$" },
+    "selectedConceptId": { "type": "string", "pattern": "^concept_[a-z0-9_-]+$" },
+    "sourceSynthesis": { "$ref": "#/definitions/sourceSynthesis" },
+    "humanDecision": { "$ref": "#/definitions/humanDecision" },
+    "experienceDefinition": { "$ref": "#/definitions/experienceDefinition" },
+    "originalityConstraints": { "$ref": "#/definitions/originalityConstraints" },
+    "engineeringScope": { "$ref": "#/definitions/engineeringScope" },
+    "threeBearingsSpecification": { "$ref": "#/definitions/threeBearingsSpecification" },
+    "nonGoals": {
+      "type": "array", "uniqueItems": true, "minItems": 7, "items": { "type": "string", "minLength": 1 },
+      "allOf": [
+        { "contains": { "const": "full game" } }, { "contains": { "const": "production deployment" } },
+        { "contains": { "const": "backend" } }, { "contains": { "const": "account system" } },
+        { "contains": { "const": "analytics" } }, { "contains": { "const": "complex multiplayer" } },
+        { "contains": { "const": "unnecessary 3D" } }
+      ]
+    },
+    "qaRequirements": { "$ref": "#/definitions/qaRequirements" },
+    "inheritedReviewerWarnings": { "$ref": "#/definitions/nonEmptyUniqueStrings" },
+    "inheritedUnresolvedQuestions": { "$ref": "#/definitions/nonEmptyUniqueStrings" },
+    "remainingLimitations": { "$ref": "#/definitions/nonEmptyUniqueStrings" }
+  },
+  "definitions": {
+    "nonEmptyUniqueStrings": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "sourceSynthesis": { "type": "object", "additionalProperties": false, "required": ["synthesisId", "conceptsSha256"], "properties": { "synthesisId": { "type": "string", "pattern": "^syn_[a-z0-9_-]+$" }, "conceptsSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } },
+    "humanDecision": { "type": "object", "additionalProperties": false, "required": ["decisionId", "decisionSha256"], "properties": { "decisionId": { "type": "string", "pattern": "^decision_[a-z0-9_-]+$" }, "decisionSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } },
+    "experienceDefinition": { "type": "object", "additionalProperties": false, "required": ["playerExperience", "emotionalGoal", "interactionLoop", "progressionModel", "consequenceModel"], "properties": { "playerExperience": { "type": "string", "minLength": 1 }, "emotionalGoal": { "$ref": "#/definitions/nonEmptyUniqueStrings" }, "interactionLoop": { "$ref": "#/definitions/nonEmptyUniqueStrings" }, "progressionModel": { "type": "string", "minLength": 1 }, "consequenceModel": { "type": "string", "minLength": 1 } } },
+    "originalityConstraints": { "type": "object", "additionalProperties": false, "required": ["noSourceCharacters", "noSourceNames", "noCopiedNarrative", "noCopiedVisualComposition", "noCopiedAssets", "noCopiedMotion", "inheritedProtectedExpressionProhibitions"], "properties": { "noSourceCharacters": { "const": true }, "noSourceNames": { "const": true }, "noCopiedNarrative": { "const": true }, "noCopiedVisualComposition": { "const": true }, "noCopiedAssets": { "const": true }, "noCopiedMotion": { "const": true }, "inheritedProtectedExpressionProhibitions": { "$ref": "#/definitions/nonEmptyUniqueStrings" } } },
+    "smallestPlayableSlice": { "type": "object", "additionalProperties": false, "required": ["opening", "firstChoice", "stateChange", "consequence", "minimalEnding"], "properties": { "opening": { "type": "string", "minLength": 1 }, "firstChoice": { "type": "string", "minLength": 1 }, "stateChange": { "type": "string", "minLength": 1 }, "consequence": { "type": "string", "minLength": 1 }, "minimalEnding": { "type": "string", "minLength": 1 } } },
+    "transition": { "type": "object", "additionalProperties": false, "required": ["from", "event", "to"], "properties": { "from": { "type": "string", "minLength": 1 }, "event": { "type": "string", "minLength": 1 }, "to": { "type": "string", "minLength": 1 } } },
+    "stateMachine": { "type": "object", "additionalProperties": false, "required": ["initialState", "states", "transitions", "terminalStates"], "properties": { "initialState": { "type": "string", "minLength": 1 }, "states": { "$ref": "#/definitions/nonEmptyUniqueStrings" }, "transitions": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/transition" } }, "terminalStates": { "$ref": "#/definitions/nonEmptyUniqueStrings" } } },
+    "engineeringScope": { "type": "object", "additionalProperties": false, "required": ["smallestPlayableSlice", "deterministicStateMachine", "minimalAssets", "frontendArchitecture"], "properties": { "smallestPlayableSlice": { "$ref": "#/definitions/smallestPlayableSlice" }, "deterministicStateMachine": { "$ref": "#/definitions/stateMachine" }, "minimalAssets": { "$ref": "#/definitions/nonEmptyUniqueStrings" }, "frontendArchitecture": { "$ref": "#/definitions/nonEmptyUniqueStrings" } } },
+    "threeBearingsSpecification": { "type": "object", "additionalProperties": false, "required": ["coreMechanic", "playerState", "worldState", "choiceModel", "branchingStructure", "consequenceRepresentation"], "properties": { "coreMechanic": { "const": "Three deliberate bearings alter route and atmosphere during a short crossing." }, "playerState": { "$ref": "#/definitions/nonEmptyUniqueStrings" }, "worldState": { "$ref": "#/definitions/nonEmptyUniqueStrings" }, "choiceModel": { "type": "string", "minLength": 1 }, "branchingStructure": { "type": "string", "minLength": 1 }, "consequenceRepresentation": { "$ref": "#/definitions/nonEmptyUniqueStrings" } } },
+    "qaRequirements": { "type": "object", "additionalProperties": false, "required": ["desktop", "mobile", "keyboard", "touch", "reducedMotion", "accessibility", "deterministicReplay"], "properties": { "desktop": { "const": true }, "mobile": { "const": true }, "keyboard": { "const": true }, "touch": { "const": true }, "reducedMotion": { "const": true }, "accessibility": { "const": true }, "deterministicReplay": { "const": true } } }
+  }
+}

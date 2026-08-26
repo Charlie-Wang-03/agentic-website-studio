@@ -3,6 +3,7 @@ import { captureReference } from './capture.js';
 import { prepareAnalysis } from './analysis.js';
 import { validateAnalysis } from './analysis-validation.js';
 import { prepareCreative, prepareSynthesis, validateConcepts, validateSynthesis } from './m3.js';
+import { validateImplementationContract } from './m4.js';
 
 function value(args: string[], flag: string): string | undefined { const i = args.indexOf(flag); return i >= 0 ? args[i + 1] : undefined; }
 function boundedInteger(args: string[], flag: string, maximum: number): number | undefined {
@@ -49,6 +50,11 @@ async function main(): Promise<void> {
     if (!briefPath || !packetPath || !mapPath || !creativePacketPath || !conceptsPath || !conceptReviewPath || !originalityReviewPath) throw new Error('--brief, --packet, --synthesis, --creative-packet, --concepts, --concept-review, and --originality-review are required');
     process.stdout.write(`${JSON.stringify({ valid: true, ...(await validateConcepts({ briefPath, packetPath, mapPath, creativePacketPath, conceptsPath, conceptReviewPath, originalityReviewPath, ...(gatePath ? { gatePath } : {}) })) })}\n`); return;
   }
-  throw new Error('Usage: studio <capture|prepare-analysis|validate-analysis|prepare-synthesis|validate-synthesis|prepare-creative|validate-concepts> [options]');
+  if (command === 'validate-implementation-contract') {
+    const contractPath = value(args, '--contract'); const decisionPath = value(args, '--decision'); const conceptsPath = value(args, '--concepts'); const gatePath = value(args, '--gate'); const conceptReviewPath = value(args, '--concept-review'); const originalityReviewPath = value(args, '--originality-review');
+    if (!contractPath || !decisionPath || !conceptsPath || !gatePath || !conceptReviewPath || !originalityReviewPath) throw new Error('--contract, --decision, --concepts, --gate, --concept-review, and --originality-review are required');
+    process.stdout.write(`${JSON.stringify({ valid: true, ...(await validateImplementationContract({ contractPath, decisionPath, conceptsPath, gatePath, conceptReviewPath, originalityReviewPath })) })}\n`); return;
+  }
+  throw new Error('Usage: studio <capture|prepare-analysis|validate-analysis|prepare-synthesis|validate-synthesis|prepare-creative|validate-concepts|validate-implementation-contract> [options]');
 }
 main().catch((error: unknown) => { process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`); process.exitCode = 1; });

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentic-website-studio.local/schemas/human-concept-decision.schema.json",
+  "title": "Human Concept Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "decisionId", "projectId", "synthesisId", "conceptsSha256", "selectedConceptId", "decisionType", "humanDecisionTimestamp", "timestampBasis", "reviewerWarnings", "originalityWarnings", "unresolvedQuestions", "provenanceStatement"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "decisionId": { "type": "string", "pattern": "^decision_[a-z0-9_-]+$" },
+    "projectId": { "type": "string", "pattern": "^project_[a-z0-9_-]+$" },
+    "synthesisId": { "type": "string", "pattern": "^syn_[a-z0-9_-]+$" },
+    "conceptsSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "selectedConceptId": { "type": "string", "pattern": "^concept_[a-z0-9_-]+$" },
+    "decisionType": { "const": "select_concept" },
+    "humanDecisionTimestamp": { "type": "string", "format": "date-time" },
+    "timestampBasis": { "const": "recorded_at_human_attestation" },
+    "reviewerWarnings": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "originalityWarnings": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "unresolvedQuestions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "provenanceStatement": { "const": "Human selected this concept. Automation did not select or approve it." }
+  }
+}

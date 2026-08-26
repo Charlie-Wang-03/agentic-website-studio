@@ -100,3 +100,33 @@ export interface CreativeConcept {
   complexityRisk: string[]; smallestConvincingPlayableSlice: string; majorUnknowns: string[];
 }
 export interface CreativeConceptsDocument { schemaVersion: '1.0.0'; projectId: string; synthesisId: string; rightsMode: CreativeRightsMode; concepts: CreativeConcept[] }
+
+export interface HumanConceptDecision {
+  schemaVersion: '1.0.0'; decisionId: string; projectId: string; synthesisId: string; conceptsSha256: string;
+  selectedConceptId: string; decisionType: 'select_concept'; humanDecisionTimestamp: string;
+  timestampBasis: 'recorded_at_human_attestation'; reviewerWarnings: string[]; originalityWarnings: string[];
+  unresolvedQuestions: string[]; provenanceStatement: 'Human selected this concept. Automation did not select or approve it.';
+}
+
+export interface ImplementationContract {
+  schemaVersion: '1.0.0'; contractId: string; projectId: string; selectedConceptId: string;
+  sourceSynthesis: { synthesisId: string; conceptsSha256: string };
+  humanDecision: { decisionId: string; decisionSha256: string };
+  experienceDefinition: { playerExperience: string; emotionalGoal: string[]; interactionLoop: string[]; progressionModel: string; consequenceModel: string };
+  originalityConstraints: {
+    noSourceCharacters: true; noSourceNames: true; noCopiedNarrative: true; noCopiedVisualComposition: true;
+    noCopiedAssets: true; noCopiedMotion: true; inheritedProtectedExpressionProhibitions: string[];
+  };
+  engineeringScope: {
+    smallestPlayableSlice: { opening: string; firstChoice: string; stateChange: string; consequence: string; minimalEnding: string };
+    deterministicStateMachine: { initialState: string; states: string[]; transitions: Array<{ from: string; event: string; to: string }>; terminalStates: string[] };
+    minimalAssets: string[]; frontendArchitecture: string[];
+  };
+  threeBearingsSpecification: {
+    coreMechanic: 'Three deliberate bearings alter route and atmosphere during a short crossing.';
+    playerState: string[]; worldState: string[]; choiceModel: string; branchingStructure: string; consequenceRepresentation: string[];
+  };
+  nonGoals: string[];
+  qaRequirements: { desktop: true; mobile: true; keyboard: true; touch: true; reducedMotion: true; accessibility: true; deterministicReplay: true };
+  inheritedReviewerWarnings: string[]; inheritedUnresolvedQuestions: string[]; remainingLimitations: string[];
+}

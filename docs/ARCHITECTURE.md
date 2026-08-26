@@ -19,6 +19,9 @@ Public Website
   → exactly 3 Creative Concepts
   → independent reviews
   → Human Creative Gate: pending_human_selection
+  → explicit Human Concept Decision
+  → source-neutral Implementation Contract
+  → Smallest Playable Slice definition
 ```
 
 Raw Evidence is browser/deterministic inspection output and its schema fixes `epistemicType` to `observed_fact`. It may report measured geometry or computed-style frequencies; it may not call those observations effective, beautiful, transferable, or reusable.
@@ -33,10 +36,17 @@ A Creative Concept is not a Synthesis Map. It answers the Project Brief using se
 
 Independent diversity/grounding and originality reviews are versioned artifacts bound to the exact concepts-file SHA-256. A failed review blocks gate construction; warnings flow into the Human Creative Gate. This prevents a passing review from being replayed after concepts change.
 
+M4.1 begins only after an explicit human decision. The Human Concept Decision is a new provenance artifact; it does not mutate the historical M3 gate. It binds `projectId`, `synthesisId`, the exact concepts-file SHA-256, and the selected concept ID, and it inherits the gate's warnings and unresolved questions. The required statement—“Human selected this concept. Automation did not select or approve it.”—keeps authority legible to future builders and auditors.
+
+The Implementation Contract binds the exact Human Concept Decision by SHA-256 and converts only the selected concept into engineering scope. It carries the selected concept's protected-expression prohibitions without weakening or substitution, states the experience and consequence models, defines explicit non-goals and future QA requirements, and describes a deterministic state machine for the smallest playable slice. Validation rejects stale M3 hashes, nonexistent selected concepts, substituted originality constraints, forbidden source material, unknown states, unreachable states, and duplicate `(state, event)` transitions.
+
+For Three Bearings, the bounded slice is intentionally smaller than the complete concept: arrival and orientation lead to one choice among three bearings; the confirmed bearing selects one route/atmosphere consequence and one short reflective ending. The three branch outcomes do not rejoin inside this slice, which makes perceptible difference testable without creating a combinatorial content tree. A semantic document is the complete baseline; project-native styling and optional bounded motion may enhance it later.
+
 ```text
 References inform mechanisms.
 Project Brief determines purpose.
 Human decides creative direction.
+Implementation contracts bound the approved direction.
 ```
 
 ## Identity and provenance
@@ -63,4 +73,6 @@ Schemas and generated artifacts—not conversation—are the source of truth. M1
 
 The M2 Evidence Firewall, M3 Reference Evidence Firewall, and M3 Originality Firewall are artifact contracts plus procedural execution protocols. The Synthesis Packet exposes only validated abstractions through an agent-facing projection. The Creative Packet removes URLs, names, screenshots, raw evidence, profile/principle IDs, source prose/assets/code, geometry, and exact motion. This repository does not cryptographically remove tools from an arbitrary model runtime, so each packet reports enforcement honestly as `protocol`.
 
-M3 ends at a first-class Human Creative Gate whose automation schema can emit only `pending_human_selection`. Implementation, QA, release, and learning remain later stages.
+M3 ends at a first-class Human Creative Gate whose automation schema can emit only `pending_human_selection`. M4.1 records the separate human decision and defines—not implements—the approved playable slice. Frontend implementation, QA execution, release, and learning remain later stages.
+
+The system does not clone websites. It converts observed design mechanisms into independently authored experiences. Reference evidence remains evidence; public access is never treated as permission to reuse names, characters, narrative, visual composition, assets, motion, or source-specific identifiers.

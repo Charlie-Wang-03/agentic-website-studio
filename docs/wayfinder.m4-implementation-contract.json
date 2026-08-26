@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0.0",
+  "contractId": "contract_wayfinder_three_bearings_slice_01",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "sourceSynthesis": {
+    "synthesisId": "syn_wayfinder_cross_reference_v2",
+    "conceptsSha256": "0a6f8924543186c86fd8b795d62c55373347f498a5ddadd4684af5e15cd1903f"
+  },
+  "humanDecision": {
+    "decisionId": "decision_wayfinder_three_bearings_01",
+    "decisionSha256": "af82a6cc798b52aa6af2a26f567f6af6f45d64a9e432373a57bb14d3ab0eb4cf"
+  },
+  "experienceDefinition": {
+    "playerExperience": "A visitor makes one deliberate bearing during a brief crossing and immediately reads its effect in route, atmosphere, and a short reflective outcome.",
+    "emotionalGoal": [
+      "Begin with quiet orientation.",
+      "Turn uncertainty into deliberate attention.",
+      "Make consequence perceptible without grading the choice.",
+      "End with an open, reflective arrival."
+    ],
+    "interactionLoop": [
+      "Observe the present marker and horizon.",
+      "Choose one of three plain-language bearings.",
+      "Commit the choice once.",
+      "Read the changed route and atmosphere through text and visual state.",
+      "Continue to the bearing-specific reflective ending."
+    ],
+    "progressionModel": "A single forward axis moves from arrival to orientation, one choice, one visibly changed consequence, and one minimal ending. The three branches do not rejoin inside this slice.",
+    "consequenceModel": "Each bearing deterministically selects a route state, an atmosphere state, a concise consequence sentence, and one ending. No score, inventory, timer, random input, or hidden optimization is present."
+  },
+  "originalityConstraints": {
+    "noSourceCharacters": true,
+    "noSourceNames": true,
+    "noCopiedNarrative": true,
+    "noCopiedVisualComposition": true,
+    "noCopiedAssets": true,
+    "noCopiedMotion": true,
+    "inheritedProtectedExpressionProhibitions": [
+      "Characters from any supplied reference work",
+      "Quotes from any supplied reference work",
+      "Recognizable plot beats from any supplied reference work",
+      "Named fictional locations from any supplied reference work",
+      "Recognizable illustrations",
+      "Reference logos",
+      "Source-specific symbols",
+      "Source prose",
+      "Copied visual compositions",
+      "Copied motion sequences",
+      "Use abstractions only.",
+      "Create independent visual expression.",
+      "Do not reuse source assets or prose.",
+      "Do not replicate exact source layouts or motion sequences.",
+      "Do not reconstruct source code.",
+      "Keep all source-specific expression from every contributing reference reference-only."
+    ]
+  },
+  "engineeringScope": {
+    "smallestPlayableSlice": {
+      "opening": "Scene 0 presents an independently authored crossing, a short premise, and a Start control. Orientation text identifies the marker, horizon, and available input methods.",
+      "firstChoice": "The visitor chooses one bearing: follow the cool edge, wait beside the marker, or cross toward the bright gap. All three are semantic controls with the same keyboard and touch behavior.",
+      "stateChange": "The confirmed bearing replaces the orientation state with one immutable route and atmosphere state derived only from that bearing.",
+      "consequence": "The visitor perceives a different horizon silhouette, route position, atmosphere label, and consequence sentence. Meaning never depends on color, animation, or audio alone.",
+      "minimalEnding": "A Continue control leads to a short bearing-specific reflection and a Restart control. The ending does not rank, reward, or interpret the visitor's choice as correct."
+    },
+    "deterministicStateMachine": {
+      "initialState": "arrival",
+      "states": [
+        "arrival",
+        "orientation",
+        "choice_prompt",
+        "consequence_edge",
+        "consequence_wait",
+        "consequence_gap",
+        "ending_edge",
+        "ending_wait",
+        "ending_gap"
+      ],
+      "transitions": [
+        { "from": "arrival", "event": "start", "to": "orientation" },
+        { "from": "orientation", "event": "ready", "to": "choice_prompt" },
+        { "from": "choice_prompt", "event": "choose_edge", "to": "consequence_edge" },
+        { "from": "choice_prompt", "event": "choose_wait", "to": "consequence_wait" },
+        { "from": "choice_prompt", "event": "choose_gap", "to": "consequence_gap" },
+        { "from": "consequence_edge", "event": "continue", "to": "ending_edge" },
+        { "from": "consequence_wait", "event": "continue", "to": "ending_wait" },
+        { "from": "consequence_gap", "event": "continue", "to": "ending_gap" }
+      ],
+      "terminalStates": [
+        "ending_edge",
+        "ending_wait",
+        "ending_gap"
+      ]
+    },
+    "minimalAssets": [
+      "One independently authored layered horizon assembled from simple project-native shapes.",
+      "One project-native marker shape with three authored state variations.",
+      "Text for arrival, orientation, three consequences, and three short endings.",
+      "No external image, font, audio, video, or three-dimensional asset is required."
+    ],
+    "frontendArchitecture": [
+      "A small semantic document renders every control, state label, consequence, and ending.",
+      "A pure transition function maps current state plus event to exactly one next state.",
+      "A serializable state object contains only the current state and confirmed bearing.",
+      "Project-native CSS and optional inline vector shapes present atmosphere without carrying meaning alone.",
+      "Reduced motion uses immediate replacement; the default may use only short state-linked transitions.",
+      "No framework, rendering engine, network request, persistence layer, or server is required for the slice."
+    ]
+  },
+  "threeBearingsSpecification": {
+    "coreMechanic": "Three deliberate bearings alter route and atmosphere during a short crossing.",
+    "playerState": [
+      "Current state-machine state.",
+      "Confirmed bearing, initially absent and then one of edge, wait, or gap.",
+      "Input focus target for accessible continuation after each transition."
+    ],
+    "worldState": [
+      "Route position selected by the confirmed bearing.",
+      "Atmosphere role selected by the confirmed bearing.",
+      "Marker variation selected by the confirmed bearing.",
+      "Consequence text and ending key selected by the confirmed bearing."
+    ],
+    "choiceModel": "One explicit, unscored choice among three equally operable bearings. A visitor may change the focused option before confirmation; after confirmation, the slice advances and Restart is the only way to choose again.",
+    "branchingStructure": "The choice prompt fans out to three consequence states. Each consequence has one transition to its paired terminal ending. This bounded fan-out proves perceptible agency without a combinatorial content tree.",
+    "consequenceRepresentation": [
+      "Text names the route and atmosphere change.",
+      "Shape and position alter the marker and horizon relationship.",
+      "A restrained semantic accent may reinforce, but never solely encode, the change.",
+      "A live-region announcement reports the new route state without replaying decorative prose.",
+      "Reduced-motion mode presents the same after-state immediately."
+    ]
+  },
+  "nonGoals": [
+    "full game",
+    "production deployment",
+    "backend",
+    "account system",
+    "analytics",
+    "complex multiplayer",
+    "unnecessary 3D"
+  ],
+  "qaRequirements": {
+    "desktop": true,
+    "mobile": true,
+    "keyboard": true,
+    "touch": true,
+    "reducedMotion": true,
+    "accessibility": true,
+    "deterministicReplay": true
+  },
+  "inheritedReviewerWarnings": [
+    "Three Bearings must ensure rejoining branches still create perceptibly different intermediate consequences.",
+    "Claims that material will be independently authored are design commitments that M3 cannot independently prove before implementation."
+  ],
+  "inheritedUnresolvedQuestions": [
+    "How many checkpoints preserve ambiguity without making consequence too faint or too explicit?",
+    "Whether branch rejoining feels intentional or merely linear in testing.",
+    "Which independently authored accent roles remain distinguishable under narrow-screen contrast constraints.",
+    "Whether optional wind ambience adds emotional value after the no-audio path is complete."
+  ],
+  "remainingLimitations": [
+    "M4.1 defines contracts and deterministic checks; it does not supply observation from an implemented or playtested slice.",
+    "Perceptible difference among the three outcomes requires later human creative review and accessibility testing.",
+    "The exact authored prose, shapes, contrast values, viewport behavior, and transition timing remain future implementation decisions.",
+    "A future builder must independently audit rights provenance and confirm that implementation assets are project-native or explicitly licensed."
+  ]
+}

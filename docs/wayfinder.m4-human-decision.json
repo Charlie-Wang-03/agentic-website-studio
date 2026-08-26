@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "decisionId": "decision_wayfinder_three_bearings_01",
+  "projectId": "project_wayfinder",
+  "synthesisId": "syn_wayfinder_cross_reference_v2",
+  "conceptsSha256": "0a6f8924543186c86fd8b795d62c55373347f498a5ddadd4684af5e15cd1903f",
+  "selectedConceptId": "concept_three_bearings",
+  "decisionType": "select_concept",
+  "humanDecisionTimestamp": "2026-08-26T09:07:53.5007886+08:00",
+  "timestampBasis": "recorded_at_human_attestation",
+  "reviewerWarnings": [
+    "Basin of Echoes has the highest proportionality risk because radial-map parity, revisitation state, and sequence combinations may exceed the five-to-eight-minute target.",
+    "Three Bearings must ensure rejoining branches still create perceptibly different intermediate consequences.",
+    "Weather Ledger must provide a discrete accessible alternative to hold-to-observe and ensure timing choices do not collapse into a linear checklist."
+  ],
+  "originalityWarnings": [
+    "Weather Ledger uses the low-confidence single-reference optional-media candidate; any later media must be independently authored or licensed and remain optional.",
+    "Claims that material will be independently authored are design commitments that M3 cannot independently prove before implementation."
+  ],
+  "unresolvedQuestions": [
+    "How many checkpoints preserve ambiguity without making consequence too faint or too explicit?",
+    "Whether branch rejoining feels intentional or merely linear in testing.",
+    "Which independently authored accent roles remain distinguishable under narrow-screen contrast constraints.",
+    "Whether optional wind ambience adds emotional value after the no-audio path is complete.",
+    "Whether visitors understand that revisiting and comparing are the intended agency rather than optional sightseeing.",
+    "How many stations are enough for pattern recognition within five to eight minutes.",
+    "Whether station changes can remain emotionally legible without decorative motion or sound.",
+    "Which map-to-list transition best preserves orientation on very narrow screens.",
+    "How much difference between response paths is perceptible without turning the experience into a branching checklist.",
+    "Whether discrete windows communicate time and consequence without an explicit clock.",
+    "How to keep the ledger poetic but understandable with assistive technology and text-only fallback.",
+    "Whether optional weather audio supports attention or distracts from reading and pacing."
+  ],
+  "provenanceStatement": "Human selected this concept. Automation did not select or approve it."
+}

@@ -2,11 +2,13 @@
 
 Agentic Website Studio is a private R&D foundation for evidence-first, rights-aware research into public website references. It is not a website generator, crawler, cloning tool, or legal decision system.
 
-M3 preserves the M2 single-reference flow and adds an auditable original-concept decision flow:
+M4.1 preserves the M2/M3 flow and adds an auditable bridge from a human creative decision to a bounded implementation contract:
 
 `public URL → policy preflight → passive desktop/mobile inspection → Raw Evidence → Analysis Packet → Reference Profile → Design Principles → semantic validation`
 
 `3+ validated analyses → Synthesis Packet → Synthesis Map → Creative Packet → exactly 3 Creative Concepts → Human Creative Gate`
+
+`Human Creative Gate → Human Concept Decision → Implementation Contract → Smallest Playable Slice`
 
 Raw Evidence is restricted to observed facts. A Reference Profile contains cited inference or evaluation. Design Principles contain cited, transferable abstractions with first-class rights and anti-copy constraints. These layers are intentionally not interchangeable.
 
@@ -58,6 +60,16 @@ npm run studio -- validate-concepts --brief docs/wayfinder.project-brief.json --
 
 The provider-neutral [M3 protocol](docs/M3_CREATIVE_PROTOCOL.md) defines synthesis classification, false-consensus prevention, concept diversity, originality review, and the mandatory human gate.
 
+After a human—not automation—selects a concept, validate the M4.1 decision and implementation contract against the exact M3 concepts artifact and its reviews:
+
+```powershell
+npm run studio -- validate-implementation-contract --contract docs/wayfinder.m4-implementation-contract.json --decision docs/wayfinder.m4-human-decision.json --concepts runs/wayfinder/m3/concepts.json --gate runs/wayfinder/m3/human-gate.json --concept-review runs/wayfinder/m3/concept-review.json --originality-review runs/wayfinder/m3/originality-review.json
+```
+
+The checked-in [human decision](docs/wayfinder.m4-human-decision.json) records the explicit selection of `concept_three_bearings`, binds the exact concepts SHA-256, carries M3 warnings and questions without rewriting history, and states that automation did not select or approve it. Its timestamp is the time the human attestation was recorded in M4.1, not an inferred time for the earlier manual act.
+
+The checked-in [implementation contract](docs/wayfinder.m4-implementation-contract.json) turns that selected concept into a source-neutral, machine-readable experience definition and a smallest playable slice: arrival, orientation, one bearing choice, a deterministic state change, a perceptible consequence, and a short ending. It specifies only future implementation work; no production frontend is included in M4.1.
+
 Runs live below `runs/<project>/<run-id>/` and are ignored by Git. `--local-fixture` exists only for the project-owned loopback fixture; it does not authorize LAN/private targets. The early M2 contract correction is intentionally breaking: stale M1 runs may need recapture.
 
 ## Boundaries
@@ -66,4 +78,6 @@ Capture records bounded semantic geometry, computed-style distributions, short h
 
 Public accessibility permits inspection, not reuse. Screenshots and observed third-party media remain `inspect_only` unless independent rights evidence establishes otherwise. Design abstractions do not change that status and are not legal certification. See [architecture](docs/ARCHITECTURE.md) and [policies](docs/POLICIES.md).
 
-M3 stops at `pending_human_selection`. It does not select a concept or implement a website. Production generation, model APIs, Figma, deployment, and CI remain deferred.
+M3 automation stops at `pending_human_selection`. M4.1 accepts only an explicit human provenance event, binds it to the reviewed concept package, and plans the smallest playable slice. Production frontend implementation, complete-game scope, model APIs, Figma, deployment, backend services, accounts, analytics, and CI remain deferred.
+
+The system does not clone websites. It converts observed design mechanisms into independently authored experiences while preserving rights metadata, provenance, originality constraints, independent audit, and later human release review.
