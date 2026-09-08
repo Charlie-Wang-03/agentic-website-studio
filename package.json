@@ -2,7 +2,7 @@
   "name": "agentic-website-studio",
   "version": "0.1.0",
   "private": true,
-  "description": "Evidence-first foundation for rights-aware website reference research.",
+  "description": "Frozen experimental toy demo for evidence-first, rights-aware creative web workflows.",
   "type": "module",
   "engines": {
     "node": ">=24"

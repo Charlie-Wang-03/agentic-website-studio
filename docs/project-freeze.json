@@ -1,0 +1,10 @@
+{
+  "project": "agentic-website-studio",
+  "status": "frozen",
+  "publicPositioning": "experimental_agent_toy_demo",
+  "activeDevelopment": false,
+  "productionClaims": false,
+  "pilot1": "completed_internal_pilot",
+  "pilot2": "not_started",
+  "releaseTarget": "source_repository_only"
+}
