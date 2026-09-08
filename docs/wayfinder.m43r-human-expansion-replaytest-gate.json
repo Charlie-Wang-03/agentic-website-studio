@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0.0",
+  "gateId": "expansion_replaytest_gate_wayfinder_m43r_01",
+  "projectId": "project_wayfinder",
+  "status": "pending_human_expansion_replaytest",
+  "bindings": {
+    "humanM43FeedbackSha256": "59a2c1b9b33c0d78b0377d43ce9b3e6371fd0fd94f1c1b3a189cb0243dc766b4",
+    "revisionContractSha256": "57de64586237187aaf8d65cc8bb357f934dcfa702cc63ee1ffd35a86eb883d74",
+    "sourceManifestSha256": "6b971d522b38c9d336118a7bfd72696ffa7cf9c0e5a06a148713c9d37084d0a8",
+    "qaReportSha256": "914a476cd02ceb89e343bc22e8e6d3bcde52c136e98b74221eec39fc917dfa9b",
+    "independentAuditSha256": "120e1677148e7f43193d202e0a2ce0acdd7c7a56fcc70182680a47d35c13d739",
+    "buildArtifacts": [
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-CWIYrUl2.js",
+        "sha256": "9b65138b70de6a5c651e12f58c57ae67f20b6a3c67cb427233f5e31485fbf557",
+        "bytes": 29491
+      },
+      {
+        "path": ".tmp/wayfinder-dist/assets/index-D-LnY_sf.css",
+        "sha256": "50b475c3c1f6cda2f44979a14a718a933db063d206fe9fd68f9681c1005dfd25",
+        "bytes": 10193
+      },
+      {
+        "path": ".tmp/wayfinder-dist/index.html",
+        "sha256": "c1cfba4fc3f0de84f5acde4a3694af90951e740c0f34a33efb24c83a68bd84ae",
+        "bytes": 6934
+      }
+    ]
+  },
+  "preview": {
+    "command": "npm run wayfinder:preview",
+    "address": "http://127.0.0.1:4173",
+    "termination": "Press Ctrl+C in the preview terminal."
+  },
+  "supportBoundary": {
+    "desktop": "supported",
+    "desktopViewports": [
+      "1024x768",
+      "1440x900",
+      "1920x1080"
+    ],
+    "mobileOptimization": "deferred"
+  },
+  "automatedQaEstablished": [
+    "Three distinct semantic act primitives and interaction sequences.",
+    "All 27 histories terminate deterministically with preserved choice memory.",
+    "Travel/scene/motion/reduced-motion, bilingual state, desktop, keyboard, accessibility baseline, isolation, errors, replay, provenance, and independent audit passed without blocking verdict."
+  ],
+  "knownWarnings": [
+    "The 5-8 minute target is plausible from the expanded 20-action first path and four observe/traverse beats but remains unmeasured; only first-time human replay can establish duration and felt journey length.",
+    "Act II evidence inspection gates interpretation but remains shallowly coupled: any two traces unlock the same three actions.",
+    "Acts II and III show concise benefit-cost cues but do not render each option's full authored uncertainty field in the final action list.",
+    "Gathered marker transforms last 1.1 seconds while the interaction lock lasts 0.9 seconds, leaving up to 0.2 seconds of non-blocking visual settlement after final choices unlock.",
+    "Bilingual literary tone, felt hesitation, act distinctness, motion quality/restraint, Choice Memory salience, and ending earnedness remain human judgments.",
+    "Accessibility automation is representative rather than complete WCAG or physical assistive-technology validation.",
+    "Final QA/gate generation, artifact-chain validation, and the final repository-wide npm run check remain required after this audit; this warning does not authorize release or M5.",
+    "Automated accessibility scans are representative, not complete WCAG conformance.",
+    "Felt hesitation, 5–8 minute first-play pacing, motion quality, and bilingual naturalness remain human judgments."
+  ],
+  "humanEvaluation": [
+    {
+      "dimension": "act_differentiation",
+      "question": "Did Bearing I / II / III now feel like three genuinely different types of decision?"
+    },
+    {
+      "dimension": "deliberation",
+      "question": "Did at least one major choice cause real hesitation because choosing one benefit meant giving up another?"
+    },
+    {
+      "dimension": "choice_memory",
+      "question": "Did Choice Memory remain clearly perceptible?"
+    },
+    {
+      "dimension": "journey_length",
+      "question": "Did the complete experience finally feel long enough to become a journey?"
+    },
+    {
+      "dimension": "spatial_progression",
+      "question": "Did the three major environments feel spatially distinct while still belonging to one world?"
+    },
+    {
+      "dimension": "travel_motion",
+      "question": "Did travel animations make movement through the world more convincing?"
+    },
+    {
+      "dimension": "world_response_motion",
+      "question": "Did world-response animation make consequences easier to feel?"
+    },
+    {
+      "dimension": "motion_restraint",
+      "question": "Did motion feel meaningful rather than decorative or excessive?"
+    },
+    {
+      "dimension": "earned_ending",
+      "question": "Did the ending feel earned by the journey?"
+    },
+    {
+      "dimension": "zh_cn",
+      "question": "Did zh-CN remain natural?"
+    },
+    {
+      "dimension": "english",
+      "question": "Did English remain natural?"
+    },
+    {
+      "dimension": "desktop",
+      "question": "Did the desktop experience remain coherent?"
+    },
+    {
+      "dimension": "overall",
+      "question": "Overall: approve_for_release_readiness, request_revision, or reject_expansion_direction?"
+    }
+  ],
+  "availableHumanActions": [
+    "approve_for_release_readiness",
+    "request_revision",
+    "reject_expansion_direction"
+  ]
+}

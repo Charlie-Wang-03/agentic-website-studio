@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0.0",
+  "reportId": "qa_wayfinder_m43r_full_journey_01",
+  "projectId": "project_wayfinder",
+  "sourceManifestSha256": "6b971d522b38c9d336118a7bfd72696ffa7cf9c0e5a06a148713c9d37084d0a8",
+  "independentAuditSha256": "120e1677148e7f43193d202e0a2ce0acdd7c7a56fcc70182680a47d35c13d739",
+  "overallResult": "pass_with_warnings",
+  "testCounts": {
+    "focusedModelAndContent": 25,
+    "productionBrowser": 12,
+    "allDecisionHistories": 27,
+    "desktopViewports": 3,
+    "semanticActPrimitives": 3,
+    "travelBeats": 4
+  },
+  "categories": {
+    "humanFeedback": {
+      "result": "pass",
+      "evidence": "All six reported M4.3 results and request_revision are recorded verbatim and conservatively normalized; Choice Memory remains PASS."
+    },
+    "actDifferentiation": {
+      "result": "pass",
+      "evidence": "Typed semantic contracts and browser controls distinguish spatial survey, incomplete-evidence interpretation, and direct irreversible commitment."
+    },
+    "tradeoffs": {
+      "result": "pass",
+      "evidence": "All nine decisions declare opportunity, relinquishment, uncertainty, and at least three affected qualitative dimensions; no player-facing numeric stats."
+    },
+    "journeyPacing": {
+      "result": "pass",
+      "evidence": "Arrival, approach, two travel beats after Acts I and II, evidence inspection, history gathering, culmination, and reflection add meaningful action without enforced time."
+    },
+    "sceneProgression": {
+      "result": "pass",
+      "evidence": "A single wide SVG camera travels through divided ground, watercourse basin, and dusk rise while route and landmarks persist."
+    },
+    "narrativeMotion": {
+      "result": "pass",
+      "evidence": "Camera, traveler, route drawing, current, marker/signal response, and morning-to-dusk atmosphere carry meaning."
+    },
+    "reducedMotion": {
+      "result": "pass",
+      "evidence": "Reduced motion makes transitions immediate while preserving regions, route memory, state, and information."
+    },
+    "choiceMemoryRegression": {
+      "result": "pass",
+      "evidence": "All 27 ordered histories remain valid/deterministic; divergent Bearing I histories differ later in state, prose, and visible route."
+    },
+    "bilingualParity": {
+      "result": "pass",
+      "evidence": "Natural project-authored zh-CN/en cover all new controls, traces, tradeoffs, travel, culmination, and reflection; switching preserves evidence and region."
+    },
+    "desktopMatrix": {
+      "result": "pass",
+      "evidence": "Complete journeys pass at 1024x768, 1440x900, and 1920x1080 without horizontal overflow."
+    },
+    "keyboardAccessibility": {
+      "result": "pass_with_warnings",
+      "evidence": "Keyboard completes all three primitives; representative bilingual states have no serious or critical axe findings."
+    },
+    "runtimeIsolation": {
+      "result": "pass",
+      "evidence": "Production runtime makes no external requests and emits no console/page errors."
+    },
+    "deterministicReplay": {
+      "result": "pass",
+      "evidence": "Fresh identical browser histories reproduce signature, reflection, and recap."
+    },
+    "independentAudit": {
+      "result": "pass_with_warnings",
+      "evidence": "Fresh independent revision audit verdict pass_with_warnings."
+    }
+  },
+  "warnings": [
+    "The 5-8 minute target is plausible from the expanded 20-action first path and four observe/traverse beats but remains unmeasured; only first-time human replay can establish duration and felt journey length.",
+    "Act II evidence inspection gates interpretation but remains shallowly coupled: any two traces unlock the same three actions.",
+    "Acts II and III show concise benefit-cost cues but do not render each option's full authored uncertainty field in the final action list.",
+    "Gathered marker transforms last 1.1 seconds while the interaction lock lasts 0.9 seconds, leaving up to 0.2 seconds of non-blocking visual settlement after final choices unlock.",
+    "Bilingual literary tone, felt hesitation, act distinctness, motion quality/restraint, Choice Memory salience, and ending earnedness remain human judgments.",
+    "Accessibility automation is representative rather than complete WCAG or physical assistive-technology validation.",
+    "Final QA/gate generation, artifact-chain validation, and the final repository-wide npm run check remain required after this audit; this warning does not authorize release or M5.",
+    "Automated accessibility scans are representative, not complete WCAG conformance.",
+    "Felt hesitation, 5–8 minute first-play pacing, motion quality, and bilingual naturalness remain human judgments."
+  ],
+  "humanOnlyLimitations": [
+    "Automation cannot answer the 13 re-playtest questions, approve Release Readiness, establish subjective deliberation or earnedness, or claim mobile support."
+  ]
+}

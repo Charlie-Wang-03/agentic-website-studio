@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "1.0.0",
+  "manifestId": "manifest_wayfinder_m43r_full_journey_01",
+  "projectId": "project_wayfinder",
+  "bindings": {
+    "humanM43Feedback": {
+      "id": "human_expansion_feedback_wayfinder_m43_01",
+      "path": "docs/wayfinder.m43-human-expansion-feedback.json",
+      "sha256": "59a2c1b9b33c0d78b0377d43ce9b3e6371fd0fd94f1c1b3a189cb0243dc766b4"
+    },
+    "revisionContract": {
+      "id": "revision_contract_wayfinder_m43r_full_journey_01",
+      "path": "docs/wayfinder.m43r-revision-contract.json",
+      "sha256": "57de64586237187aaf8d65cc8bb357f934dcfa702cc63ee1ffd35a86eb883d74"
+    },
+    "historicalM43Manifest": {
+      "id": "manifest_wayfinder_m43_full_01",
+      "path": "docs/wayfinder.m43-source-manifest.json",
+      "sha256": "f3760177f2341bd8794b651757965807cd64d7418df78d84a70c12191b356d35"
+    },
+    "implementationBaseline": "543c72bbb60634ff017b333d1cdbefd8dd830e74"
+  },
+  "sourceFiles": [
+    {
+      "path": "package.json",
+      "sha256": "3cc4d785f52e9ca17f833f8489dff4b3c4732bf45b0b69706f1c4d47a499b686"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "87911c9ec4b37d021ca76040173b4cea2e379b3de7d501815a0e0848e0ef11f5"
+    },
+    {
+      "path": "pilots/wayfinder/index.html",
+      "sha256": "f3f8bae70585d0242c3ab78da4fb64d15d9f22299bb6f0d6de46ddb793af294f"
+    },
+    {
+      "path": "pilots/wayfinder/src/content.ts",
+      "sha256": "efa3fd166d7970abcd44dc829294a3ce9c19d8fcdf0d04f7f715ac5583539271"
+    },
+    {
+      "path": "pilots/wayfinder/src/main.ts",
+      "sha256": "9e0e41cd36d89612911239a5851421d5095e953eaff1e51dfad995c6c426b5fe"
+    },
+    {
+      "path": "pilots/wayfinder/src/state-machine.ts",
+      "sha256": "c92f3a969390cb7adde295a4ef91d1b48da3c752ccf7ff1f11786a7a6087a180"
+    },
+    {
+      "path": "pilots/wayfinder/src/styles.css",
+      "sha256": "1145c279e93175fda0b5112bd5c463f97adc1ce6d00ca4a9cbe252748fcac881"
+    },
+    {
+      "path": "playwright.wayfinder.config.ts",
+      "sha256": "decb3b3b6ace3cd9fd53c3fa02eaefe646afb6e0d6716feead915f87b4226f1f"
+    },
+    {
+      "path": "vite.wayfinder.config.ts",
+      "sha256": "08e305faa554c9169b90eaa96d988de45733f1236024078b333196be8eaf6b38"
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "c8d34f7bf49e09b4492609a53913974f18b3ee8ad636f2c3d7adfc401d5701d1"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "465efdab8dbdcd060838b5628fe6c436cfdea9733802dcf27878d3989b5263f3"
+    },
+    {
+      "path": "src/schema.ts",
+      "sha256": "868d6b0160893bf615981af7a6b04b60ea298543661165ecdb51905fb71190b9"
+    },
+    {
+      "path": "src/m43r-validation.ts",
+      "sha256": "e8bf847370eaa4e332b912f88966519f6078a7e968ff1cad216c8f5edb78ae87"
+    },
+    {
+      "path": "src/m43r-artifacts.ts",
+      "sha256": "7ee894c72def65ceda46fd98e7cf46c2eaaf659bc7c3fe43b436496ffe6ffea5"
+    },
+    {
+      "path": "tests/wayfinder-state.test.ts",
+      "sha256": "cf05f181e63454aa14aded21eb5fa3714a52ed1984492aa7fcc32d3017b7c6f8"
+    },
+    {
+      "path": "tests/wayfinder-contract.test.ts",
+      "sha256": "62dd65c35d4b721fe58d3ea406065e1f06527a0c287756bb122e1e60c06d6c2c"
+    },
+    {
+      "path": "tests/wayfinder-e2e/wayfinder.spec.ts",
+      "sha256": "443fd8a2a637c7928601269e8a39dead63e4778b36c80786d8122a6777b63dbc"
+    },
+    {
+      "path": "tests/m43r-artifacts.test.ts",
+      "sha256": "905ff4a3d632bc3c8972687838d8a8f54134727431bb76a76a112a9203d018b5"
+    },
+    {
+      "path": "schemas/m43-human-expansion-feedback.schema.json",
+      "sha256": "635ee630381baf3337bd3f795425dca1088966958b0635e7aca1e12dc328652c"
+    },
+    {
+      "path": "schemas/m43r-revision-contract.schema.json",
+      "sha256": "1d902b267771ddde71eb5baec6c42c01fb2dab39efd0611a03bc954ab53afd0e"
+    },
+    {
+      "path": "schemas/m43r-source-manifest.schema.json",
+      "sha256": "4e9aa140c0ea9a873d77adcd62d85167b363550db9a3f7e0bdaee8955e2a45d2"
+    },
+    {
+      "path": "schemas/m43r-qa-report.schema.json",
+      "sha256": "86ac52f4c21a9342a70c961c136bd3cc576fa83d7cc4092f10cc089800834776"
+    },
+    {
+      "path": "schemas/human-expansion-replaytest-gate.schema.json",
+      "sha256": "b97d497c1fa3ae3d49a09a89ef772e99971078f6a78ac5587b9982883b04dd9a"
+    },
+    {
+      "path": "docs/wayfinder.m43-human-expansion-feedback.json",
+      "sha256": "59a2c1b9b33c0d78b0377d43ce9b3e6371fd0fd94f1c1b3a189cb0243dc766b4"
+    },
+    {
+      "path": "docs/wayfinder.m43r-revision-contract.json",
+      "sha256": "57de64586237187aaf8d65cc8bb357f934dcfa702cc63ee1ffd35a86eb883d74"
+    }
+  ],
+  "creativeAssets": [
+    {
+      "path": "pilots/wayfinder/index.html",
+      "sha256": "f3f8bae70585d0242c3ab78da4fb64d15d9f22299bb6f0d6de46ddb793af294f",
+      "provenanceClass": "project_native",
+      "rightsStatus": "project_owned_original"
+    },
+    {
+      "path": "pilots/wayfinder/src/content.ts",
+      "sha256": "efa3fd166d7970abcd44dc829294a3ce9c19d8fcdf0d04f7f715ac5583539271",
+      "provenanceClass": "project_native",
+      "rightsStatus": "project_owned_original"
+    },
+    {
+      "path": "pilots/wayfinder/src/main.ts",
+      "sha256": "9e0e41cd36d89612911239a5851421d5095e953eaff1e51dfad995c6c426b5fe",
+      "provenanceClass": "project_native",
+      "rightsStatus": "project_owned_original"
+    },
+    {
+      "path": "pilots/wayfinder/src/styles.css",
+      "sha256": "1145c279e93175fda0b5112bd5c463f97adc1ce6d00ca4a9cbe252748fcac881",
+      "provenanceClass": "project_native",
+      "rightsStatus": "project_owned_original"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "vite",
+      "version": "8.2.2",
+      "license": "MIT",
+      "role": "build_or_test_only"
+    },
+    {
+      "name": "playwright",
+      "version": "1.62.1",
+      "license": "Apache-2.0",
+      "role": "build_or_test_only"
+    },
+    {
+      "name": "@axe-core/playwright",
+      "version": "4.13.0",
+      "license": "MPL-2.0",
+      "role": "build_or_test_only"
+    }
+  ],
+  "buildArtifacts": [
+    {
+      "path": ".tmp/wayfinder-dist/assets/index-CWIYrUl2.js",
+      "sha256": "9b65138b70de6a5c651e12f58c57ae67f20b6a3c67cb427233f5e31485fbf557",
+      "bytes": 29491
+    },
+    {
+      "path": ".tmp/wayfinder-dist/assets/index-D-LnY_sf.css",
+      "sha256": "50b475c3c1f6cda2f44979a14a718a933db063d206fe9fd68f9681c1005dfd25",
+      "bytes": 10193
+    },
+    {
+      "path": ".tmp/wayfinder-dist/index.html",
+      "sha256": "c1cfba4fc3f0de84f5acde4a3694af90951e740c0f34a33efb24c83a68bd84ae",
+      "bytes": 6934
+    }
+  ],
+  "runtimeAssetBytes": {
+    "javascript": 29491,
+    "css": 10193,
+    "totalAuthoredBuild": 46618
+  }
+}

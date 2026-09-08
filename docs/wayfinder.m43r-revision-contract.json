@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "contractId": "revision_contract_wayfinder_m43r_full_journey_01",
+  "projectId": "project_wayfinder",
+  "milestone": "M4.3R",
+  "bindings": {
+    "humanM43Feedback": { "id": "human_expansion_feedback_wayfinder_m43_01", "path": "docs/wayfinder.m43-human-expansion-feedback.json", "sha256": "59a2c1b9b33c0d78b0377d43ce9b3e6371fd0fd94f1c1b3a189cb0243dc766b4" },
+    "m43ExpansionContract": { "path": "docs/wayfinder.m43-expansion-contract.json", "sha256": "7740326702a579d9d6c1119da0ebcb6d2fb52898bff05600722c6a35417d4d2e" },
+    "m43SourceManifest": { "path": "docs/wayfinder.m43-source-manifest.json", "sha256": "f3760177f2341bd8794b651757965807cd64d7418df78d84a70c12191b356d35" },
+    "m43QaReport": { "path": "docs/wayfinder.m43-qa-report.json", "sha256": "247680b62bcf11b4bd7f01d877cb42f351130a8e4805d1f14bcb6b1ce8c45ce1" },
+    "m43HumanExpansionPlaytestGate": { "path": "docs/wayfinder.m43-human-expansion-playtest-gate.json", "sha256": "fcdf377f39e4166d668f57d91a3327ee777c4ffb3847d8dc25f90755e676f600" }
+  },
+  "revisionThesis": "Replace three repeated inspect-choose-response acts with spatial route commitment, environmental evidence interpretation, and irreversible legacy commitment, connected by lived travel through three continuous regions.",
+  "acts": [
+    { "act": 1, "primitive": "spatial_route_commitment", "question": "How do I enter this journey?", "sequence": ["survey_landscape", "preview_route", "commit_route", "world_response", "two_beat_travel"] },
+    { "act": 2, "primitive": "environmental_evidence_interpretation", "question": "What do I trust in the world my route produced?", "sequence": ["inspect_two_or_three_traces", "compare_incomplete_evidence", "act_on_interpretation", "world_response", "two_beat_transformed_travel"] },
+    { "act": 3, "primitive": "irreversible_legacy_commitment", "question": "What do I preserve, reveal, or leave behind?", "sequence": ["gather_visible_history", "weigh_sacrifice", "direct_irreversible_commit", "visible_culmination", "reflection"] }
+  ],
+  "tradeoffContract": { "requiredPerOption": ["opportunity", "relinquishment", "uncertainty", "affectedWorldDimensions"], "visibleNumericStats": false, "universalDominanceAllowed": false },
+  "journey": { "targetFirstPlayMinutes": "5-8", "enforcedDuration": false, "artificialDelays": false, "travelBeatsBetweenActs": 2, "regions": ["divided_ground", "watercourse_basin", "final_dusk_rise"], "continuousWorld": true },
+  "motion": { "semanticOnly": true, "cameraTravel": true, "travelerTravel": true, "routeDrawing": true, "waterResponse": true, "landmarkResponse": true, "timeAtmosphereProgression": true, "animationEndDependency": false, "reducedMotionParity": true },
+  "preservation": { "orderedChoiceHistory": true, "persistentRouteTraces": true, "qualitativeWorldMemory": true, "historyConditionedLaterSituations": true, "all27Histories": true, "locales": ["zh-CN", "en"], "languageSwitchPreservesState": true },
+  "supportBoundary": { "desktopViewports": ["1024x768", "1440x900", "1920x1080"], "mobile": "deferred", "deployment": false, "release": false, "m5": false },
+  "humanGate": { "requiredStatus": "pending_human_expansion_replaytest", "automationMayAnswerQuestions": false, "automationMayApproveReleaseReadiness": false }
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "1.0.0",
+  "auditId": "audit_wayfinder_m43r_full_journey_02",
+  "projectId": "project_wayfinder",
+  "selectedConceptId": "concept_three_bearings",
+  "auditedAt": "2026-09-08",
+  "auditScope": {
+    "kind": "fresh_bounded_independent_revision_audit",
+    "referenceWebsitesRevisited": false,
+    "sourceResearchRevisited": false,
+    "externalCreativeAssetsInspected": false,
+    "implementationModified": false,
+    "releaseAuthorizationEvaluated": false
+  },
+  "verdict": "pass_with_warnings",
+  "readyForHumanExpansionReplaytest": true,
+  "gateEffect": "permit_final_qa_and_pending_human_expansion_replaytest_gate_generation",
+  "summary": "The current M4.3R revision is ready for the bounded Human Expansion Re-Playtest. The two prior automated blockers are remediated. Each of four travel beats now requires a spatially positioned observe_travel action before advance_travel; observation changes the visible title/body and the subsequent move changes traveler position, with the second beat of each crossing also moving the camera into the next continuous region. Act III gather_history now changes a dedicated pre-reflection SVG composition from separated/hidden elements into a visible convergence containing the first marker, watercourse, second marker, and connecting route before irreversible choice and reflection; reduced motion reaches the same informative end state immediately. Three interaction primitives, qualitative tradeoffs, ordered memory, later conditioning, three continuous regions, semantic motion, bilingual state, desktop support, keyboard access, runtime isolation, and deterministic replay have direct source and test evidence. A minimum complete path now contains 20 actions, including eight observe/traverse actions across four embodied travel beats, making a 5-8 minute first play plausible without enforced delays; actual duration and felt journey quality remain deliberately human-only because the target is not machine-enforced. Remaining warnings are suitable for human replay rather than automated blockers.",
+  "reviewedInputs": [
+    "docs/wayfinder.m43-human-expansion-feedback.json",
+    "docs/wayfinder.m43r-revision-contract.json",
+    "docs/wayfinder.m43r-source-manifest.json",
+    "docs/wayfinder.m43-expansion-contract.json",
+    "docs/wayfinder.m43-source-manifest.json",
+    "docs/wayfinder.m43-qa-report.json",
+    "docs/wayfinder.m43-independent-expansion-audit.json",
+    "pilots/wayfinder/index.html",
+    "pilots/wayfinder/src/content.ts",
+    "pilots/wayfinder/src/main.ts",
+    "pilots/wayfinder/src/state-machine.ts",
+    "pilots/wayfinder/src/styles.css",
+    "tests/wayfinder-state.test.ts",
+    "tests/wayfinder-contract.test.ts",
+    "tests/wayfinder-e2e/wayfinder.spec.ts",
+    "tests/m43r-artifacts.test.ts",
+    "src/m43r-artifacts.ts",
+    "src/m43r-validation.ts",
+    "schemas/m43-human-expansion-feedback.schema.json",
+    "schemas/m43r-revision-contract.schema.json",
+    "schemas/m43r-source-manifest.schema.json",
+    "schemas/m43r-qa-report.schema.json",
+    "schemas/human-expansion-replaytest-gate.schema.json",
+    "package.json",
+    ".tmp/wayfinder-dist/index.html",
+    ".tmp/wayfinder-dist/assets/index-D-LnY_sf.css",
+    ".tmp/wayfinder-dist/assets/index-CWIYrUl2.js",
+    ".tmp/wayfinder-test-results/.last-run.json",
+    ".tmp/wayfinder-evidence-m43r/act-2-watercourse.png",
+    ".tmp/wayfinder-evidence-m43r/act-3-gathered-history.png",
+    ".tmp/wayfinder-evidence-m43r/act-3-rise.png",
+    ".tmp/wayfinder-evidence-m43r/compact-ending.png",
+    ".tmp/wayfinder-evidence-m43r/standard-ending.png",
+    ".tmp/wayfinder-evidence-m43r/wide-ending.png"
+  ],
+  "pendingGeneratedInputs": [
+    {
+      "path": "docs/wayfinder.m43r-qa-report.json",
+      "reason": "Final QA is intentionally generated only after a non-failing independent audit binds the final source manifest and audit hash."
+    },
+    {
+      "path": "docs/wayfinder.m43r-human-expansion-replaytest-gate.json",
+      "reason": "The pending human gate is intentionally generated only after a non-failing independent audit; it must contain unanswered human questions and must not assert human approval."
+    }
+  ],
+  "evidenceCounts": {
+    "reviewedInputPaths": 34,
+    "representativeScreenshots": 6,
+    "productionBuildFiles": 3,
+    "productionBuildBytes": 46618,
+    "productionJavaScriptBytes": 29491,
+    "productionCssBytes": 10193,
+    "supportedDesktopScreenshots": 3,
+    "spatialAndCulminationScreenshots": 3,
+    "manifestSourceFilesVerifiedByHash": 25,
+    "manifestBuildFilesVerifiedByHash": 3,
+    "manifestHashMismatches": 0,
+    "runtimeExternalRequestsObserved": 0
+  },
+  "testCounts": {
+    "lint": {
+      "result": "pass",
+      "exitCode": 0,
+      "command": "npm run lint"
+    },
+    "typecheck": {
+      "result": "pass",
+      "exitCode": 0,
+      "command": "npm run typecheck"
+    },
+    "strictFeedbackSchemaValidation": {
+      "result": "pass",
+      "exitCode": 0,
+      "scope": "Ajv strict-mode compilation of schemas/m43-human-expansion-feedback.schema.json and validation of docs/wayfinder.m43-human-expansion-feedback.json"
+    },
+    "nonGeneratorDependentRepositoryRun": {
+      "testFilesPassed": 10,
+      "testsPassed": 82,
+      "testsFailed": 0,
+      "exitCode": 0,
+      "command": "npm run test -- --exclude tests/m43r-artifacts.test.ts",
+      "scopeNote": "The six M4.3R artifact-chain tests necessarily wait for this audit and the generated final QA/gate; they are not treated as already run."
+    },
+    "focusedModelAndContentRun": {
+      "testFilesPassed": 2,
+      "testsPassed": 25,
+      "testsFailed": 0,
+      "exitCode": 0,
+      "command": "npm run wayfinder:test"
+    },
+    "productionBrowserRun": {
+      "testsPassed": 12,
+      "testsFailed": 0,
+      "exitCode": 0,
+      "command": "npm run wayfinder:e2e"
+    },
+    "productionBuild": {
+      "result": "pass",
+      "exitCode": 0,
+      "command": "npm run wayfinder:build"
+    },
+    "allDecisionHistoriesCoveredByModelTests": 27,
+    "desktopViewportsCoveredByBrowserTests": 3,
+    "semanticActPrimitivesCovered": 3,
+    "travelBeatsCovered": 4,
+    "minimumCompletePathActions": 20,
+    "minimumTravelObservationActions": 4,
+    "minimumTravelAdvanceActions": 4
+  },
+  "categories": {
+    "humanFeedbackFidelity": {
+      "judgment": "pass",
+      "evidence": [
+        "The immutable M4.3 feedback remains byte-bound and records differentiation fail, decision-motivation fail, Choice Memory pass, journey fail_too_short, scene-evolution fail, insufficient narrative motion, and request_revision without inventing automation approval.",
+        "The revision contract preserves Choice Memory while directly targeting the five failed dimensions, and the current source manifest binds the final reviewed source/build set."
+      ]
+    },
+    "travelRemediation": {
+      "judgment": "pass",
+      "evidence": [
+        "JourneyState includes travelObserved. In travel, advance_travel is rejected until observe_travel has set that flag; every advance clears it, so each of the four beats requires a fresh observation.",
+        "The UI renders observe_travel and advance_travel as separate spatially positioned waypoint buttons over the landscape. Before observation it presents the journey prompt; observation replaces the title/body with beat-specific environmental reading and reveals the corresponding traverse action.",
+        "The first advance in each two-beat crossing changes travelStep and traveler transform. The second changes act/region, moving both camera and traveler into the watercourse or final rise. Route traces, sun, sky, water, and landmarks persist around this movement.",
+        "Model tests reject advance-before-observe, browser helpers execute observe then advance for all four beats, and the normal-motion case verifies input locking and spatial settlement. These are not prose-only Continue controls."
+      ]
+    },
+    "actStructuralDifferentiation": {
+      "judgment": "pass",
+      "evidence": [
+        "Act I is reversible spatial survey and preview followed by a matching route commitment.",
+        "Act II requires inspection of at least two incomplete environmental traces before an interpretation action becomes available.",
+        "Act III gathers visible history and then exposes one direct irreversible legacy commitment before culmination and reflection.",
+        "Typed blueprints and browser-visible control sets establish three distinct primitives and semantic sequences."
+      ]
+    },
+    "tradeoffsAndPlausibleHesitation": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "All nine options encode opportunity, relinquishment, uncertainty, and at least three affected qualitative world dimensions; no visible numeric stats are used.",
+        "No option is universally dominant: shelter costs view, knowledge costs remaining light or distance, visibility costs concealment, and onward range costs retraceability.",
+        "Act I renders offer, cost, and uncertainty before commitment. Act II and Act III render concise benefit-cost cues on the action controls and provide the action's uncertainty in authored content/semantic contracts."
+      ],
+      "warning": "Actual hesitation is a human outcome. Act II remains only shallowly conditioned by which two traces were inspected, and Acts II/III do not display the full authored uncertainty field in the final action list."
+    },
+    "livedJourneyAndFirstPlayPacing": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "A minimum complete path contains 20 actions: arrival, approach, survey and route commit, response enactment, four observe-plus-advance travel actions after Act I, two trace inspections, one interpretation action, response enactment, four observe-plus-advance travel actions after Act II, history gather, final commit, and reflection.",
+        "All four travel beats require attention to an on-scene waypoint, reveal a beat-specific environmental observation, and then move the represented body through the landscape. Optional comparison adds two Act I surveys and one additional trace inspection.",
+        "No artificial duration, animation-end dependency, long mandatory timer, or automatic 5-8 minute claim is introduced. The richer 20-action sequence makes the target plausible as a reading-and-observation experience rather than merely padding it with prose."
+      ],
+      "warning": "The 5-8 minute target is explicitly not enforced. Only observed first-time human sessions can establish actual duration, whether participants pause to inspect the visual changes, and whether the experience feels like a sufficiently long journey."
+    },
+    "spatialRegionsAndContinuity": {
+      "judgment": "pass",
+      "evidence": [
+        "One project-native 4000-unit SVG world contains divided ground, a watercourse basin, and a final dusk rise.",
+        "The camera translates through that continuous composition rather than replacing pages, while route, marker, horizon, traveler, sun, and connectors persist.",
+        "The watercourse, gathered-history, and three ending screenshots show differentiated places and coherent framing at 1024x768, 1440x900, and 1920x1080 without horizontal overflow."
+      ]
+    },
+    "narrativeMotion": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "Camera translation, traveler movement, route drawing, water current, wind, marker/signal response, landmark fading, sun movement, and morning-to-dusk palette changes express travel, consequence, history, and elapsed time.",
+        "Camera, traveler, route, sun, and sky transitions now complete within the 900 ms interaction lock; state progression uses timers rather than animationend.",
+        "Reduced motion collapses transitions/animations to an immediate informative state rather than removing spatial progress, route memory, or culmination content."
+      ],
+      "warning": "The gathered marker transforms use a 1.1 second transition while the interaction lock is 0.9 seconds, so the last 0.2 seconds can settle after choices unlock. Still screenshots and automated CSS assertions cannot establish perceived smoothness or restraint."
+    },
+    "choiceMemoryAndLaterConditioning": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "The ordered three-bearing history, five qualitative memory dimensions, persistent act-specific route traces, and deterministic final signature remain intact.",
+        "Bearing I changes later bilingual context and the visible first route; Bearing II changes later context and may reveal the second marker; Bearing III transforms route, signal, or landmark visibility.",
+        "Model tests cover all 27 histories, distinct ordered history keys/signatures, termination, deterministic replay, and divergent Bearing I outcomes with identical later choices."
+      ],
+      "warning": "The Act II action set is the same after any qualifying pair of traces; trace selection gates interpretation but does not deeply branch the available actions."
+    },
+    "visibleCulminationBeforeReflection": {
+      "judgment": "pass",
+      "evidence": [
+        "The final-rise SVG includes a dedicated memory-convergence group containing memory-first, memory-water, memory-second, and memory-line elements.",
+        "Before gather_history, that group is translated upward and transparent, with the two markers separated. gather_history changes the pre-commit final_assembly state, triggering opacity and marker-position transitions while keeping the camera on Region III.",
+        "The reviewed act-3-gathered-history screenshot visibly shows the first marker, watercourse, second marker, and connecting route assembled together above the final decision controls; this occurs before any Bearing III commitment or reflection.",
+        "Culmination and ending preserve the gathered composition while the final decision additionally changes route, signal, or marker visibility. Reduced motion uses the same state and final styles with near-zero transition duration, preserving all information."
+      ]
+    },
+    "bilingualNaturalnessAndSemanticParity": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "English and zh-CN contain complete project-authored copy for arrival, approach, acts, traces, tradeoffs, travel observations/moves, gathering, culmination, reflection, controls, and live semantics.",
+        "Source comparison shows matching semantic fields for all nine choices; browser coverage preserves history, evidence, phase, signature, and camera region across language switches."
+      ],
+      "warning": "Idiomatic and poetic equivalence for fluent readers is a human judgment; automation establishes completeness and structural parity only."
+    },
+    "desktopKeyboardAccessibilityReducedMotionAndRuntime": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "Complete journeys pass at 1024x768, 1440x900, and 1920x1080 with no horizontal overflow; mobile remains explicitly deferred.",
+        "Semantic fieldsets, keyboard-operable native buttons, focus-visible styling, a skip link, localized polite live region, and SVG title/description are present. The keyboard browser case completes all three primitives.",
+        "Representative English/zh-CN axe scans report no serious or critical findings. The reduced-motion browser path completes with all three route memories and final region preserved.",
+        "The production build contains three local files totaling 46,618 bytes. Browser observation found zero external requests, console errors, or page errors, and duplicate fresh histories reproduced identical signature/reflection/recap."
+      ],
+      "warning": "Representative axe scans and desktop automation do not establish complete WCAG conformance or physical assistive-technology usability."
+    },
+    "provenanceManifestAndGateBoundary": {
+      "judgment": "pass_with_warning",
+      "evidence": [
+        "The provisional M4.3R source manifest SHA-256 is 6b971d522b38c9d336118a7bfd72696ffa7cf9c0e5a06a148713c9d37084d0a8. All 25 listed source hashes and all three listed production-build hashes matched the current files during this audit.",
+        "The corrected human-feedback schema declares all six required evaluation properties. It compiles under Ajv strict mode and validates the immutable human-feedback artifact.",
+        "Creative assets are declared project_native/project_owned_original, dependencies and licenses are recorded, and production files contain no remote runtime references.",
+        "The generator is fail-closed and can create final QA and a pending human gate only when this audit is non-failing and readyForHumanExpansionReplaytest is true. The human gate contract prohibits automation from answering human questions or authorizing release."
+      ],
+      "warning": "Final QA and gate artifacts are intentionally not yet present. They must be generated from this audit, schema/hash validated, and followed by the repository-wide npm run check before handoff to the human replaytest."
+    }
+  },
+  "warnings": [
+    "The 5-8 minute target is plausible from the expanded 20-action first path and four observe/traverse beats but remains unmeasured; only first-time human replay can establish duration and felt journey length.",
+    "Act II evidence inspection gates interpretation but remains shallowly coupled: any two traces unlock the same three actions.",
+    "Acts II and III show concise benefit-cost cues but do not render each option's full authored uncertainty field in the final action list.",
+    "Gathered marker transforms last 1.1 seconds while the interaction lock lasts 0.9 seconds, leaving up to 0.2 seconds of non-blocking visual settlement after final choices unlock.",
+    "Bilingual literary tone, felt hesitation, act distinctness, motion quality/restraint, Choice Memory salience, and ending earnedness remain human judgments.",
+    "Accessibility automation is representative rather than complete WCAG or physical assistive-technology validation.",
+    "Final QA/gate generation, artifact-chain validation, and the final repository-wide npm run check remain required after this audit; this warning does not authorize release or M5."
+  ],
+  "humanOnlyLimitations": [
+    "Whether a first-time complete play actually lasts 5-8 minutes and feels long enough to become a journey.",
+    "Whether at least one major choice causes genuine hesitation because its opportunity, relinquishment, and uncertainty feel personally consequential.",
+    "Whether the three primitives feel genuinely different in play rather than merely differ in controls and state contracts.",
+    "Whether live travel, convergence, water, route, landmark, signal, camera, traveler, and atmosphere motion feels convincing, restrained, legible, and meaningful.",
+    "Whether the preserved route and history echoes make Choice Memory as perceptible as in the previously validated M4.3 result.",
+    "Whether the gathered pre-reflection composition and final transformation make the ending feel accumulated and earned.",
+    "Whether English and zh-CN have equivalent poetic tone, idiomatic naturalness, clarity, and emotional force for fluent readers.",
+    "Whether keyboard, focus, contrast, announcements, and reduced-motion behavior are usable on representative physical assistive-technology setups.",
+    "Automation cannot answer the 13 Human Expansion Re-Playtest questions, approve Release Readiness, authorize deployment, enter M5, or claim mobile support."
+  ],
+  "gateConclusion": "PASS WITH WARNINGS. The two prior automated blockers are remediated, all reviewed deterministic experience requirements have sufficient evidence, and readyForHumanExpansionReplaytest is true. Generate and validate the final M4.3R QA report and pending Human Expansion Re-Playtest Gate, run the complete repository check, then stop for the 13 unanswered human evaluations. This audit does not answer those evaluations, approve Release Readiness, authorize deployment, enter M5, or claim mobile support."
+}
