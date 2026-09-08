@@ -86,7 +86,7 @@ After a successful build, manually play the exact audited slice at `http://127.0
 npm run wayfinder:preview
 ```
 
-Press `Ctrl+C` to stop the preview. M4.3 supports desktop layouts tested at 1024×768, 1440×900, and 1920×1080. Mobile optimization is deferred by human decision; it is not a claimed supported target or a recorded failure. Historical M4.2 and M4.2R gates remain immutable. The current gate status is `pending_human_expansion_playtest`; automation cannot approve the complete experience or release it.
+Press `Ctrl+C` to stop the preview. M4.3 supports desktop layouts tested at 1024×768, 1440×900, and 1920×1080. Mobile optimization is deferred by human decision; it is not a claimed supported target or a recorded failure. Historical M4.2 and M4.2R gates remain immutable. The historical M4.3R expansion replaytest gate remains `pending_human_expansion_replaytest`; its questions are unanswered and automation cannot approve the complete experience or release it. Wayfinder is now Pilot 1, a completed internal dogfood pilot: release readiness was not requested, public deployment was not performed, and further Wayfinder polish intentionally stopped. The distinct [pilot closure](docs/wayfinder.pilot-closure.json), [pilot registry](docs/pilot-registry.json), and [project lessons](docs/WAYFINDER_PROJECT_LESSONS.md) preserve this bounded decision. The next objective is cross-pilot generalization, not Pilot 2 implementation.
 
 The empirical chain is first-class and machine-bound:
 
@@ -100,6 +100,6 @@ Capture records bounded semantic geometry, computed-style distributions, short h
 
 Public accessibility permits inspection, not reuse. Screenshots and observed third-party media remain `inspect_only` unless independent rights evidence establishes otherwise. Design abstractions do not change that status and are not legal certification. See [architecture](docs/ARCHITECTURE.md) and [policies](docs/POLICIES.md).
 
-M3 automation stops at `pending_human_selection`. M4.1 binds the selected concept to the smallest playable slice. M4.2 machine validation did not override a failed Human Playtest; M4.2R performed the authorized bounded revision and returned to a human. M4.3 implements only the subsequently authorized complete-experience expansion and stops at `pending_human_expansion_playtest`. Release readiness, deployment, model APIs, Figma, backend services, accounts, analytics, and CI remain deferred.
+M3 automation stops at `pending_human_selection`. M4.1 binds the selected concept to the smallest playable slice. M4.2 machine validation did not override a failed Human Playtest; M4.2R performed the authorized bounded revision and returned to a human. M4.3/M4.3R implements the subsequently authorized complete-experience expansion, while the final replaytest gate remains historically pending and unanswered. The later `close_pilot` decision ends Wayfinder as internal dogfood only; it does not authorize release readiness, deployment, or further implementation. Release readiness, deployment, model APIs, Figma, backend services, accounts, analytics, and CI remain deferred.
 
 The system does not clone websites. It converts observed design mechanisms into independently authored experiences while preserving rights metadata, provenance, originality constraints, independent audit, and later human release review.

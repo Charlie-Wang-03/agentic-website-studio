@@ -1,0 +1,5 @@
+{
+  "schemaVersion": "1.0.0",
+  "registryId": "pilot_registry_01",
+  "pilots": [{"pilotId":"wayfinder","status":"completed_internal_pilot","releaseStatus":"not_requested","publicDeployment":false,"primaryRole":"workflow_validation_dogfood","closureArtifact":"docs/wayfinder.pilot-closure.json"}]
+}
