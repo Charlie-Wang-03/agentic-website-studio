@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic Website Studio</title>
+  <desc id="desc">A frozen agent toy demo showing an evidence-first creative workflow from reference evidence through abstraction and a human gate to the Wayfinder dogfood experience.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#15243a"/>
+    </linearGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c89562"/>
+      <stop offset="1" stop-color="#e3bd86"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="380" rx="28" fill="url(#sky)"/>
+  <path d="M0 305 C210 255 355 340 560 300 C760 262 960 320 1200 264 L1200 380 L0 380 Z" fill="#192c37"/>
+  <path d="M0 337 C235 300 420 372 620 329 C845 281 1010 349 1200 312 L1200 380 L0 380 Z" fill="#243d40"/>
+
+  <g transform="translate(58 54)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif">
+    <text x="0" y="0" dominant-baseline="hanging" font-size="17" font-weight="600" letter-spacing="2.2" fill="#8fb6c8">EXPERIMENTAL · FROZEN · HUMAN-IN-THE-LOOP</text>
+    <text x="0" y="62" font-size="53" font-weight="720" fill="#f7f2e8">Agentic Website</text>
+    <text x="0" y="119" font-size="53" font-weight="720" fill="#f7f2e8">Studio</text>
+    <text x="0" y="164" font-size="21" fill="#c6d2d7">Evidence first. Originality guarded.</text>
+    <text x="0" y="195" font-size="21" fill="#c6d2d7">Humans keep the creative veto.</text>
+    <g transform="translate(0 232)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15">
+      <rect width="168" height="34" rx="17" fill="#193646" stroke="#3d7285"/>
+      <text x="84" y="22" text-anchor="middle" fill="#a9d6e5">toy demo</text>
+      <rect x="180" width="188" height="34" rx="17" fill="#3b3027" stroke="#8d6b48"/>
+      <text x="274" y="22" text-anchor="middle" fill="#e8c89d">Wayfinder dogfood</text>
+    </g>
+  </g>
+
+  <g transform="translate(655 55)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif">
+    <text x="0" y="0" dominant-baseline="hanging" font-size="17" font-weight="650" fill="#d4e2e8">REFERENCE-DRIVEN CREATIVE LOOP</text>
+
+    <g transform="translate(0 48)">
+      <rect width="205" height="62" rx="14" fill="#102a39" stroke="#39718a"/>
+      <circle cx="25" cy="31" r="8" fill="#6bb6d5"/>
+      <text x="45" y="26" font-size="18" font-weight="650" fill="#eff7fa">Evidence</text>
+      <text x="45" y="47" font-size="14" fill="#9db8c4">observed, bounded</text>
+    </g>
+    <path d="M205 79 H242" stroke="#6e8d99" stroke-width="2"/>
+    <path d="M237 74 L244 79 L237 84" fill="none" stroke="#6e8d99" stroke-width="2"/>
+    <g transform="translate(244 48)">
+      <rect width="205" height="62" rx="14" fill="#182c31" stroke="#557c72"/>
+      <circle cx="25" cy="31" r="8" fill="#7bb59e"/>
+      <text x="45" y="26" font-size="18" font-weight="650" fill="#eff7f4">Abstraction</text>
+      <text x="45" y="47" font-size="14" fill="#a9c0b8">mechanisms, not pixels</text>
+    </g>
+
+    <path d="M102 111 V146" stroke="#6e8d99" stroke-width="2"/>
+    <path d="M97 141 L102 148 L107 141" fill="none" stroke="#6e8d99" stroke-width="2"/>
+    <g transform="translate(0 149)">
+      <rect width="205" height="68" rx="14" fill="#352a25" stroke="#9f714e" stroke-width="2"/>
+      <text x="22" y="27" font-size="17" font-weight="700" fill="#f3d7b5">HUMAN GATE</text>
+      <text x="22" y="50" font-size="14" fill="#d8b995">automation cannot approve</text>
+    </g>
+
+    <path d="M205 183 H244" stroke="#98775e" stroke-width="2"/>
+    <path d="M239 178 L246 183 L239 188" fill="none" stroke="#98775e" stroke-width="2"/>
+    <g transform="translate(244 149)">
+      <rect width="205" height="68" rx="14" fill="#302d29" stroke="#a8835d"/>
+      <path d="M22 49 C57 15 84 54 112 29 C142 4 166 38 184 23" fill="none" stroke="url(#sand)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="184" cy="23" r="6" fill="#e3bd86"/>
+      <text x="22" y="23" font-size="17" font-weight="700" fill="#f4e5cf">Wayfinder</text>
+      <text x="22" y="63" font-size="13" fill="#c8b79f">original dogfood</text>
+    </g>
+
+    <g transform="translate(0 250)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="14" fill="#91a9b3">
+      <text x="0" y="0">machine QA: pass</text>
+      <text x="0" y="25" fill="#e1b17d">human review: request revision</text>
+      <text x="0" y="50" fill="#9bc7b5">revision loop: preserved as evidence</text>
+    </g>
+  </g>
+</svg>

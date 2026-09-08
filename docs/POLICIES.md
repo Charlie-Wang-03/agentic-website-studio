@@ -1,3 +1,7 @@
+<p align="right">
+  <strong>English</strong> · <a href="./POLICIES.zh-CN.md">简体中文</a>
+</p>
+
 # Research, rights, and originality policies
 
 ## Public evidence boundary
